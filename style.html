@@ -1,0 +1,257 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styling A Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+    
+        .lab1{
+            display: block;
+            
+        }
+        .contr_lab{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .div_contain{
+            height: 100%;
+            width: 100%;
+            display: grid;
+            place-content: center;
+            background-image: url('Desktop-Flower-HD-Wallpapers-Images-Download-620x388.jpg');
+            background-size: 100% 100%;
+            background-position-x: 100%;
+            background-position-y: 100%;
+
+        }
+        p{
+            width: max-content;
+            display: inline;
+            margin: 0px 0px 0px 0px;
+            font-size: 14px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 400;
+        }
+        input{
+            display: inline-block;
+            border: none;
+            background: transparent;
+            font-weight: 400;
+            font-style: normal;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-stretch: condensed;
+            font-optical-sizing: 1px;
+            
+            letter-spacing: 2px;
+            outline: none;
+        }
+        .input{
+            margin-top:-5px ;
+            width: 230px;
+        }
+        .label{
+
+            display: flex;
+            justify-content: center;
+            width: 250px;
+            margin-top: 10px;
+        }
+        label{
+            font-size: 14px;
+            
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }  
+        button{
+            display: block;
+            width: 250px;
+            border: none;
+            font-size: 13px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: 400;
+            border-radius: 20px;
+            height: 33px;
+        }
+       i{
+        background-color: transparent;
+        font-weight: 300;
+        font-size: 17px;
+        color: inherit;
+       }
+       form{
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+        backdrop-filter: blur(15px);
+        background: rgba(255,255,255,0.2);
+       }
+       svg{
+        width: 13px;
+       }
+       
+	.st0{fill:#5CA4A9;}
+	.st1{fill:#E6EBE0;}
+	.st2{fill:#CBCCCA;}
+	.st3{fill:#ED6A5A;}
+	.st4{fill:#F4F1BB;}
+
+#mail-icon {
+	width:120px;
+	cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="div_contain">
+        <form style="width: 250px;">
+            <div class="contr_lab">
+            <label class="lab1">
+                Login Here
+            </label>
+            </div>
+            <div class="label">
+                <label for="email"  style="border-bottom: 1px solid black;">Email
+
+                    <input id="email" class="input" >
+                    <i>
+                    
+                    <svg version="1.1" id="mail-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="96.3 -4.7 45.1 46.2" style="enable-background:new 96.3 -4.7 45.1 46.2; width: 15px;" xml:space="preserve" >
+                        <path class="st0" d="M138.2,10.5H99.5c-1.7,0-3.1,1.4-3.1,3.1v24.8c0,1.7,1.4,3.1,3.1,3.1h38.7c1.7,0,3.1-1.4,3.1-3.1V13.6
+                            C141.3,11.9,139.9,10.5,138.2,10.5z"/>
+                        <path class="st0" d="M125.6,30.7c-3.7-2.6-6.6-4.6-6.8-4.7l0,0L125.6,30.7z"/>
+                        <path id="env-lid" class="st0" d="M118.9,26L118.9,26c0,0,16-11.1,21.4-14.8c-0.5-0.5-1.2-0.8-2-0.8H99.5c-0.8,0-1.5,0.3-2,0.8
+                            L118.9,26L118.9,26z"/>
+                        <path id="env-paper" class="st1" d="M135.8,34.2h-33.9c-1.3,0-2.4-1.1-2.4-2.4V0.7c0-1.3,1.1-2.4,2.4-2.4h33.9
+                            c1.3,0,2.4,1.1,2.4,2.4v31.1C138.1,33.1,137.1,34.2,135.8,34.2z"/>
+                        <path id="env-line-3" class="st2" d="M131.2,6.5h-24.7c-0.9,0-1.6-0.7-1.6-1.6l0,0c0-0.9,0.7-1.6,1.6-1.6h24.6
+                            c0.9,0,1.6,0.7,1.6,1.6l0,0C132.8,5.7,132.1,6.5,131.2,6.5z"/>
+                        <path id="env-line-2" class="st2" d="M131.2,14.1h-24.7c-0.9,0-1.6-0.7-1.6-1.6l0,0c0-0.9,0.7-1.6,1.6-1.6h24.6
+                            c0.9,0,1.6,0.7,1.6,1.6l0,0C132.8,13.4,132.1,14.1,131.2,14.1z"/>
+                        <path id="env-line-1" class="st2" d="M131.2,21.5h-24.7c-0.9,0-1.6-0.7-1.6-1.6l0,0c0-0.9,0.7-1.6,1.6-1.6h24.6
+                            c0.9,0,1.6,0.7,1.6,1.6l0,0C132.8,20.8,132.1,21.5,131.2,21.5z"/>
+                        <path class="st3" d="M97.6,11.1c-0.6,0.5-1.3,1.5-1.3,2.4v24.9c0,1.7,1.4,3.1,3.1,3.1h38.8c0.8,0,1.4-0.3,2-0.7
+                            C137.1,38.7,97.6,11.1,97.6,11.1z"/>
+                        <path class="st4" d="M140.3,11.2c-5.4,3.7-21.4,14.8-21.4,14.8l0,0c0.2,0.1,18.2,12.7,21.3,14.8c0.7-0.6,1.2-1.4,1.2-2.3v-25
+                            C141.3,12.6,140.9,11.8,140.3,11.2z"/>
+                    </svg>
+
+                    </i>
+                </label>
+            </div>
+            <div class="label">
+                <label for="password" style="border-bottom: 1px solid black;">Password
+                    <input id="password" class="input" >
+                    <i id="id"><svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zM5 10v10h14V10H5zm6 4h2v2h-2v-2zm-4 0h2v2H7v-2zm8 0h2v2h-2v-2zm1-6V7a4 4 0 1 0-8 0v1h8z"/> </g> </svg></i>
+                </label>
+            </div>        
+            <div style="display: grid; grid-template-columns: 1fr 1fr; width: 250px; margin-top: 10px;" >
+
+                <div style="display: flex; justify-content: left;">
+                    <input type="checkbox" style="margin: 0px 4px 0px 0px;">
+                    <p style="display: inline;"> Remember Me</p>
+                    
+                </div>
+                <div style="display: flex; justify-content: right;">
+                    <p>Forget Password</p>
+                </div>
+            </div>
+            <div style="display: grid; place-content: center ; margin-top: 10px;" >
+                <button id="button" type="button">
+                    Log in 
+                </button>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <p>
+                Don't have an account ? <a href="#" style="text-decoration-line: none; color: inherit;"> Register</a>
+            </p>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('password').type = 'password';
+        const i = document.getElementById('id');
+        i.addEventListener('click', function(){     
+            if(document.getElementById('svg').getAttribute('viewBox') === "0 0 24 24"){
+                document.getElementById('svg').setAttribute('viewBox',"0 0 576 512");
+                document.getElementById('svg').innerHTML = '<!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M352 192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H288V144C288 64.47 352.5 0 432 0C511.5 0 576 64.47 576 144V192C576 209.7 561.7 224 544 224C526.3 224 512 209.7 512 192V144C512 99.82 476.2 64 432 64C387.8 64 352 99.82 352 144V192z"/>';
+                document.getElementById('password').type = 'text';
+            }
+            else{
+                document.getElementById('svg').setAttribute('viewBox',"0 0 24 24");
+                document.getElementById('svg').innerHTML = '<g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M18 8h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2V7a6 6 0 1 1 12 0v1zM5 10v10h14V10H5zm6 4h2v2h-2v-2zm-4 0h2v2H7v-2zm8 0h2v2h-2v-2zm1-6V7a4 4 0 1 0-8 0v1h8z"/> </g> ';
+                document.getElementById('password').type = 'password';
+            }
+        })
+        var line1 = document.getElementById('env-line-1');
+        var line2 = document.getElementById('env-line-2');
+        var line3 = document.getElementById('env-line-3');
+        var mailIcon = document.getElementById('mail-icon');
+        var envLid = document.getElementById('env-lid');
+        var envPaper = document.getElementById('env-paper');
+
+        var isToggled = false;
+
+        function playAnimation() {
+            envLid.style.transition = "transform 0.3s ease";
+            envLid.style.transform = "scaleY(-1) translateY(1.5px)";
+
+            envPaper.style.transition = "transform 4s ease";
+            envPaper.style.transformOrigin = "50% 100%";
+            envPaper.style.transform = "scaleY(1)";
+
+            var lines = [line1, line2, line3];
+            lines.forEach(function (line, index) {
+                line.style.transition = "transform 0.3s ease";
+                line.style.transformOrigin = "50% 50%";
+                line.style.transform = "scaleX(1)";
+                if (index > 0) {
+                line.style.transitionDelay = (-0.09 * index) + "s";
+                }
+            });
+        }
+
+        function reverseAnimation() {
+            envLid.style.transition = "transform 0.3s ease";
+            envLid.style.transform = "scaleY(1) translateY(0)";
+
+            envPaper.style.transition = "transform 4s ease";
+            envPaper.style.transformOrigin = "50% 100%";
+            envPaper.style.transform = "scaleY(0)";
+
+            var lines = [line1, line2, line3];
+            lines.forEach(function (line, index) {
+                line.style.transition = "transform 4s ease";
+                line.style.transformOrigin = "50% 50%";
+                line.style.transform = "scaleX(0)";
+                if (index > 0) {
+                line.style.transitionDelay = "0s";
+                }
+            });
+        }
+
+        document.getElementById('email').addEventListener('input', function () {
+            if (!isToggled) {
+                playAnimation();
+            } //else {
+                //playAnimation();
+                
+            //}
+
+            isToggled = !isToggled;
+        });
+        document.getElementById('button').addEventListener('click', function(){
+            //reverseAnimation()
+            if(isToggled){
+            reverseAnimation()
+            }
+            isToggled = !isToggled;
+        })
+
+    </script>
+</body>
+</html>

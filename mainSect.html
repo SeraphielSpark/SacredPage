@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Pages - Spiritual Books & Readings</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5E4B25;
+            --secondary: #D7C49E;
+            --accent: #AC3B61;
+            --light: #F5F5F5;
+            --dark: #123C69;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(30, 30, 30, 0.7), rgba(30, 30, 30, 0.7)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(94, 75, 37, 0.9);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 5%;
+            background-color: rgba(94, 75, 37, 0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #8a2b4a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--accent);
+        }
+        
+        /* Featured Books Section */
+        .section {
+            padding: 0px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .book-img {
+            height: 350px;
+            overflow: hidden;
+        }
+        
+        .book-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .book-card:hover .book-img img {
+            transform: scale(1.1);
+        }
+        
+        .book-info {
+            padding: 20px;
+        }
+        
+        .book-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .book-info .author {
+            color: var(--primary);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .book-info .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .rating {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        /* Spiritual Readings Section */
+        .readings-section {
+            background: linear-gradient(rgba(215, 196, 158, 0.8), rgba(215, 196, 158, 0.8)), 
+                        url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 100px 5%;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .reading-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reading-card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .reading-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Library Section */
+        .library-section {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .library-section .section-title h2 {
+            color: white;
+        }
+        
+        .library-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .library-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .library-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .library-card p {
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 5% 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">Sacred<span>Pages</span></a>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#readings">Readings</a></li>
+            <li><a href="#library">Library</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-content">
+            <h1>Discover Spiritual Wisdom</h1>
+            <p>Explore our collection of transformative books and personalized spiritual readings to guide your journey.</p>
+            <div class="btn-container">
+                <a href="#books" class="btn">Browse Books</a>
+                <a href="#readings" class="btn btn-outline">Get a Reading</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Books Section -->
+    <section class="section" id="books">
+        <div class="section-title">
+            <h2>Featured Books</h2>
+        </div>
+        <div class="books-grid">
+            <!-- Book 1 -->
+            <div class="book-card">
+                <div class="book-img">
+                    <img src="Screenshot 2024-10-09 210758.png" alt="The Power of Now">
+                </div>
+                <div class="book-info">
+                    <h3>72 Magickal Angels</h3>
+                    <span class="author">Damon Brand</span>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="price">$4.99</span>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Book 2 -->
+            <div class="book-card">
+                <div class="book-img">
+                    <img src="sixth.png" alt="The Alchemist">
+                </div>
+                <div class="book-info">
+                    <h3>Success and Power through Psalms </h3>
+                    <span class="author">Danna Rose</span>
+                  <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="price">$2.55</span>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Book 3 -->
+            <div class="book-card">
+                <div class="book-img">
+                    <img src="seventh.png" alt="Autobiography of a Yogi">
+                </div>
+                <div class="book-info">
+                    <h3>Sigils Of Power And Transformation</h3>
+                    <span class="author">Adam BlackThorne</span>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">$3.50</span>
+                    <a href="#" class="btn">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spiritual Readings Section -->
+    <section class="readings-section" id="readings">
+        <div class="reading-card">
+            <h2>Personalized Spiritual Readings</h2>
+            <p>Our experienced spiritual guides offer personalized readings to help you navigate life's challenges and discover your true path. Whether you're seeking clarity, direction, or spiritual growth, our readings can provide the insight you need.</p>
+            <a href="#" class="btn">Book a Reading</a>
+            <a href="#" class="btn" style="color: white; background-color: rgb(111, 25, 25);">Contact A Psychic</a>
+        </div>
+    </section>
+
+    <!-- Library Section -->
+    <section class="section library-section" id="library">
+        <div class="section-title">
+            <h2>Digital Library</h2>
+        </div> 
+        
+        <div class="books-grid" id="libraryGrid" style=" padding-bottom: 10px;">
+            <div id="library1" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
+                <h3 id="m">Downloadable Books</h3>
+                <p id="p1">Access your purchased books anytime, anywhere with our digital library. Available in multiple formats for all devices.</p>
+                <a href="#" class="btn">View Library</a>
+            </div>
+            <div id="library2" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
+                <h3 id="n">Audio Books</h3>
+                <p id="p2">Listen to spiritual teachings on the go with our collection of high-quality audio books.</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+            <div id="library3" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
+                <h3 id="o">Exclusive Content</h3>
+                <p id="p3">Members get access to exclusive spiritual content, guided meditations, and more.</p>
+                <a href="#" class="btn">Join Now</a>
+            </div>
+            
+        </div>
+    </section>
+<div style=" background-color :transparent; width: 100%; display: grid; grid-template-columns: 1fr 1fr ;">
+    <div style=" background-color :#123C69; padding-right: 15px; display: grid; place-content: end; place-items: end;padding-left: 10px;"><i class="fas fa-arrow-left" style="color: black; font-size: 22px;" onclick="backLibrary()"></i> </div>
+    <div style=" background-color :#123C69; padding-left: 15px; display: grid; place-content: left; place-items: left; padding-right: 10px;"><i class="fas fa-arrow-right" style="color: black; font-size: 22px;" onclick="forwardLibrary()"></i> </div>
+</div>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Sacred Pages</h3>
+                <p>Your destination for spiritual growth through books and readings.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#books">Books</a></li>
+                    <li><a href="#readings">Readings</a></li>
+                    <li><a href="#library">Library</a></li>
+                    <li><a href="#">My Account</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Spiritual Way, Serenity City</li>
+                    <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-envelope"></i> info@sacredpages.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Sacred Pages. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        var libraryList= ['ninth-img.png', 'audioBook.jpg', 'angel2.jpeg', 'tarot.jpeg','angel.png','astroImage.png','moon.png', 'screen.png' ]
+        var h = ['Downloadable Books', 'Audio Books', 'Exclusive Content', 'Tarot Card Readings','Angelic Readings', 'Zodiac Sign Reading', 'Cardinal Reading','Cookie Game']
+        var p = ['Access your purchased books anytime, anywhere with our digital library. Available in multiple formats for all devices.','Listen to spiritual teachings on the go with our collection of high-quality audio books.', 'Members get access to exclusive spiritual content, guided meditations, and more.', 'Members get access to Tarot Card Readings, and more.', 'Members get access to Angelic Readings, and more.', 'Members get access to Zodiac Sign Readings, and more.', 'Members get access to Cardinal Readings, and more.', 'Members get access to Cookies Game, and more.']
+        let x= 0;
+        let y = 1;
+        let z = 2;
+        let library1 = document.getElementById('library1');
+        let library2 = document.getElementById('library2');
+        let library3 = document.getElementById('library3');
+        let h1 = document.getElementById('m');
+        let h2 = document.getElementById('n');
+        let h3 = document.getElementById('o');
+        let p1 = document.getElementById('p1');
+        let p2 = document.getElementById('p2');
+        let p3 = document.getElementById('p3');
+        
+        library1.style.backgroundImage = `url(${libraryList[x]})`;
+        library2.style.backgroundImage = `url(${libraryList[y]})`;
+        library3.style.backgroundImage = `url(${libraryList[z]})`;
+        
+        if(x ===0){
+            z= 2;
+            y = 1;
+            x = 0;    
+            library1.style.backgroundImage = `url(${libraryList[x]})`;
+            library2.style.backgroundImage = `url(${libraryList[y]})`;
+            library3.style.backgroundImage = `url(${libraryList[z]})`;
+            h1.innerText = h[x];
+            h2.innerText = h[y];
+            h3.innerText = h[z];
+            p1.innerText = p[x];
+            p2.innerText = p[y];
+            p3.innerText = p[z];
+        }
+        function backLibrary(){
+            x--;
+            y--;
+            z--;
+
+            library1.style.backgroundImage = `url(${libraryList[x]})`;
+            library2.style.backgroundImage = `url(${libraryList[y]})`;
+            library3.style.backgroundImage = `url(${libraryList[z]})`;
+            h1.innerText = h[x];
+            h2.innerText = h[y];
+            h3.innerText = h[z];
+            p1.innerText = p[x];
+            p2.innerText = p[y];
+            p3.innerText = p[z];
+
+            if(x <= 0){
+                z= 2;
+                y = 1;
+                x = 0;
+                
+                library1.style.backgroundImage = `url(${libraryList[x]})`;
+                library2.style.backgroundImage = `url(${libraryList[y]})`;
+                library3.style.backgroundImage = `url(${libraryList[z]})`;
+                h1.innerText = h[x];
+                h2.innerText = h[y];
+                h3.innerText = h[z];
+                p1.innerText = p[x];
+                p2.innerText = p[y];
+                p3.innerText = p[z];
+            }
+        }
+       function forwardLibrary(){
+        x++;
+        y++;
+        z++;
+
+        library1.style.backgroundImage = `url(${libraryList[x]})`;
+        library2.style.backgroundImage = `url(${libraryList[y]})`;
+        library3.style.backgroundImage = `url(${libraryList[z]})`;
+        h1.innerText = h[x];
+        h2.innerText = h[y];
+        h3.innerText = h[z];
+        p1.innerText = p[x];
+        p2.innerText = p[y];
+        p3.innerText = p[z];
+
+        if(z === libraryList.length){
+            z= 7;
+            y = 6;
+            x = 5;                
+            library1.style.backgroundImage = `url(${libraryList[x]})`;
+            library2.style.backgroundImage = `url(${libraryList[y]})`;
+            library3.style.backgroundImage = `url(${libraryList[z]})`;
+            h1.innerText = h[x];
+            h2.innerText = h[y];
+            h3.innerText = h[z];
+            p1.innerText = p[x];
+            p2.innerText = p[y];
+            p3.innerText = p[z];
+        }
+       } 
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple book hover effect
+        const bookCards = document.querySelectorAll('.book-card');
+        bookCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.btn').style.backgroundColor = '#8a2b4a';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.btn').style.backgroundColor = '';
+            });
+        });
+    </script>
+</body>
+</html>

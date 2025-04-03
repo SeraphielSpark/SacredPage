@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tarot Card Guessing Machine</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+         body {
+            background-color:RGB(128, 128, 128);
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+
+        }
+         .button230{
+             font-size: 16px;
+             margin-left: 200px;background-color: #854111;
+             color: white;
+             padding: 10px 20px;
+             height: 50px;
+             border: 3px solid black;
+            
+             border-radius: 10px;
+             cursor: pointer;
+             transition: background-color 0.3s;
+         }
+         .button230:hover{
+             background-color: #6b3310;
+         }
+        .card-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: /*repeat(auto-fill, minmax(200px, 1fr))*/ 1fr 1fr 1fr 1fr 1fr;
+            width: 100%;
+            justify-content: center;
+            position: relative;
+            top: 200px;
+            padding: 20px;
+
+        }
+        .card {
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: #854111;
+            background-image: url('images (3).jpeg');
+            color: lightgray;
+            height:500px;
+            width: 100%;
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .picked {
+            pointer-events: none;
+        }
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        h2{
+             color: #7c5959;
+        }
+        h1{
+            color: #7c5959;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>
+        Welcome <p id="greeting"> <span id="username">loading...</span>!</p> To SpiritualCard Bot 
+    </h2>
+    <h4>
+        Where You are Able to check your free tarot card
+    </h4>
+    <h5>
+        Click The Button Below To Check On You Tarot Card
+    </h5>
+    <button>
+        Check Your Tarot
+    </button>
+<div class="card-container" >
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+    <div class="card" onclick="pickCard(this)">Pick a Card</div>
+
+</div>
+
+<script>
+    let computer_guess = Math.floor(Math.random()*40) ;
+
+
+    function pick() {
+        let image= {
+            'url':'',
+            'name':'',
+            'sign':'',
+            'positive_meaning' :'',
+            'negative_meaning':''
+
+
+    }
+        if (computer_guess > 0 && computer_guess <= 2) {
+            image.url = '1692915357464.jpg'
+            image.name = 'The Lovers'
+            image.sign = 'Yes'
+            image.positive_meaning='Yes Interpretation:\n' +
+                'The Lovers card embodies love, harmony, and connection. When it appears with a "Yes" interpretation, it signifies that choices based on love and deep emotional connections will lead to positive outcomes. This card encourages you to follow your heart and make decisions that align with your true feelings.\n' +
+                '\n' +
+                'In the context of "Yes," The Lovers card suggests that partnerships and relationships, whether romantic or platonic, are favored. Your ability to connect on a deep and meaningful level will bring about fulfillment and joy. This card also indicates a harmonious balance between your inner desires and external choices.'
+
+
+        }
+        if (computer_guess > 2 && computer_guess <= 4) {
+            image.url = '1692915498077.jpg'
+            image.name = 'The Lovers'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When The Lovers is drawn in a tarot reading with a "No" interpretation, it suggests that choices driven solely by desires or passions may lead to complications. This card advises you to consider the consequences of your actions and whether your choices are grounded in genuine feelings.\n' +
+                '\n' +
+                'In a "No" context, The Lovers card cautions against making impulsive decisions based solely on attraction. It encourages you to weigh the pros and cons and to ensure that your choices align with your values and long-term goals. This card reminds you to seek harmony and balance in your decisions.'
+
+        }
+        if (computer_guess > 4 && computer_guess <=6) {
+            image.url = '1692915363477.jpg'
+            image.name = 'The Hermit'
+            image.sign = 'Yes'
+            image.positive_meaning='Yes Interpretation:\n' +
+                'The Hermit card represents introspection, solitude, and inner guidance. When it appears with a "Yes" interpretation, it signifies that taking time for introspection and seeking answers within yourself will lead to positive outcomes.\n' +
+                '\n' +
+                'In the context of "Yes," The Hermit card encourages you to trust your inner wisdom and take a step back from external distractions. Solitude and self-reflection will provide the clarity needed to make informed decisions.\n' +
+                '\n'
+
+
+        }
+        if (computer_guess > 10 && computer_guess <=12) {
+            image.url = '1692915367270.jpg'
+            image.name = 'The Hermit'
+            image.sign = 'No';
+            image.negative_meaning='No Interpretation:\n' +
+                'When The Hermit is drawn in a tarot reading with a "No" interpretation, it warns against isolating yourself and relying solely on your own perspective. This card suggests that seeking advice and perspectives from others is essential to avoid feeling lost or disconnected.\n' +
+                '\n' +
+                'In a "No" context, The Hermit card advises you to balance introspection with reaching out to trusted friends, mentors, or experts. It\'s important to consider external viewpoints to gain a comprehensive understanding of the situation.'
+        }
+        if (computer_guess > 12 && computer_guess <=14) {
+            image.url = '1692915374660.jpg'
+            image.name = 'Strength'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The Strength card embodies courage, patience, and inner strength. When it appears with a "Yes" interpretation, it signifies that facing challenges with grace and perseverance will lead to positive outcomes.\n' +
+                '\n' +
+                'In the context of "Yes," The Strength card encourages you to harness your inner power and confront difficulties head-on. Your ability to remain patient and compassionate will help you overcome obstacles and achieve your goals.'
+        }
+        if (computer_guess > 14 && computer_guess <=16) {
+            image.url = '1692915370574.jpg'
+            image.name = 'Strength'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When The Strength card is drawn in a tarot reading with a "No" interpretation, it suggests that external circumstances may test your resolve. This card advises you not to react impulsively or aggressively, as doing so might exacerbate the situation.\n' +
+                '\n' +
+                'In a "No" context, The Strength card reminds you to exercise self-control and patience. It\'s important to remain steadfast in the face of challenges and to find constructive ways to navigate difficulties.'
+        }
+        if (computer_guess > 16 && computer_guess <=18) {
+            image.url = '1692915379111.jpg'
+            image.name = 'High Priestess'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The High Priestess is a card of intuition, mystery, and hidden knowledge. When it appears in a tarot reading with a "Yes" interpretation, it suggests that you should trust your inner wisdom and rely on your intuitive insights. The High Priestess indicates that there are deeper layers to the situation at hand, and you have the ability to tap into these hidden truths.\n' +
+                '\n' +
+                'In the realm of "Yes," the High Priestess encourages you to listen to your inner voice and pay attention to subtle signs and symbols. Your intuition is a powerful guide that can lead you to success. This card implies that there are unseen forces working in your favor, and by following your gut feelings, you will make the right choices.'
+        }
+        if (computer_guess > 18 && computer_guess <= 20) {
+            image.url = '1692915433068.jpg';
+            image.name = 'High Priestess';
+            image.sign = 'No';
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When the High Priestess appears with a "No" interpretation, it suggests that there may be hidden factors or secrets influencing the situation. You might not have all the information you need to make an informed decision. It\'s a reminder to exercise caution and gather more insights before proceeding.\n' +
+                '\n' +
+                'In a "No" context, the High Priestess card signifies the need to delve deeper into the situation. Don\'t rely solely on surface-level information; seek out underlying motives and unspoken truths. This card advises you to be patient and wait until more information becomes available before making a definitive choice.'
+
+        }
+        if (computer_guess > 20 && computer_guess <= 22) {
+            image.url = '1692915382283.jpg'
+            image.name = 'The Sun'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The Sun is a card of positivity, vitality, and success. When it appears with a "Yes" interpretation, it signifies that brightness and clarity are illuminating your path. This card suggests that your efforts will be rewarded, and you are in a position to experience growth, joy, and fulfillment.\n' +
+                '\n' +
+                'In the context of "Yes," The Sun card encourages you to embrace optimism and let your true self shine. Your enthusiasm and confidence will draw positive outcomes and favorable circumstances. This card also indicates that honesty and transparency will lead to success, so be genuine in your endeavors.'
+
+        }
+        if (computer_guess >22 && computer_guess <=24) {
+            image.url = '1692915428900.jpg'
+            image.name = 'The Sun'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When The Sun is drawn in a tarot reading with a "No" interpretation, it suggests that temporary challenges or setbacks might obscure the path to success. It\'s a reminder that even during difficult times, there is still a glimmer of hope and positivity.\n' +
+                '\n' +
+                'In a "No" context, The Sun card advises you to maintain a positive attitude and look for the silver lining. Even if things don\'t go as planned, focus on the lessons and opportunities for growth. This card encourages you to persevere and find the strength to overcome obstacles.'
+
+        }
+        if (computer_guess >24 && computer_guess <=26) {
+            image.url = '1692915385504.jpg'
+            image.name = 'The Hierophant'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The Hierophant card represents tradition, spirituality, and guidance from established institutions. When it appears with a "Yes" interpretation, it suggests that seeking advice from trusted sources, following established practices, or seeking guidance from mentors will lead to success.\n' +
+                '\n' +
+                'In the context of "Yes," The Hierophant card encourages you to embrace structure and tradition. Your respect for established norms and values will yield positive results. This card also symbolizes the need to learn from those who have walked the path before you.'
+
+        }
+        if (computer_guess > 26 && computer_guess <=28) {
+            image.url = '1692915423898.jpg'
+            image.name = 'The Hierophant'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When The Hierophant is drawn in a tarot reading with a "No" interpretation, it warns against rigidly adhering to tradition without considering alternative perspectives. This card suggests that being too reliant on established norms might hinder growth and innovation.\n' +
+                '\n' +
+                'In a "No" context, The Hierophant card advises you to be open to new ideas and to question whether following the conventional route is truly the best choice. It\'s important to strike a balance between tradition and flexibility to navigate the complexities of the situation.'
+        }
+        if (computer_guess >28 && computer_guess <=30) {
+            image.url = '1692915389328.jpg'
+            image.name = 'The World'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The World card symbolizes completion, fulfillment, and success. When it appears with a "Yes" interpretation, it signifies that you are on the brink of achieving your goals and celebrating your accomplishments.\n' +
+                '\n' +
+                'In the context of "Yes," The World card encourages you to embrace new beginnings and expansion. Your hard work and dedication have led you to this point, and now is the time to savor your achievements.'
+        }
+        if (computer_guess >30 && computer_guess <=32) {
+            image.url = '1692915481283.jpg'
+            image.name = 'The World'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'When The World is drawn in a tarot reading with a "No" interpretation, it suggests that there may be loose ends or unresolved issues hindering your progress. This card advises you to address these matters before moving forward.\n' +
+                '\n' +
+                'In a "No" context, The World card reminds you that true success requires closure and completion. Take the time to tie up loose ends and resolve any outstanding matters before embarking on a new journey.\n' +
+                '\n'
+        }
+        if (computer_guess > 32 && computer_guess <=34) {
+            image.url = '1692915395492.jpg'
+            image.name = 'The Emperor'
+            image.sign = 'Yes'
+            image.positive_meaning ='Yes Interpretation:\n' +
+                'The Emperor is a symbol of authority, power, and leadership. When this card appears in a tarot reading with a "Yes" interpretation, it suggests that you possess the qualities needed to take control of your situation and make things happen. Your leadership skills are strong, and your ability to organize and manage is commendable. Just as an emperor oversees his kingdom, you have the capacity to oversee your circumstances with wisdom and authority.\n' +
+                '\n' +
+                'In the realm of "Yes," the Emperor signifies that your sense of structure and order will bring success. Your disciplined approach will yield favorable results. This card speaks of achievement through strategic planning and assertive decision-making. It\'s a time to embrace your inner emperor, embodying confidence and assertiveness in your endeavors.'
+        }
+        if (computer_guess > 34 && computer_guess <=36) {
+            image.url = '1692915490347.jpg'
+            image.name = 'The Emperor'
+            image.sign = 'No'
+            image.negative_meaning = 'No Interpretation:\n' +
+                'On the flip side, if the Emperor appears with a "No" interpretation, it\'s a reminder to be cautious of becoming overly controlling or rigid. While your authority is an asset, excessive control can lead to negative outcomes. The Emperor\'s energy, when taken to extremes, can manifest as autocracy, stifling creativity and cooperation.\n' +
+                '\n' +
+                'In a "No" context, the Emperor card suggests that a lack of adaptability or an insistence on maintaining control might lead to challenges. It\'s crucial to evaluate whether your leadership style is flexible enough to accommodate unforeseen developments. Sometimes, relinquishing some control can lead to better outcomes.\n' +
+                '\n'
+
+        }
+        if (computer_guess > 36 && computer_guess <= 38) {
+            image.url = '1692915437244.jpg'
+            image.name = 'The Chariot'
+            image.sign = 'Yes'
+            image.positive_meaning = 'Yes Interpretation:\n' +
+                'The Chariot is a card of triumph, willpower, and determination. When it appears with a "Yes" interpretation, it signifies that your confidence and assertiveness will lead to victory. The Chariot urges you to harness your inner strength and overcome obstacles that stand in your way.\n' +
+                '\n' +
+                'In the context of "Yes," The Chariot advises you to charge forward with conviction. Your ambition and drive will propel you to achieve your goals. This card symbolizes the need to maintain focus and avoid distractions, as well as to confront challenges head-on. With the right attitude and a clear sense of direction, success is within reach.'
+        }
+        if (computer_guess > 38 && computer_guess <= 40) {
+            image.url = '1692915486524.jpg'
+            image.name = 'The Chariot'
+            image.sign = 'No'
+            image.negative_meaning='No Interpretation:\n' +
+                'When The Chariot is drawn in a tarot reading with a "No" interpretation, it cautions against acting recklessly or without proper planning. This card suggests that a lack of direction or an overly aggressive approach could lead to setbacks and failure.\n' +
+                '\n' +
+                'In a "No" context, The Chariot advises you to pause and reevaluate your strategy. Consider whether you are moving forward with clarity and purpose or if you\'re simply rushing into decisions. This card reminds you that success requires both determination and thoughtful planning. Take the time to chart your course and overcome obstacles systematically.'
+        }
+        return image
+    }
+
+    function pickCard(card) {
+        const cards = document.querySelectorAll('.card');
+
+        // Disable other cards once one card is picked
+        for (const otherCard of cards) {
+            if (otherCard !== card) {
+                otherCard.style.visibility = 'hidden';
+            }
+        }
+
+        card.classList.add('picked');
+        card.style.backgroundColor = 'inherit'
+        card.style.border = 'none'
+        let nump = '';
+
+        if(pick().sign ==='No'){
+            nump = pick().negative_meaning;
+            console.log(nump)
+        }
+        if(pick().sign ==='Yes'){
+            nump = pick().positive_meaning;
+        }
+
+        document.body.innerHTML = `<img src="${pick().url}" style="height: 700px">  <h1 >${pick().name}</h1>  <h2 >${pick().sign}</h2> <h2 style=" display: inline-block">${nump}</h2><button class="button230" onclick="window.location.href = 'testing-tarot.html'">Pick Another Card</button>`
+        document.body.style.backgroundColor = ' RGB(0, 0, 0)'
+
+    }
+
+
+
+</script>
+</body>
+</html>

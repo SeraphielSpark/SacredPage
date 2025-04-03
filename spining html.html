@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Decision Spinning Wheel</title>
+    <style>
+
+        /* Base styles for the spinning wheel */
+        .sup-div{
+          display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #3498db; /* Blue color */
+            height: 400px;
+            width: 400px;
+            position: relative;
+          background: radial-gradient(circle, #3498db, #2980b9);
+
+        }
+        .chief-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #3498db; /* Blue color */
+            height: 300px;
+            width: 300px;
+            position: relative;
+            border-radius: 50%; /* Circular shape */
+            background: radial-gradient(circle, #3498db, #2980b9); /* Blue gradient background */
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.6); /* Blue glow effect */
+            transition: transform 3s ease-out; /* Smooth rotation transition */
+        }
+
+        /* Styling for the sections and arrows */
+        .div1, .div2, .div3, .div4 {
+            text-align: center;
+            border: #3498db solid 5px; /* Blue color */
+            height: 120px;
+            position: absolute;
+            width: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+          background-color: #3498db; /* Blue color */
+
+        }
+        p{
+          visibility: hidden;
+        }
+          .p1{
+
+            text-align: center;
+            display: flex;
+            top: 5px;
+            padding-top: 180px;
+            bottom: 6px;
+            vertical-align: center;
+          position: absolute;
+          left: 0;
+            border: 2px solid #3498db; /* Blue color */
+        }
+        .p2{
+          position: absolute;
+          display: flex;
+          margin: 0;
+          padding-left:180px ;
+          top: 0;
+          left: 0;
+          right: 0;
+          border: 2px solid #3498db; /* Blue color */
+        }
+
+        .p3{
+          position: absolute;
+          display: flex;
+          margin: 0;
+          right: 0;
+          padding-top: 190px;
+          top: 21px;
+          bottom: 22px;
+
+
+          border: 2px solid #3498db; /* Blue color */
+        }
+
+
+        .p4{
+          position: absolute;
+          display: flex;
+          margin: 0;
+          left: 0;
+          right: 0;
+          padding-left: 180px;
+
+
+          bottom: 0;
+          border: 2px solid #3498db; /* Blue color */
+        }
+
+
+        .div1, .div3 {
+
+        }
+
+        .arrow {
+            font-size: 39px;
+            color: white;
+            transform: rotate(0deg);
+
+        }
+    </style>
+</head>
+<body>
+<div class="sup-div">
+  <p class="p1">Yes</p>
+  <p class="p2">No</p>
+  <p class="p3">Yes</p>
+    <p class="p4">No</p>
+  <div class="chief-div" id="chief-id">
+
+        <div class="div1">
+            No
+        </div>
+
+        <div class="div2">
+            <div class="arrow">↑</div>
+        </div>
+
+        <div class="div3">
+            Yes
+        </div>
+
+        <div class="div4">
+            <div class="arrow">↑</div>
+        </div>
+    </div>
+</div>
+<button id="buttonid" onclick="buttonid()">
+    Click
+</button>
+    <script> let rotationAngle = 0;
+        let isSpinning ; // Flag to prevent clicking while spinning
+
+         function buttonid() {
+          document.getElementById('buttonid').innerText = 'Loading';
+          if (isSpinning) return;
+          isSpinning = true;
+          const randomValue = Math.random();const angleIncrement = 7000 * randomValue; // Adjusted angle increment
+          rotationAngle += angleIncrement;
+          const spinningWheel = document.getElementById('chief-id');spinningWheel.style.transition = 'transform 3s ease-in-out'; // Adjusted transition duration
+          spinningWheel.style.transform = `rotate(${rotationAngle}deg)`;
+          setTimeout(function () {
+            if(document.getElementById('buttonid').innerText === 'Loading'){
+            checkResult(rotationAngle);
+            isSpinning = false;
+            document.getElementById('buttonid').innerText = 'Re click'}
+            }, 3000);
+           // Check every 1 second
+         }
+
+         // Check every 1 second
+
+
+          // Adjusted timeout duration
+          /*document.querySelector('.chief-div').addEventListener('click', function () {
+            if (isSpinning) return; // Prevent clicking while spinning
+            isSpinning = true;
+
+            // Get a random number between 0 and 1
+            const randomValue = Math.random();
+
+            // Calculate the rotation angle based on the random value
+            const angleIncrement = 7000 * randomValue;
+
+            rotationAngle += angleIncrement;
+
+            const spinningWheel = document.getElementById('chief-id');
+            spinningWheel.style.transition = 'transform 10s ease-in-out'; // Add a transition for smooth rotation
+            spinningWheel.style.transform = `rotate(${rotationAngle}deg)`;
+
+            // Add a timeout to check the result after the wheel stops
+            setTimeout(function () {
+                checkResult(rotationAngle);
+                isSpinning = false; // Reset the spinning flag
+            }, 10000); // Wait for 10 seconds
+        });*/
+
+        // Function to check the result based on the rotation angle
+    function checkResult(angle) {
+      const sectorAngle = 7000 / 4; // Angle per section (4 sections: Yes, No, Yes, No)
+      const normalizedAngle = (angle + 7000) % 7000; // Normalize the angle to be positive
+      console.log(normalizedAngle)
+
+      const pElements = document.querySelectorAll('.sup-div p');
+      const pElementsa = document.querySelector('p');
+      document.querySelector('.p1').style.visibility = 'visible';
+      document.querySelector('.p2').style.visibility = 'visible';
+      document.querySelector('.p3').style.visibility = 'visible';
+      document.querySelector('.p4').style.visibility = 'visible';
+      pElementsa.style.visibility = 'visible';
+      const sectionIndex = Math.floor(normalizedAngle / sectorAngle);
+      console.log(sectionIndex)
+
+      const result = pElements[sectionIndex].textContent;
+      if(sectionIndex === 0){
+        document.querySelector('.p1').innerText = 'No'
+      }
+      if(sectionIndex ===1){
+      document.querySelector('.p2').innerText = 'Yes';}
+      if(sectionIndex ===2){
+      document.querySelector('.p3').innerText = 'No'}
+      if(sectionIndex ===3){
+      document.querySelector('.p4').innerText = 'Yes'}
+
+      console.log(result);
+    }
+    </script>
+</body>
+</html>

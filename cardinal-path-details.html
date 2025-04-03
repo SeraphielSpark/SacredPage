@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angelic Stories</title>
+    <style>
+         body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+            max-width:100%;
+            outline: rgba(255, 255, 255, 0.9);
+            outline-style: solid;
+            outline-width: 100px;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #666;
+        }
+
+        .container p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            margin: 10px 0;
+        }
+
+        .js-content {
+            font-size: 16px;
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .js-content em {
+            font-weight: bold;
+            color: #333;
+        }
+        a{
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+
+        }
+        a:hover{
+            opacity: 0.6;
+            color: #1f1f1f;
+            transition: color 1.15s, opacity 1.15s ;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="astrology.html">Back To Home</a>
+    <h1>Angelic Stories</h1>
+    <h2 class="h2-one"></h2>
+    <p class="first-p">Discover the Mystical World of Angels</p>
+    <p class="p2"></p>
+        <img style="display: block; width: 300px" />
+    <a class="a1">Check Here To Know More</a>
+
+    <div class="js-content"></div>
+    <a class="a2"></a>
+</div>
+
+<script>
+    const angel = JSON.parse(localStorage.getItem('angel'));
+    const zodiacSign = JSON.parse(localStorage.getItem('zodiac-sign'));
+
+    document.title = `Angelic Stories - ${zodiacSign.toUpperCase()}`;
+    document.querySelector('.h2-one').innerHTML = `Your Angelic Guide for ${zodiacSign.toUpperCase()}`;
+    document.querySelector('.p2').innerHTML = `<strong>The Name Of Your Archangel Is ${angel.archangel} and the name of your Angel is ${angel.angel}</strong>`
+    document.querySelector('img').src = angel.angel_pic;
+    document.querySelector('.a1').addEventListener('click', function () {
+        if (document.querySelector('.a1').innerText === 'Check Here To Know More') {
+            document.querySelector('.js-content').innerHTML =
+
+                `
+<p><h1>ARCHANGEL ${angel.archangel}</h1></p>
+<p>${angel.arch_storyline}</p>
+<br>
+<p><H1>Angel ${angel.angel}</H1></p>
+<p>${angel.storyline}</p>`;
+            document.querySelector('.a2').innerText = 'Click To Less';
+            document.querySelector('.a1').innerText = '';
+        }
+    });
+      document.querySelector('.a2').addEventListener('click', function (){
+        document.querySelector('.a1').innerText = 'Check Here To Know More';
+        document.querySelector('.js-content').innerHTML='';
+        if(document.querySelector('.a1').innerText === 'Check Here To Know More'){
+        document.querySelector('.a2').innerText = ''}
+    });
+
+
+</script>
+</body>
+</html>

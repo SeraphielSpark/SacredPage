@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="horoscope1.css" rel="stylesheet" type="text/css">
+    <title>Cardinal Point Calculator</title>
+  <style>
+    body{
+      background-color: black;
+        background-image: none;
+    }
+    div{
+        font-size: 25px;
+        font-weight: 350;
+        font-family: Arial, sans-serif;
+    }
+    h1{
+        font-size: 28px;
+    }
+    h2{
+        font-size: 27px;
+    }
+    p{
+        font-size: 30px;
+        font-weight: 600;
+    }
+    .a-form{
+        font-size: 15px;
+    }
+    .p100{
+        color: #ab1010;
+        cursor: pointer;
+    }
+    a{
+        color: #ab1010;
+        cursor: pointer;
+    }
+    .form-container{
+        margin-top: 100px;
+    }
+    .p3{
+        color: white;
+    }
+    input:placeholder-shown{
+        font-size: 24px;
+    }
+    input{
+        font-size: 29px;
+    }
+    input{
+        font-variant-caps: all-petite-caps;
+    }
+    .p5{
+        color: white;
+        font-size: 30px;
+    }
+
+  </style>
+</head>
+
+<body style="background-color: black">
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="astrology.html" class="nav-link">Home</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+
+        <div class="form-container">
+            <h2 class="label">Enter Your Details to Know Your Moon Sign</h2>
+
+            <label for="fullName" class="input-label">Enter Your Full Name</label>
+            <input type="text" placeholder="Full Name" id="fullName" class="input-field" required/>
+
+            <label for="dob" class="input-label">Enter Your Full Date of Birth</label>
+            <input type="date" id="dob" placeholder="DOB EX 17, June 1997" required class="input-field" />
+            <label for="dob" class="input-label">Enter Your Sun Sign</label>
+            <input type="text" id="zodiac"   placeholder="Enter Your Zodiac Sign EX(Gemini)" required class="input-field" />
+            <a class="a-form" href="Horoscope%20New%20Line.html">Do You Not Know Your Sun Sign</a>
+            <p style="color: #a60909; font-size: 23px" class="p0"></p>
+            <a><p class="p1" style="font-size: 23px"></p></a>
+
+            <button class="submit-button" id="button">Submit</button>
+        </div>
+        <a class="a2"><p class="p100"></p></a>
+
+    </main>
+<script>
+    let cardinal = {
+            'east':'[1,5,9]',
+            'south':'[2,6]',
+            'west':'[3,7]',
+            'north':'[4,8]',
+            'cardinal_story':''
+        };
+
+    document.getElementById('button').addEventListener('click',function () {
+        const dob = document.getElementById('dob').value;
+        const zodiac1 = document.getElementById('zodiac').value;
+        const zodiac = zodiac1.toLowerCase()
+
+        const namea = document.getElementById('fullName').value;
+        const doba = dob.replace('-', '+')
+        //console.log(doba)
+        console.log(zodiac)
+        const final = eval(doba.replace('-', '+'))
+        const array = Array.from(String(final), Number)
+        console.log(array)
+
+        const array2 = array[0] + array[1] + array[2] + array[3]
+        console.log(array2)
+        arrayfinal1 = 0
+        if (array2 > 9) {
+            const array3 = Array.from(String(array2), Number)
+            arrayfinal1 = array3[0] + array3[1]
+
+            localStorage.setItem('angelicnumber', JSON.stringify(arrayfinal1))
+         
+        }
+
+
+        if(cardinal.east.includes(arrayfinal1)|| cardinal.east.includes(array2)){
+            document.querySelector('.p0').innerText = "Your Cardinal Is East";
+            document.querySelector('.a-form').innerHTML = ''
+            document.querySelector('.p1').innerHTML = 'Show more';
+            cardinal.cardinal_story = '<div>In both mythology and astrology, the concept of east holds significance due to its association with various symbols, beliefs, and celestial phenomena. Here a brief overview of the importance of the east in mythology and astrology:\n' +
+                '\n' +
+                '<h1>Mythology:</h1>\n' +
+                '\n' +
+                '<h2>1.Ancient Egyptian Mythology:</h2>'+'In ancient Egyptian mythology, the east held a significant role because the sun rose in the east. The rising sun was associated with the god Ra, the sun god, who was often depicted sailing across the sky in a solar boat.\n' +
+                '\n' +
+                '<h2>2.Greek Mythology:</h2>'+' In Greek mythology, the east was associated with the land of Hyperborea, a mythical place located beyond the north wind. It was said to be a land of eternal spring and happiness. The east also played a role in the myth of Aurora, the goddess of the dawn.\n' +
+                '\n' +
+                '<h2>3. Hindu Mythology:</h2>'+' In Hindu mythology, the east is associated with the direction from which the sun rises. The sun god Surya is depicted riding a chariot across the sky, emerging from the east at dawn.\n' +
+                '\n' +
+                '<h2>4.Chinese Mythology:</h2>'+' In Chinese mythology, the east is associated with the Green Dragon and represents the springs season. The dragon is one of the four celestial creatures in Chinese cosmology, each associated with a cardinal direction.\n' +
+                '\n' +
+                '<br>'+
+                '<p>'+
+                '<h1>Astrology:</h1>\n' +
+                '\n' +
+                '<h2>1. Astrological Houses:</h2>'+' In Western astrology, the eastern horizon plays a crucial role. The Ascendant (or Rising Sign) is the zodiac sign that was rising on the eastern horizon at the time of a person\'s birth. It is an essential element in constructing an individual\'s natal chart and represents their outer personality and appearance.\n' +
+                '\n' +
+                '<h2>2. Ecliptic and Zodiac Signs:</h2>'+' The path of the Sun across the sky, known as the ecliptic, also rises in the east and sets in the west. This journey is divided into twelve equal segments, each corresponding to a zodiac sign. The signs of the zodiac have specific attributes and characteristics associated with them, influencing personality traits and life events according to astrology.\n' +
+                '\n' +
+                '<h2>3. Sunrise Symbolism:</h2>'+' In many astrological traditions, the position of the Sun at the time of an individual\'s birth is significant. The Sun\'s position determines a person\'s Sun sign, which is often considered the core representation of their personality in astrology.\n' +
+                '\n' +
+                        'In both mythology and astrology, the east is associated with beginnings, renewal, and illumination due to the rising of the sun. This directional significance has contributed to various cultural beliefs, rituals, and interpretations over the centuries. </div>'
+        }
+        if(cardinal.west.includes(arrayfinal1) ||cardinal.west.includes(array2)){
+            document.querySelector('.p0').innerText = "Your Cardinal Is West";
+            document.querySelector('.p1').innerHTML = 'Show more';
+            document.querySelector('.a-form').innerHTML = '';
+
+            cardinal.cardinal_story = '<div>In both mythology and astrology, the concept of west holds significance due to its association with various symbols, beliefs, and celestial phenomena. Here\'s a brief overview of the importance of the west in mythology and astrology:\n' +
+                '\n' +
+                ' <p></p>'+
+                '<h1>Mythology:</h1>\n' +
+                '\n' +
+                '<h2>1. Ancient Egyptian Mythology:</h2> In ancient Egyptian mythology, the west was associated with the setting sun and the realm of the afterlife. The sun\'s journey from east to west mirrored the journey of the deceased into the afterlife. The west was linked to the god Osiris, who represented death, rebirth, and resurrection.\n' +
+                '\n' +
+                '<h2>2. Greek Mythology:</h2> In Greek mythology, the west was often associated with the land of the Hesperides, where the golden apples of immortality were said to grow. The west was also linked to the realm of the Underworld, ruled by Hades, where the souls of the deceased resided.\n' +
+                '\n' +
+                '<h2>3. Norse Mythology:</h2> In Norse mythology, the west was associated with the land of the dead, often depicted as sailing towards the west. The concept of Valhalla, the hall of fallen warriors, was situated in the west.\n' +
+                '\n' +
+                '<h1>Astrology:</h1>\n' +
+                '\n' +
+                '<h2>1. Descendant:</h2> In Western astrology, the Descendant is the point opposite the Ascendant (Rising Sign). It\'s associated with the western horizon and represents how individuals interact with others, especially in one-on-one relationships, partnerships, and marriages.\n' +
+                '\n' +
+                '<h2>2. Relationships and Partnership:</h2> The western part of an astrological chart, including the 7th house, is often linked to partnerships, relationships, and how individuals engage with others on a deep and personal level.\n' +
+                '\n' +
+                '<h2>3. Libra Sign:</h2> The zodiac sign Libra is ruled by Venus and is often associated with the west in astrology. Libra is connected to balance, harmony, beauty, and relationships. It emphasizes the need for fairness and cooperation in partnerships.\n' +
+                '\n' +
+                '<h2>4. Air Signs:</h2> In astrology, the west is connected to the Air signs: Libra, Aquarius, and Gemini. These signs are characterized by intellect, communication, and social interaction. They are associated with the exchange of ideas and the exploration of relationships.\n' +
+                '\n' +
+                '<h2>5. Twilight and Transition:</h2> The west is also associated with twilight, a transitional phase between day and night. This symbolism aligns with the concept of transition, change, and transformation often linked to the west in mythology and astrology.\n' +
+                '\n' +
+                'In both mythology and astrology, the west is often associated with endings, transitions, and the realm of the afterlife. It symbolizes the closing of chapters, the exploration of deeper connections with others, and the mysteries of life and death. The symbolism of the west reflects humanity\'s contemplation of mortality, change, and the unknown.,</div>'
+
+        }
+        if(cardinal.north.includes(arrayfinal1) || cardinal.north.includes(array2)){
+            document.querySelector('.p0').innerText = "Your Cardinal Is North";
+            document.querySelector('.p1').innerHTML = 'Show more';
+            document.querySelector('.a-form').innerHTML = ''
+
+
+            cardinal.cardinal_story = '<div>In both mythology and astrology, the concept of north holds significance due to its association with various symbols, beliefs, and celestial phenomena. Here\'s a brief overview of the importance of the North in mythology and astrology:\n' +
+                '\n' +
+                '<h1>Mythology:</h1>\n' +
+                '\n' +
+                '<h2>1. Norse Mythology:</h2> In Norse mythology, the north was associated with Niflheim, the land of ice and mist. Niflheim was one of the realms in the Norse cosmology and was the birthplace of cold and darkness. It was contrasted with Muspelheim, the land of fire and heat. The concept of Niflheim and its frozen landscape contributes to the association of the north with cold, darkness, and mystery.\n' +
+                '\n' +
+                '<h2>2. Native American Mythology:</h2> In some Native American cultures, the north is associated with the element of earth, as well as with wisdom and introspection. The north is often linked to the buffalo and is seen as a source of strength and stability.\n' +
+                '\n' +
+                '<h2>3. Chinese Mythology:</h2> In Chinese mythology, the north is associated with the Black Tortoise, one of the Four Symbols representing cardinal directions. The Black Tortoise symbolizes protection, longevity, and endurance.\n' +
+                '\n' +
+                '<h1>Astrology:</h1>\n' +
+                '\n' +
+                '<h2>1. Zenith (Midheaven):</h2> In Western astrology, the Midheaven (MC) is associated with the zenith, the point directly above an observer. It represents one\'s career, public life, and aspirations. The MC is often linked to the south, but it\'s important to note that in some astrological systems, it is associated with the north.\n' +
+                '\n' +
+                '<h2>2. Polaris (North Star):</h2> In astrology, the North Star (Polaris) is a fixed point in the sky around which other stars appear to rotate. It has been used historically as a navigational reference point. In a symbolic sense, the North Star can represent guidance, direction, and a constant reference in a changing world.\n' +
+                '\n' +
+                '<h2>3. Cancer Sign:</h2> The zodiac sign Cancer is often associated with the north. Cancer is ruled by the Moon and is linked to emotions, nurturing, and family. It emphasizes the importance of home, security, and introspection.\n' +
+                '\n' +
+                '<h2>4. Water Signs:</h2> In astrology, the north is connected to the Water signs: Cancer, Scorpio, and Pisces. These signs are known for their emotional depth, intuition, and sensitivity. They often emphasize inner experiences and introspection.\n' +
+                '\n' +
+                '<h2>5. Winter Solstice:</h2> The northern hemisphere experiences the winter solstice around December 21st, marking the shortest day and longest night of the year. This event signifies a turning point where daylight begins to increase, symbolizing a gradual return of light and life.\n' +
+                '\n' +
+                'In both mythology and astrology, the north often represents introspection, depth, mystery, and the unseen aspects of life. It\'s associated with the night sky, colder climates, and the pursuit of wisdom. The symbolism of the north can evoke feelings of reflection, transformation, and the quest for understanding the deeper layers of existence.</div>'
+        }
+        if(cardinal.south.includes(arrayfinal1)|| cardinal.south.includes( array2)){
+            document.querySelector('.p0').innerText = "Your Cardinal Is South";
+            document.querySelector('.p1').innerHTML = 'Show more';
+            document.querySelector('.a-form').innerHTML = ''
+            cardinal.cardinal_story='<div>In both mythology and astrology, the concept of South holds significance due to its association with various symbols, beliefs, and celestial phenomena. Here\'s a brief overview of the importance of the south in mythology and astrology:' +
+                '\n' +
+                '<h1>Mythology:</h1>\n' +
+                '\n' +
+                '<h2>1.Native American Mythology:</h2> In many Native American cultures, the south is associated with warmth, growth, and vitality. It often represents the summers season and is seen as a time of abundance and productivity.\n' +
+                '\n' +
+                '<h2>2. Mayan Mythology:</h2> In Mayan mythology, the south is associated with the color yellow and the deity Kukulkan (also known as Quetzalcoatl in Aztec mythology), who is often depicted as a feathered serpent. Kukulkan is linked to the sun\'s movement across the sky and its life-giving properties.\n' +
+                '\n' +
+                '<h2>3.Australian Aboriginal Mythology:</h2> In Aboriginal Australian mythology, cardinal directions have spiritual significance, and the south is often associated with the ancestral realm and the spirits of the deceased.\n' +
+                '\n' +
+                ' <p></p>'+
+
+                '<h1>Astrology:</h1>\n' +
+                '\n' +
+                '<h2>1. Midheaven (Medium Coeli - MC):</h2> In Western astrology, the Midheaven is the point at the top of an astrological chart and is associated with the south. It represents one\'s public reputation, career, goals, and aspirations. The Midheaven is also known as the "Medium Coeli" or MC.\n' +
+                '\n' +
+                '<h2>2. **Nadir (Imum Coeli - IC):</h2> The opposite point to the Midheaven is the Nadir, also known as the "Imum Coeli" or IC. This point is associated with the bottom of the chart and is linked to the north. It represents one\'s roots, home life, family, and private inner world.\n' +
+                '\n' +
+                '<h2>3. Astrological Quadrants:</h2> The astrological chart is divided into four quadrants, each corresponding to a different set of experiences and life areas. The southern quadrant is associated with the 7th, 8th, and 9th houses and relates to interactions with others, shared resources, transformation, and expansion of consciousness.\n' +
+                '\n' +
+                '<h2>4. Leo Sign:</h2> The zodiac sign Leo is often associated with the south. Leo is ruled by the Sun and is known for its vibrant, creative, and expressive qualities. It is linked to themes of self-confidence, individuality, and leadership.\n' +
+                '\n' +
+                '<h2>5. Fire Signs:</h2> In astrology, the south is linked to the Fire signs: Aries, Leo, and Sagittarius. These signs are known for their dynamic and energetic qualities, often initiating action and change.\n' +
+                '\n' +
+                'In both mythology and astrology, the south holds significance as a region associated with vitality, growth, and interaction with others. It represents the external world, public life, and the pursuit of goals and ambitions. The symbolism of the south in these contexts reflects the diverse ways in which cultures and belief systems have attributed meaning to cardinal directions.</div>'
+        }
+
+    })
+    document.querySelector('.p1').addEventListener('click',function (){
+        console.log('true click')
+        const p5 = document.createElement('p');
+        p5.classList
+        document.querySelector('.form-container').innerHTML =cardinal.cardinal_story ;
+        document.querySelector('.form-container').appendChild(document.querySelector('.p100'))
+        document.querySelector('.p100').innerText = 'Go back'
+
+    })
+    document.querySelector('.p100').addEventListener('click', function (){
+
+
+        document.querySelector('.form-container').innerHTML = '<h2 class="label">Enter Your Details to Know Your Moon Sign</h2>\n' +
+            '\n' +
+            '            <label for="fullName" class="input-label">Enter Your Full Name</label>\n' +
+            '            <input type="text" placeholder="Full Name" id="fullName" class="input-field" required/>\n' +
+            '\n' +
+            '            <label for="dob" class="input-label">Enter Your Full Date of Birth</label>\n' +
+            '            <input type="date" id="dob" placeholder="DOB EX 17, June 1997" required class="input-field" />\n' +
+            '            <label for="dob" class="input-label">Enter Your Sun Sign</label>\n' +
+            '            <input type="text" id="zodiac"   placeholder="Enter Your Zodiac Sign EX(Gemini)" required class="input-field" />\n' +
+            '            <p style="color: #a60909" class="p0"></p>\n' +
+            '            <a><p class="p1"></p></a>\n' +
+            '\n' +
+            '            <button class="submit-button" id="button">Submit</button>'
+
+        window.setInterval(function (){
+            window.location.href ='Calculate-Your-Cardinal.html'
+        }, 30)
+
+    })
+</script>
+</body>
+</html>

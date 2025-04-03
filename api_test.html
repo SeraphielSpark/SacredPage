@@ -1,0 +1,65 @@
+<!-- index.html -->const express = require('express');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'etaiwo220@gmail.com',
+    pass: 'imnddpgnwzfayhwn', // Generate this from your Gmail settings
+  }
+});
+
+function generateRandomCode() {
+  let randomCode = Math.random().toString(36).substring(2, 8);
+  return randomCode;
+}
+
+app.get('/start', (req, res) => {
+  const randomCode = generateRandomCode();
+  res.json( {code: randomCode} );
+
+});
+
+app.post('/signupnow2', async (req, res) => {
+  const { email, username, now } = req.body;
+
+
+  try {
+    const response = await transporter.sendMail({
+      from: 'etaiwo220@gmail.com',
+      to: email,
+      subject: 'Welcome to Our Website',
+   tml: `<p>Hello ${username}, welcome to our website!</p><p>Your Code is <a href="https://yourwebsite.com/verify?code=${storedRandomCode}">${storedRandomCode}</a></p>`,
+    });
+
+
+    console.log(response);
+    res.status(200).json({ message: 'Email sent successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error sending email' });
+  }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+<!DOCTYPE html>
+<html>
+<body>
+<button>How Are You</button>
+<button>How Are You</button>
+<button>How Are You</button>
+    <script>
+
+        let savedValue = "Hello from HTML!";
+    </script>
+</body>
+</html>

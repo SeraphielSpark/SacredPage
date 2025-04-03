@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+
+        }
+
+        header {
+
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        h1 {
+            margin: 0;
+
+        }
+
+        .book {
+            display: flex;
+            justify-content: start;
+            width: 100%;
+            
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .book img {         
+            display: flex;
+            flex-shrink: 1;
+            width: 200px;   
+            margin-right: 20px;
+        }
+
+        .book h3 {
+            font-size: 21px;
+        }
+
+        .book p {
+            font-size: 1rem;
+        }
+
+        .read-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-button:hover {
+            background-color: #0056b3;
+        }
+
+        .download-button {
+            background-color: #28a745; /* Different color for Download button */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #1e7e34; /* Hover color for Download button */
+        }
+        @media (max-width: 480px) {
+            .book {
+                display: flex;
+                justify-content: start;
+                width: 400px;
+                padding: 1rem;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Bookstore</h1>
+    </header>
+
+    <div class="book">
+        <img src="chi1.png" alt="Chi Power Book">
+        <div>
+            <h3>Title: Chi Power Book</h3>
+            <button class="read-button" id="read-button">Read Now</button>
+            <button class="download-button" id="download-button">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="first-img.png " alt=" Book Of Shadow">
+        <div>
+            <h3>Title: Book Of Shadow</h3>
+            <button class="read-button" id="read-button1">Read Now</button>
+            <button class="download-button" id="download-button1">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="secong-img.png" alt=" Book Of Shadow">
+        <div>
+            <h3>Title: Kabbalah The Sefirot And The Four World</h3>
+        <button class="read-button" id="read-button2">Read Now</button>
+            <button class="download-button" id="download-button2">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="third-img.png" alt=" Book Of Shadow">
+        <div>
+            <h3>Title: Advance Candle Magic</h3>
+            <button class="read-button" id="read-button3">Read Now</button>
+            <button class="download-button" id="download-button3">Download</button>
+        </div>
+    </div>
+
+    <div class="book">
+        <img src="fifth-img.png" alt=" Book Of Shadow">
+        <div>
+
+            <h3>Title: Success Power Through Psalms </h3>
+            <button class="read-button" id="read-button5">Read Now</button>
+            <button class="download-button" id="download-button5">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="sixth.png" alt=" Book Of Shadow">
+        <div>
+            <h3>Title: Sigils Of Power And Transformation</h3>
+            <button class="read-button" id="read-button6">Read Now</button>
+            <button class="download-button" id="download-button6">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="seventh.png" alt=" Book Of Shadow">
+        <div>
+            <h3>Title: The Book Of Solomon's Magic</h3>
+            <button class="read-button" id="read-button7">Read Now</button>
+            <button class="download-button" id="download-button7">Download</button>
+        </div>
+    </div>
+    <div class="book">
+        <img src="eigth-img.png" alt=" Book Of Shadow">
+        <div>
+            <h3>Title: The Pocket Spell Creator</h3>
+            <button class="read-button" id="read-button8">Read Now</button>
+            <button class="download-button" id="download-button8">Download</button>
+        </div>
+    </div>
+
+    <!-- Add more books here -->
+<script>
+    let choose ={
+        'name':''
+    }
+    function list111(pick){
+        if(pick === 'Chi.pdf'){
+            choose.name = pick;
+        }
+        if(pick === 'Chi.pdf'){
+            choose.name = pick;
+        }
+    }
+    const a = document.createElement('a');
+    const mybutton = document.getElementById('read-button');
+    const mydownload = document.getElementById('download-button');
+    const mybutton1 = document.getElementById('read-button1');
+    const mydownload1 = document.getElementById('download-button1');
+    const mybutton2 = document.getElementById('read-button2');
+    const mydownload2 = document.getElementById('download-button2');
+    const mybutton3 = document.getElementById('read-button3');
+    const mydownload3 = document.getElementById('download-button3');
+    const mybutton4 = document.getElementById('read-button4');
+    const mydownload4 = document.getElementById('download-button4');
+    const mybutton5 = document.getElementById('read-button5');
+    const mydownload5 = document.getElementById('download-button5');
+    const mybutton6 = document.getElementById('read-button6');
+    const mydownload6 = document.getElementById('download-button6');
+    const mybutton7 = document.getElementById('read-button7');
+    const mydownload7 = document.getElementById('download-button7');
+    const mybutton8= document.getElementById('read-button8');
+    const mydownload8 = document.getElementById('download-button8');
+
+    mybutton.addEventListener('click', function (){
+        
+        a.href = 'https://drive.google.com/file/d/1ysCMrQ9p3JJeHc220iCSN4CYNZWCDghw/view?usp=drive_link';
+        a.click()
+    })
+    mydownload.addEventListener('click', function (){
+        
+        a.href = 'https://drive.google.com/file/d/1ysCMrQ9p3JJeHc220iCSN4CYNZWCDghw/view?usp=drive_link';
+        a.click()
+    })
+    mybutton1.addEventListener('click', function (){
+        
+        a.href = 'https://drive.google.com/file/d/1-Tm2fj9qs039NmWhaI5EmhNoRFFlhvji/view?usp=drive_link';
+        a.click()
+    })
+    mydownload1.addEventListener('click', function (){
+        a.href = 'https://drive.google.com/file/d/1-Tm2fj9qs039NmWhaI5EmhNoRFFlhvji/view?usp=drive_link';
+        a.click()
+    })
+    mybutton2.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf2.pdf'|| 'pdf2.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+    mydownload2.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf2.pdf' || 'pdf2.pdf';
+        a.download = 'documents/pdf2.pdf' || 'pdf2.pdf'
+        a.click()
+    })
+    mybutton3.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf3.pdf' || 'pdf3.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+    mydownload3.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf3.pdf' || 'pdf3.pdf';
+        a.download = 'documents/pdf3.pdf' || 'pdf3.pdf'
+        a.click()
+    })
+    mybutton4.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf4.pdf' || 'pdf4.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+    mydownload4.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf4.pdf' || 'pdf4.pdf';
+        a.download = 'documents/pdf4.pdf' || 'pdf4.pdf'
+        
+        a.click()
+    })
+    mybutton5.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf6.pdf' || 'pdf6.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+    mydownload5.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf6.pdf' || 'pdf2.pdf';
+        a.download = 'documents/pdf6.pdf' || 'pdf2.pdf'
+        
+        a.click()
+    })
+    mybutton6.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf7.pdf' || 'pdf7.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+    mydownload6.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf7.pdf' || 'pdf7.pdf';
+        a.download = 'documents/pdf7.pdf' || 'pdf7.pdf';
+        a.click()
+    })
+    mybutton7.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf8.pdf' || 'pdf8.pdf'))
+        window.location.href = 'data_reading.html'|| 'pdf8.pdf'
+    })
+    mydownload7.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf8.pdf';
+        a.download = 'documents/pdf8.pdf'
+        a.click()
+    })
+    mybutton8.addEventListener('click', function (){
+        localStorage.setItem('pdf', JSON.stringify('documents/pdf9.pdf' || 'pdf9.pdf'))
+        window.location.href = 'data_reading.html'
+    })
+
+    mydownload8.addEventListener('click', function (){
+        const a = document.createElement('a');
+        a.href = 'documents/pdf9.pdf' || 'pdf9.pdf';
+        a.download = 'documents/pdf9.pdf' || 'pdf9.pdf'
+        a.click()
+    })
+</script>
+</body>
+</html>

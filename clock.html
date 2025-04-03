@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Timer</title>
+    <style>
+        @keyframes namee {
+            from{
+                translate: rotateX(15deg) ;
+                
+            }
+            to{
+            translate: rotateX(360deg) ;
+            }
+        }
+        .div{
+            width: 300px;
+            background-color: white;
+            height: 300px;
+            border-radius: 150px;
+            border: 2px solid black;
+            animation-name: namee;
+            animation-duration: 20s;
+            animation-delay: 0.15s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-direction:alternate-reverse;
+            animation-play-state: running;
+            
+        }
+        span{
+            animation-duration: 20s;
+            animation-delay: 0.15s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-in;
+            animation-name: namee;
+            animation-play-state: running;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <span id="span">
+            |ss
+        </span>
+    </div>
+    <script>
+        const span = document.getElementById('span');
+        const span_style = getComputedStyle(span);
+        function style(){
+            
+        }
+    </script>
+</body>
+</html>

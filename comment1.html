@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog with Comments</title>
+</head>
+<body>
+    <h1>My Blog</h1>
+    
+    <h2>Leave a Comment:</h2>
+    <form id="commentForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment"></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Comments:</h2>
+    <ul id="commentList"></ul>
+
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            try {
+                const response = await fetch('/comment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, comment })
+                });
+
+                if (response.ok) {
+                    console.log('Comment submitted successfully');
+                    document.getElementById('name').value = '';
+                    document.getElementById('comment').value = '';
+                    fetchComments();
+                } else {
+                    console.error('Failed to submit comment');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        async function fetchComments() {
+            try {
+                const response = await fetch('/comments');
+
+                if (response.ok) {
+                    const comments = await response.text();
+                    document.getElementById('commentList').innerHTML = comments
+                        .split('\n')
+                        .filter(comment => comment.trim() !== '')
+                        .map(comment => `<li>${comment}</li>`)
+                        .join('');
+                } else {
+                    console.error('Failed to fetch comments');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Fetch comments when the page loads
+        fetchComments();
+    </script>
+</body>
+</html>

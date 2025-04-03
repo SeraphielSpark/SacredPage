@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Music Player</title>
+  <style>
+    .playlist, .deck {
+      border: 2px dashed #ccc;
+      padding: 10px;
+      margin: 10px;
+      min-height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .playlist button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .deck {
+      background: #f9f9f9;
+    }
+    .highlight {
+      border-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <input type="file" id="file-input" multiple>
+  <div class="playlist" id="music-list">
+    <p>Drag songs here</p>
+  </div>
+  <div style="display: flex; gap: 20px;">
+    <div class="deck" id="deck-1">
+      <p>Drop song on Deck 1</p>
+      <audio id="audio-deck-1" controls></audio>
+    </div>
+    <div class="deck" id="deck-2">
+      <p>Drop song on Deck 2</p>
+      <audio id="audio-deck-2" controls></audio>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const musicList = document.getElementById('music-list');
+    const deck1 = document.getElementById('deck-1');
+    const deck2 = document.getElementById('deck-2');
+    const audioDeck1 = document.getElementById('audio-deck-1');
+    const audioDeck2 = document.getElementById('audio-deck-2');
+
+    // Supported audio formats
+    const allowedFormats = ['audio/mpeg', 'audio/webm', 'audio/ogg', 'audio/wav'];
+
+    fileInput.addEventListener('change', () => {
+      const files = fileInput.files;
+
+      // Clear the music list
+      musicList.innerHTML = '';
+
+      Array.from(files).forEach((file) => {
+        // Check if the file is a supported audio format
+        if (allowedFormats.includes(file.type)) {
+          // Create a button for each audio file
+          const button = document.createElement('button');
+          button.textContent = file.name;
+          button.draggable = true;
+
+          // Set drag data
+          button.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('audio-file', URL.createObjectURL(file));
+            event.dataTransfer.setData('file-name', file.name);
+          });
+
+          musicList.appendChild(button);
+        } else {
+          console.warn(`Skipped unsupported file: ${file.name}`);
+        }
+      });
+    });
+
+    // Helper to handle dragover and drop events
+    const makeDeckDroppable = (deckElement, audioElement) => {
+      deckElement.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        deckElement.classList.add('highlight');
+      });
+
+      deckElement.addEventListener('dragleave', () => {
+        deckElement.classList.remove('highlight');
+      });
+
+      deckElement.addEventListener('drop', (event) => {
+        event.preventDefault();
+        deckElement.classList.remove('highlight');
+
+        const audioFile = event.dataTransfer.getData('audio-file');
+        const fileName = event.dataTransfer.getData('file-name');
+
+        if (audioFile) {
+          audioElement.src = audioFile;
+          audioElement.play();
+
+          // Update deck label
+          deckElement.querySelector('p').textContent = `Now Playing: ${fileName}`;
+        }
+      });
+    };
+
+    // Make both decks droppable
+    makeDeckDroppable(deck1, audioDeck1);
+    makeDeckDroppable(deck2, audioDeck2);
+  </script>
+</body>
+</html>

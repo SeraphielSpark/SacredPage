@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Disc Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #333;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      height: 100vh;
+      justify-content: center;
+    }
+
+    .disc {
+      width: 150px;
+      height: 150px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background-image: url('png-clipart-disc-jockey-djcity-japan-remix-dj-mix-music-record-player-miscellaneous-black.png');
+      background-position: center;
+      background-size: cover;
+      background-blend-mode: hard-light;
+      display: grid;
+      place-content: center;
+      position: relative;
+      animation: rotate 5s linear infinite;
+      transform-origin: center;
+    }
+
+    .disc.paused {
+      animation-play-state: paused;
+    }
+
+    .center {
+      background-color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    h3 {
+      color: lightgray;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>DJ Disc Player</h1>
+  <div class="disc" id="disc1">
+    <div class="center"></div>
+    <h3>Disc 1</h3>
+  </div>
+
+  <audio id="audio-player" src="Joeboy Ft. Mayorkun– Don’t Call Me Back.mp3" controls style="width: 100%; margin-top: 20px;"></audio>
+
+  <script>
+    const disc = document.getElementById('disc1');
+    const audioPlayer = document.getElementById('audio-player');
+
+    let isDragging = false;
+    let startX;
+    let initialRotation = 0; // Track the current rotation angle
+    let currentRotation = 0;
+
+    // Sync disc rotation with audio playback
+    audioPlayer.addEventListener('play', () => {
+      disc.classList.remove('paused');
+      disc.style.animation = `rotate 5s linear infinite`;
+    });
+
+    audioPlayer.addEventListener('pause', () => {
+      disc.classList.add('paused');
+      disc.style.animation = 'none'; // Stop animation to avoid conflicts
+    });
+
+    // Dragging logic for backward rotation
+    disc.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      startX = event.clientX;
+      initialRotation = currentRotation; // Start from the current rotation angle
+      disc.style.animation = 'none'; // Stop animation during dragging
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        const deltaX = event.clientX - startX;
+        currentRotation = initialRotation + deltaX / 2; // Adjust sensitivity
+        disc.style.transform = `rotate(${currentRotation}deg)`;
+        audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - deltaX / 50); // Adjust rewind speed
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        if (!audioPlayer.paused) {
+          const rotationSpeed = 360 / 5; // 360 degrees in 5 seconds
+          const adjustedSpeed = rotationSpeed - (currentRotation % 360) / 5; // Resume smoothly
+          disc.style.animation = `rotate ${5 - adjustedSpeed}s linear infinite`;
+        }
+      }
+    });
+
+    // Pause on hover
+    disc.addEventListener('mouseenter', () => {
+      if (!audioPlayer.paused) {
+        audioPlayer.pause();
+      }
+    });
+
+    disc.addEventListener('mouseleave', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      }
+    });
+  </script>
+</body>
+</html>

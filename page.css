@@ -1,0 +1,90 @@
+.div {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    animation: backgroundSlideshow 12s infinite;
+}
+
+/* Background Slideshow */
+@keyframes backgroundSlideshow {
+    0% { background-image: url('angel1.jpeg'); }
+    33% { background-image: url('angel2.jpeg'); }
+    66% { background-image: url('angel3.jpg'); }
+    100% { background-image: url('angel1.jpeg'); }
+}
+
+/* Overlay for Contrast */
+
+
+
+/* Center Content */
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    max-width: 80%;
+    color: black;
+}
+
+/* Heading Styling */
+.heading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+    width: 600px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Typewriter Text Styling */
+.typewriter {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white;
+    display: inline-block;
+    animation: typing 4s steps(30, end), blink 1s step-end infinite alternate;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    from { border-color: white; }
+    to { border-color: transparent; }
+}
+
+/* Action Button */
+.action-button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #e63946;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color: #d62828;
+    transform: scale(1.1);
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+
+    / Your CSS styles here /
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      margin: 0;
+    }
+
+    #messageList {
+      height: 400px;
+      overflow-y: scroll;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .messageItem {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px 0;
+      max-width: 80%;
+    }
+
+    #messageInput {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    #submit-page {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat App</h1>
+  <div id="messageList"></div>
+  <form id="messageForm">
+    <input type="text" id="messageInput" placeholder="Enter your message">
+    <button id="submit-page" type="button">Send</button>
+  </form>
+  <script>
+    const messageForm = document.getElementById('messageForm');
+    const messageInput = document.getElementById('messageInput');
+    const messageList = document.getElementById('messageList');
+
+    // Function to set a cookie
+    function setCookie(name, value, daysToExpire) {
+      const date = new Date();
+      date.setTime(date.getTime() + daysToExpire  24  60  60  1000);
+      const expires = 'expires=' + date.toUTCString();
+      document.cookie = name + '=' + value + ';' + expires + ';path=/';
+    }
+
+    // Function to get a cookie by name
+    function getCookie(name) {
+      const cookieName = name + '=';
+      const cookies = document.cookie.split(';');
+
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(cookieName) === 0) {
+          return cookie.substring(cookieName.length, cookie.length);
+        }
+      }
+      return '';
+    }
+
+    document.getElementById('submit-page').addEventListener('click', function() {
+      const message = messageInput.value;
+      // Retrieve existing messages from the cookie
+      const existingMessages = getCookie('messages') ? JSON.parse(getCookie('messages')) : [];
+
+      // Add the new message to the existing messages
+      existingMessages.push(message);
+
+      // Store the updated messages back in the cookie
+      setCookie('messages', JSON.stringify(existingMessages), 7);
+
+      // Clear the input field
+      messageInput.value = '';
+
+      // Clear the message list
+      messageList.innerHTML = '';
+
+      // Display the messages in the message list
+      existingMessages.forEach((msg) => {
+        const messageItem = document.createElement('div');
+        messageItem.className = 'messageItem';
+        messageItem.textContent = msg;
+        messageList.appendChild(messageItem);
+      });
+    });
+
+    // Load messages when the page loads
+    window.onload = function() {
+      const existingMessages = getCookie('messages') ? JSON.parse(getCookie('messages')) : [];
+      existingMessages.forEach((msg) => {
+        const messageItem = document.createElement('div');
+        messageItem.className = 'messageItem';
+        messageItem.textContent = msg;
+        messageList.appendChild(messageItem);
+      });
+    };
+  </script>
+</body>
+</html>

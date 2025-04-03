@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="horoscope1.css" rel="stylesheet" type="text/css">
+    <link href="pogression.css" rel="stylesheet" type="text/css">
+    <link href="page.css" type="text/css" rel="stylesheet"/>
+    <title>Angel Calculator</title>
+    <link  >
+  <style>
+    body{
+      background-color: black;
+        background-image: none;
+        display: grid;
+        place-content: center;
+        place-items: center;
+        height: 100%;
+    }
+    .form-container{
+        margin-top: 100px;
+    }
+    input:placeholder-shown{
+        font-size: 24px;
+    }
+    input{
+        font-size: 29px;
+    }
+    input{
+        font-variant-caps: all-petite-caps;
+    }
+
+  </style>
+</head>
+
+<body style="background-color: black">
+    <div class="div" id="div">
+        <div class="heading" style="margin-bottom: 0; color: white; display: grid; place-content: center; place-items: center;">Angel Readings</div>
+        <div class="overlay" style="display: none;" id="overlay">
+            <div>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <div id="progress-text" class="progress-text"></div>
+            </div>
+        
+        
+        </div>
+        <div class="content">
+            <div class="typewriter" id="typewriter-text"></div>
+        </div>
+        <button class="action-button" id="button2">Start Your Reading</button>
+    </div>
+    <main id="main" style="display: none;">
+
+
+        <div class="form-container">
+            <h2 class="label">Enter Your Details to Know The Name Of Your Angel</h2>
+
+            <label for="fullName" class="input-label">Enter Your Full Name</label>
+            <input type="text" placeholder="Full Name" id="fullName" class="input-field" required/>
+
+            <label for="dob" class="input-label">Enter Your Full Date of Birth</label>
+            <input type="date" id="dob" placeholder="DOB EX 17, June 1997" required class="input-field" />
+            <label for="dob" class="input-label">Enter Your Zodiac Sign</label>
+            <input type="text" id="zodiac"   placeholder="Enter Your Zodiac Sign EX(Gemini)" required class="input-field" />
+            <a  id='redirect' style="margin-bottom:15px; padding-bottom:10px; font-size: 15px; color: red; cursor: pointer;" >Do You Not Know Your Sun Sign/Zodiac Sign Click Here To Know</a>
+            
+            <button class="submit-button" style="margin-top: 20px;" id="button">Submit</button>
+        </div>
+    </main>
+    <script src="page.js">
+        
+    </script>
+    <script src="progression.js">
+        
+    </script>
+    <script >
+        let req = false;
+        const redirect = document.getElementById('redirect');
+        redirect.addEventListener('click',function(){
+            window.location.href ="Horoscope%20New%20Line.html";
+            localStorage.setItem('req1', JSON.stringify('true'))
+        })
+        document.addEventListener('DOMContentLoaded', function(){
+            if(JSON.parse(localStorage.getItem('req2')) === 'true'){
+            req = JSON.parse(window.localStorage.getItem('Req'));
+            let name1 = JSON.parse(window.localStorage.getItem('name'));
+            let dob1 = JSON.parse(window.localStorage.getItem('dob'));
+            
+            document.getElementById('zodiac').value = req;
+            document.getElementById('fullName').value = name1;
+            document.getElementById('dob').value = dob1;
+            localStorage.removeItem('req2');
+            localStorage.removeItem('Req');
+            localStorage.removeItem('name')
+            localStorage.removeItem('dob')
+            document.getElementById('div').style.display = 'none';
+            document.getElementById('main').style.display = 'grid'
+        }
+        })
+        
+        
+        document.getElementById('button').addEventListener('click',function (){
+            const dob = document.getElementById('dob').value;
+            const zodiac1 = document.getElementById('zodiac').value;
+            const zodiac = zodiac1.toLowerCase()
+            const namea = document.getElementById('fullName').value;
+            const angel = {
+                'angel':"",
+                'archangel':"",
+                'storyline':"",
+                'arch_storyline':"",
+                'angel_pic':""
+
+            }
+            const doba = dob.replace('-', '+')
+            const final = eval(doba.replace('-', '+'))
+            const array = Array.from(String(final) , Number)
+            const array2 = array[0]+array[1]+array[2]+array[3]
+            if(array2>9){
+                const array3 = Array.from(String(array2) , Number)
+                arrayfinal = array3[0] +array3[1]
+                localStorage.setItem('angelicnumber',JSON.stringify(arrayfinal))
+            }
+            if(zodiac === 'gemini'){
+                angel.angel = 'AMBRIEL';
+                angel.archangel = 'ZADKIEL';
+                angel.arch_storyline = 'Zadkiel, often referred to as Archangel Zadkiel, is a prominent figure in various spiritual and religious traditions, particularly in angelology and mysticism. Zadkiel is associated with themes of mercy, compassion, forgiveness, and spiritual transformation. While interpretations of Zadkiel can vary, here is an overview of Zadkiel\'s role and significance:\n' +
+                    '\n' +
+                    'Zadkiel is often considered one of the archangels, a high-ranking order of celestial beings in many belief systems. In some traditions, Zadkiel is associated with the angelic choir known as the Dominions, who are believed to oversee the lower angels and impart divine wisdom to humanity.\n' +
+                    '\n' +
+                    'The name "Zadkiel" has deep roots and various interpretations. It is commonly thought to mean "Righteousness of God" or "Justice of God," reflecting the archangel\'s role in promoting divine justice, mercy, and compassion.\n' +
+                    '\n' +
+                    'Zadkiel\'s primary role is often linked to forgiveness and transmutation of negative energies. It is believed that Zadkiel can help individuals release and heal emotional burdens, resentments, and regrets. By invoking Zadkiel, people seek assistance in the process of letting go, forgiving themselves and others, and attaining inner peace.\n' +
+                    '\n' +
+                    'In many spiritual practices, Zadkiel is seen as a guide for those who seek to transform their lives and consciousness. Zadkiel is associated with the violet flame, a metaphysical concept representing a high-frequency spiritual energy that can cleanse and purify negative energies, thoughts, and emotions. The violet flame is believed to have the power to transmute lower vibrations into higher ones, aiding in personal and spiritual growth.\n' +
+                    '\n' +
+                    'Zadkiel\'s compassionate and merciful nature extends to healing, both physical and emotional. Many believe that invoking Zadkiel\'s presence can assist in the healing process by bringing comfort and soothing energies to those in need.\n' +
+                    '\n' +
+                    'In the realm of spirituality and mysticism, Zadkiel is often depicted as a wise and benevolent figure who offers guidance and support on the path of spiritual evolution. As an advocate for transformation and inner alchemy, Zadkiel encourages individuals to embrace change, seek higher truths, and align themselves with their soul\'s purpose.\n' +
+                    '\n' +
+                    'It\'s important to note that interpretations of archangels, including Zadkiel, can vary across different cultures, religions, and belief systems. People may connect with Zadkiel in various ways, from prayer and meditation to rituals and invocations, all with the intention of seeking spiritual growth, healing, and enlightenment.\n' +'Archangel Zadkiel, a luminous and compassionate presence within the celestial hierarchy, holds a unique place in the realm of spirituality and mysticism. His name, often translated as "Righteousness of God" or "Justice of God," resonates with the essence of mercy, forgiveness, and transformation. In the tapestry of angelic beings, Zadkiel\'s radiant light shines as a beacon of hope and healing, guiding souls on their journey toward inner and spiritual evolution.\n' +
+                    '\n' +
+                    'Zadkiel is widely regarded as an archangel, a divine messenger of the highest order, entrusted with profound responsibilities in the cosmic scheme. Within the angelic hierarchy, Zadkiel is often associated with the Dominions, an angelic choir tasked with transmitting divine wisdom and guidance to both humanity and lower angelic orders.\n' +
+                    '\n' +
+                    'The archangel\'s primary role is deeply intertwined with themes of forgiveness and transmutation. Zadkiel\'s boundless compassion extends to the realms of human emotions, offering solace to those burdened by regrets, resentments, and emotional wounds. By invoking Zadkiel\'s grace, individuals seek assistance in releasing and healing these burdens, finding the strength to move forward on their spiritual journey.\n' +
+                    '\n' +
+                    'A significant aspect of Zadkiel\'s influence is the concept of the violet flame. This ethereal phenomenon symbolizes a potent spiritual energy associated with cleansing, purification, and transformation. The violet flame is believed to have the power to transmute negative energies and thought patterns into higher vibrations, assisting individuals in their quest for spiritual growth and self-improvement. Through the violet flame\'s alchemical properties, Zadkiel offers a pathway to personal and emotional liberation, facilitating the process of shedding layers of negativity to reveal the essence of one\'s soul.\n' +
+                    '\n' +
+                    'Zadkiel\'s compassionate nature extends to the realm of healing, both physical and emotional. Invoking the archangel\'s presence is often seen as an invocation for healing energies that can bring comfort and relief to those facing physical ailments or emotional distress. Zadkiel\'s healing grace is thought to not only soothe pain but also facilitate the release of emotional wounds, enabling individuals to experience true rejuvenation of body, mind, and spirit.\n' +
+                    '\n' +
+                    'As a guide on the path of spiritual transformation, Zadkiel encourages seekers to embrace change, forgiveness, and self-discovery. His benevolent energy is an anchor of support for those navigating the challenges of personal growth and awakening. By invoking Zadkiel, individuals open themselves to his divine wisdom, allowing his light to illuminate their inner landscapes and reveal the profound truths hidden within.\n' +
+                    '\n' +
+                    'Zadkiel\'s presence is not confined by religious boundaries; instead, it transcends various spiritual traditions, resonating with those who seek healing, forgiveness, and enlightenment. Whether through prayer, meditation, or ritual, connecting with Archangel Zadkiel is a journey of the heart, an exploration of one\'s deepest emotions and aspirations. In Zadkiel\'s embrace, the transformative power of mercy and forgiveness becomes a beacon of hope, illuminating the path toward greater spiritual understanding, inner harmony, and connection with the divine.'
+                angel.storyline = 'Ambriel, a celestial being often associated with angelology and esoteric traditions, is considered one of the archangels and is known for her role as a communicator and guide of thoughts and ideas. While information about Ambriel can vary between sources, here\'s a portrayal of Ambriel\'s significance and attributes:\n' +
+                    '\n' +
+                    'Ambriel, sometimes referred to as the "Communicator of God," resides within the angelic hierarchy as a prominent figure responsible for facilitating the exchange of thoughts, ideas, and messages. In her role, she serves as a bridge between the spiritual realm and the realm of human consciousness, enabling clear and insightful communication between these dimensions.\n' +
+                    '\n' +
+                    'Among the angelic choirs, Ambriel is often associated with the order of Archangels, a celestial group with duties that encompass guiding humanity, guarding the cosmic order, and supporting divine purposes. Ambriel\'s particular focus on communication aligns her with the realm of intellect and the dissemination of knowledge.\n' +
+                    '\n' +
+                    'Her name itself carries a sense of lightness and clarity, reflecting her nature as a guide of thought and expression. "Ambriel" is believed to resonate with the attributes of openness and transparency, qualities that underscore her role in fostering understanding and clarity in human interactions and endeavors.\n' +
+                    '\n' +
+                    'Ambriel\'s influence extends beyond mere verbal communication. She is also associated with the realm of dreams, intuition, and the subtle connections that weave through the tapestry of existence. It is said that Ambriel can aid individuals in deciphering the symbols and messages present within their dreams, helping them uncover hidden insights and guidance.\n' +
+                    '\n' +
+                    'In times of intellectual challenges or creative blocks, invoking Ambriel\'s presence is thought to bring about inspiration, intellectual clarity, and the ability to articulate thoughts and ideas effectively. Artists, writers, scholars, and seekers of knowledge may turn to Ambriel for guidance, seeking to unlock the depths of their inner creativity and wisdom.\n' +
+                    '\n' +
+                    'Furthermore, Ambriel is regarded as a guardian of truth and integrity. She supports individuals in their pursuit of authentic communication, encouraging them to speak their truths with kindness, respect, and sincerity. Her presence is invoked to help navigate conflicts and misunderstandings, promoting resolutions that are based on clarity and understanding.\n' +
+                    '\n' +
+                    'Ambriel\'s energy is often associated with the element of air, a symbol of intellect, communication, and higher thought. As the winds carry messages across the vast expanse of the earth, Ambriel\'s influence helps ideas and thoughts flow freely, unifying minds and hearts in a shared quest for knowledge and growth.\n' +
+                    '\n' +
+                    'In the rich tapestry of angelic beings, Ambriel\'s light shines as a guide of communication, intellect, and understanding. Her celestial presence invites individuals to embrace the art of clear expression, to honor the power of their thoughts and words, and to seek connections that transcend the boundaries of the material world. Through Ambriel\'s grace, the symphony of human consciousness finds its harmonious resonance, fostering unity, enlightenment, and the nurturing of shared wisdom.\n'+'Ambriel, the Luminary of Insight, occupies a celestial realm that resonates with the delicate balance between thought and expression. Within the grand design of the angelic hierarchy, Ambriel stands as a luminescent figure, renowned for her role in bridging the ethereal and earthly realms through the profound art of communication.\n' +
+                    '\n' +
+                    'As an archangel, Ambriel dwells amidst the celestial choirs, her presence interwoven with the fabric of divine orchestration. Her essence radiates a gentle luminosity, akin to the soft glow of dawn, heralding the awakening of ideas and the birth of understanding.\n' +
+                    '\n' +
+                    'The name "Ambriel," a melodious composition of syllables, reflects her essence as a celestial messenger of thoughts and insights. It is said that her name resonates like a gentle whisper, an invitation to explore the realms of consciousness and to unveil the mysteries that lie within.\n' +
+                    '\n' +
+                    'Ambriel\'s domain is that of thoughts, ideas, and intellectual pursuits. She is the ethereal guide who ensures that the symphony of human cognition flows harmoniously, enabling the free exchange of ideas between the earthly realm and the higher planes of existence. When seekers invoke her presence, they often find themselves blessed with mental clarity, allowing thoughts to blossom into coherent expressions.\n' +
+                    '\n' +
+                    'Artists, writers, philosophers, and all those who engage in the realms of creativity and intellect seek Ambriel\'s guidance. It is believed that she weaves her celestial threads through the tapestry of their minds, igniting the spark of inspiration and guiding the flow of words and ideas onto the canvas of reality.\n' +
+                    '\n' +
+                    'Ambriel\'s influence isn\'t confined to the realm of the conscious mind alone. She extends her guidance into the dreamscapes, weaving intricate narratives and symbols into dreams that hold profound messages and insights. Those who delve into the depths of their dreams may find her presence, guiding them through the intricate pathways of the subconscious.\n' +
+                    '\n' +
+                    'In times of uncertainty, Ambriel\'s soothing energy brings solace. She encourages seekers to explore the depths of their own thoughts, to question, and to seek truth. Her energy resonates with the seeker\'s own intuition, illuminating the path towards understanding and decision-making.\n' +
+                    '\n' +
+                    'Ambriel\'s connection to the element of air is profound. Just as air carries sound waves, Ambriel carries the echoes of thoughts and ideas across the realms. Her wings, formed from the essence of air itself, are instruments of inspiration that flutter like a gentle breeze, carrying whispers of enlightenment to those who listen.\n' +
+                    '\n' +
+                    'Through Ambriel\'s grace, the art of communication becomes a sacred dance, a harmonious exchange that unites minds, bridges differences, and nurtures understanding. Seekers of wisdom and bearers of words find in her an ally, a compassionate guide who fosters connections across time and space. In her luminescent aura, the threads of human consciousness interweave, creating a tapestry of shared thoughts, insights, and the collective brilliance of souls connected in a dance of thought and expression.'
+                angel.angel_pic = '1692705633368.jpg'
+            }
+            if(zodiac === 'cancer'){
+                angel.angel = '<h4>MURIEL</h4>';
+                angel.archangel = '<h4>GABRIEL</h4>';
+                angel.angel_pic = '1692705642892.jpg'
+                angel.arch_storyline = '<h4>Gabriel, a celestial being of great significance in various spiritual and religious traditions, is often referred to as an archangel and messenger of God. Known for conveying divine messages, Gabriel holds a prominent place within angelology and is revered for bringing important announcements and revelations. Here\'s a portrayal of the archangel Gabriel\'s attributes, roles, and significance:\n</h4>' +
+                    '\n' +
+                    '<p></p>Gabriel, whose name translates to "God is my strength" or "Strength of God," is considered one of the highest-ranking archangels. In many belief systems, Gabriel is seen as an angelic figure who stands in the presence of God, ready to carry out divine missions and deliver celestial messages to humanity.\n</p>' +
+                    '\n' +
+                    '<p>Throughout history and across cultures, Gabriel has played a pivotal role in delivering messages of great significance. In the Christian tradition, Gabriel is known for appearing to the Virgin Mary to announce the miraculous birth of Jesus Christ. This angelic encounter, known as the Annunciation, is a profound moment in the narrative of Christianity.\n</p>' +
+                    '\n' +
+                    '<p>Gabriel is often associated with communication, prophecy, and guidance. It is said that Gabriel\'s presence is invoked when important announcements, revelations, or insights are needed. In addition to Mary, Gabriel is believed to have appeared to various prophets and figures in different religious texts, delivering messages that shaped the course of history.\n</p>' +
+                    '\n' +
+                    '<p>The archangel\'s role isn\'t limited to delivering messages alone; Gabriel\'s presence is also seen as a source of protection, guidance, and support. Those who seek assistance in matters of communication, understanding, and revelation often turn to Gabriel for his wisdom and guidance.\n</p>' +
+                    '\n' +
+                    '<p>Gabriel\'s attributes often include a trumpet, symbolizing the proclamation of divine messages, and a lily, representing purity and grace. This symbolism underscores Gabriel\'s connection to the sacred and his role in facilitating the connection between the spiritual and material realms.\n</p>' +
+                    '\n' +
+                    '<p>In some interpretations, Gabriel is also associated with creativity and artistic endeavors. Musicians, writers, and artists invoke his presence to draw inspiration and receive guidance in their creative pursuits. It is believed that Gabriel\'s presence can help individuals channel their creative energies and bring their visions to fruition.\n</p>' +
+                    '\n' +
+                    '<p>Gabriel\'s energy is often likened to the element of water, which symbolizes emotions, intuition, and the flow of divine wisdom. Just as water nourishes and sustains life, Gabriel\'s presence nourishes the soul with divine insights and guidance, encouraging seekers to delve deeper into their spiritual journey.\n</p>' +
+                    '\n' +
+                    '<p>Across the spectrum of faiths and beliefs, Gabriel stands as a beacon of divine communication and guidance. His luminous presence bridges the gap between the celestial and mortal realms, bringing messages of hope, revelation, and enlightenment. Through Gabriel\'s grace, the language of the divine finds expression in the hearts and minds of those who seek to understand, to listen, and to embrace the sacred whispers that illuminate the path of the soul.\n' +'Gabriel, the Angel of Revelation and Divine Messenger, occupies a revered place in the pantheon of celestial beings. With wings that shimmer like gossamer and a countenance that radiates profound wisdom, Gabriel is known as a steadfast intermediary between the divine and the mortal realms.\n</p>' +
+                    '\n' +
+                    '<p>The name "Gabriel" resonates with strength and clarity, a testament to the archangel\'s role as a bearer of divine messages. Often depicted holding a trumpet, Gabriel\'s celestial notes echo with the sound of revelations, heralding significant moments in the cosmic symphony.\n</p>' +
+                    '\n' +
+                    '<p>Gabriel\'s most renowned role rests within the Christian tradition, where the archangel is celebrated for delivering the Annunciation to the Virgin Mary. This sacred encounter, in which Gabriel announced the forthcoming birth of Jesus, underscores the archangel\'s pivotal role in the nativity narrative. Beyond this, Gabriel is also said to have appeared to prophets like Daniel and Zechariah, carrying messages that altered the course of history.\n</p>' +
+                    '\n' +
+                    '<p>In addition to his divine messages, Gabriel\'s presence serves as a source of guidance and protection. Seekers who invoke Gabriel often find themselves wrapped in the angel\'s nurturing embrace, their hearts and minds illuminated by celestial insights. It is said that Gabriel\'s guidance helps individuals navigate the complexities of life\'s decisions, encouraging them to align with divine purpose.\n</p>' +
+                    '\n' +
+                    '<p>The archangel\'s connection to creativity is profound. Artists, writers, and musicians often call upon Gabriel to infuse their work with inspiration and clarity. Through Gabriel\'s grace, the muses are beckoned, and the creative process is guided by celestial hands. It is as if the archangel\'s wisdom flows through the veins of creators, igniting their imagination and fueling their artistic endeavors.\n</p>' +
+                    '\n' +
+                    '<p>Gabriel\'s energy is often likened to the element of water, which symbolizes the intuitive realm of emotions and wisdom. Just as water flows, Gabriel\'s presence encourages seekers to allow their thoughts and feelings to flow freely, connecting with the deeper currents of divine insight. His energy nurtures intuition, allowing seekers to tap into their inner wisdom and embrace the subtleties of the spiritual realm.\n</p>' +
+                    '\n' +
+                    '<p>In the vast tapestry of spiritual beliefs, Gabriel\'s light shines as a guide of revelation, communication, and guidance. His presence serves as a bridge between heaven and earth, weaving messages of hope, truth, and understanding into the fabric of human existence. Through Gabriel\'s grace, the whispers of the divine find voice, and the profound truths of the cosmos are revealed to those who listen with open hearts.</p>';
+                angel.storyline = '<p>Muriel, often depicted as a serene and gentle presence within angelology and spiritual lore, is associated with themes of compassion, healing, and nurturing. While Muriel\'s significance may vary across different traditions, here\'s a portrayal of Muriel\'s attributes and roles:\n</p>' +
+                    '\n' +
+                    '<p>Muriel, the Angel of Compassion and Healing, emanates an aura of tranquility and tenderness. Her name, meaning "Myrrh of God" or "Perfume of God," hints at the soothing and nurturing essence she brings to those in need. In the celestial realm, Muriel holds a unique role as a guardian of emotional well-being and a beacon of healing light.\n</p>' +
+                    '\n' +
+                    '<p>Often referred to as an archangel, Muriel is celebrated for her capacity to bring solace to wounded hearts and offer support during times of distress. She possesses a profound understanding of human emotions, serving as a gentle guide through the labyrinth of feelings that define the human experience.\n</p>' +
+                    '\n' +
+                    '<p>Muriel\'s presence is particularly invoked during moments of grief, loss, and heartache. As a comforting presence, she stands by those who are mourning, offering a sense of calm and understanding that transcends words. Her wings, which bear a soft iridescence reminiscent of a gentle dawn, enfold those who seek solace, reminding them that they are not alone in their pain.\n</p>' +
+                    '\n' +
+                    '<p>Compassion is Muriel\'s essence, and her energy extends beyond the realm of the physical to the spiritual and emotional planes. She is believed to aid in healing emotional wounds and restoring inner harmony. Through her gentle touch, she helps individuals release heavy burdens and find the strength to mend the broken pieces of their hearts.\n</p>' +
+                    '\n' +
+                    '<p>Muriel\'s connection to nature is also significant. She is often associated with the soothing qualities of water and the restorative power of natural landscapes. Invoking Muriel\'s presence near bodies of water or within the serenity of the natural world is thought to amplify her healing energies, allowing seekers to find inner peace and renewal.\n</p>' +
+                    '\n' +
+                    '<p>In some spiritual traditions, Muriel is considered a protector of animals, particularly those who are suffering or in need of care. Her compassionate nature extends to all sentient beings, and invoking her presence can offer comfort and assistance to those who are involved in animal welfare or rescue.\n</p>' +
+                    '\n' +
+                    '<p>As a healer of the heart and a guardian of emotional well-being, Muriel\'s presence is sought during times of inner turmoil. Through her grace, individuals find a safe space to express their feelings, release their pain, and begin the journey towards healing and renewal. Muriel\'s compassion is like a soothing balm that eases the ache of sorrow and gently guides seekers toward the light of hope and serenity.\n'+'Muriel, the Angelic Healer of Hearts, stands as a luminous figure in the celestial tapestry, her essence woven with threads of compassion, solace, and nurturing. Her celestial name, "Myrrh of God" or "Perfume of God," evokes the aroma of divine care that she brings to those who seek emotional healing and restoration.\n</p>' +
+                    '\n' +
+                    '<p>As an archangel, Muriel occupies a cherished place within the angelic hierarchy, embodying the gentle power of healing and compassion. She is often depicted with wings that shimmer like soft moonlight, casting a soothing glow upon those who are in need of emotional comfort.\n</p>' +
+                    '\n' +
+                    '<p>Muriel\'s primary role is that of an emotional healer. Her presence is invoked during times of sorrow, loss, and heartache, offering a sanctuary of solace for those whose spirits are burdened. Her celestial touch is like a cool breeze on a warm day, gently carrying away the weight of pain and sadness that weighs down weary hearts.\n</p>' +
+                    '\n' +
+                    '<p>The archangel\'s connection to the realm of nature is profound. Muriel is believed to be especially attuned to bodies of water, such as rivers, lakes, and oceans, as well as the gentle rustling of leaves in a tranquil forest. In these natural settings, her energies are amplified, providing seekers with a serene space for reflection, release, and renewal.\n</p>' +
+                    '\n' +
+                    '<p>Muriel\'s nurturing embrace extends not only to humans but also to animals. She is often regarded as a guardian of creatures both great and small, offering solace and healing to those in pain or distress. In the presence of animals, Muriel\'s energy fosters a sense of calm and security, allowing them to find comfort in her gentle presence.\n</p>' +
+                    '\n' +
+                    '<p>Compassion is Muriel\'s hallmark, and her energy flows like a gentle river, tending to wounds and scars that are not visible to the eye. She assists individuals in navigating the depths of their emotions, encouraging them to express their feelings and embrace their vulnerabilities. Through her grace, seekers find the courage to heal from within, mending the broken pieces of their souls.\n</p>' +
+                    '\n' +
+                    '<p>Muriel\'s essence resonates with the element of water, symbolizing the ebb and flow of emotions, the tides of grief, and the purifying essence of tears. She encourages seekers to release their emotions like drops of water, allowing their hearts to be cleansed and renewed by the gentle currents of healing energy.\n</p>' +
+                    '\n' +
+                    '<p>In the symphony of angelic beings, Muriel\'s song is one of comfort, compassion, and renewal. Her celestial presence invites all who are in need of emotional healing to find refuge in her embrace. Through Muriel\'s grace, tears are transformed into pearls of wisdom, pain becomes a catalyst for growth, and wounded hearts find solace in the balm of her gentle care.</p>'
+            }
+            if(zodiac === 'leo'){
+                angel.angel = '<h4>VERCHIEL</h4>';
+                angel.archangel = '<h4>RAZIEL</h4>';
+                angel.angel_pic = '1692705655462.jpg'
+                angel.arch_storyline = '<p>Raziel, an enigmatic and mystical figure in various spiritual and esoteric traditions, is often referred to as the Archangel of Secrets or the Keeper of Mysteries. Raziel\'s significance lies in his role as a custodian of divine wisdom, esoteric knowledge, and the hidden truths of the universe. Here\'s a portrayal of Raziel\'s attributes, roles, and symbolism:\n</p>' +
+                    '\n' +
+                    '<p>Raziel, whose name is often translated as "Secret of God" or "Mystery of God," is considered a high-ranking archangel in many belief systems. He is often depicted as an ancient and wise presence, adorned with celestial robes that shimmer with the hues of the cosmos. Raziel\'s aura resonates with the luminous energy of sacred knowledge and cosmic wisdom.\n</p>' +
+                    '\n' +
+                    '<p>As the Archangel of Secrets, Raziel is entrusted with safeguarding the deep and hidden truths of creation. He is believed to possess insights into the intricate workings of the universe, as well as the spiritual realms that lie beyond the physical. Seekers of enlightenment and those who yearn for a deeper understanding of the mysteries of existence often turn to Raziel for guidance.\n</p>' +
+                    '\n' +
+                    '<p>One of Raziel\'s most renowned attributes is his Book of Secrets or the Book of Raziel. This mystical tome is said to contain divine knowledge, insights into the nature of reality, and the secrets of magic and alchemy. It is believed that Raziel bestowed this book upon humanity to help seekers access higher realms of consciousness and unlock their latent potential.\n</p>' +
+                    '\n' +
+                    '<p>Raziel\'s presence is often invoked during moments of introspection, meditation, and spiritual exploration. Those who seek to unravel the mysteries of existence and gain deeper insights into their own spiritual journey may call upon Raziel to guide them on their path.\n</p>' +
+                    '\n' +
+                    '<p>Raziel is closely associated with the concept of divine revelation. It is believed that he assists individuals in receiving insights, symbols, and revelations through dreams, visions, and intuitive experiences. Invoking his presence can help seekers attune their minds to the subtle whispers of the spiritual realm, enabling them to uncover hidden truths.\n</p>' +
+                    '\n' +
+                    '<p>In some interpretations, Raziel\'s connection to nature is emphasized. He is often depicted surrounded by celestial symbols, stars, and cosmic patterns, underscoring his role as a keeper of the universe\'s intricate design.\n</p>' +
+                    '\n' +
+                    '<p>Raziel\'s energy is often likened to the element of ether or spirit, representing the realm of the unseen and the transcendent. Just as ether connects all elements, Raziel\'s presence serves as a bridge between the known and the unknown, guiding seekers through the vast expanse of spiritual discovery.\n</p>' +
+                    '\n' +
+                    '<p>In the intricate tapestry of spiritual beliefs, Raziel\'s light shines as a guide to seekers of wisdom and seekers of truth. His presence beckons those who are willing to dive into the depths of cosmic mysteries, offering insights that expand the boundaries of human understanding. Through Raziel\'s grace, the veils that shroud the hidden facets of existence are lifted, revealing the profound interconnectedness of all that is, was, and ever will be.\n'+'Raziel, the Archangel of Enigma and Cosmic Wisdom, exists as a celestial custodian of the profound secrets that lie beyond the veil of reality. His presence is like the flicker of starlight in the night sky, beckoning those who seek to unravel the mysteries that weave the tapestry of existence.\n</p>' +
+                    '\n' +
+                    '<p>The name "Raziel," often translated as "Secret of God" or "Mystery of God," encapsulates the archangel\'s essence as a keeper of divine enigmas. Adorned in robes that shimmer with the hues of the universe, Raziel stands as a bridge between the finite and the infinite, offering glimpses into the boundless wisdom that emanates from the cosmic source.\n</p>' +
+                    '\n' +
+                    '<p>Raziel\'s role revolves around safeguarding sacred knowledge and esoteric truths. His Book of Secrets, a celestial tome woven with the threads of cosmic insight, is said to contain the wisdom of ages, the interplay of energies, and the hidden arts of magic and alchemy. This mystic scripture is a guide for seekers who aspire to transcend the limitations of the mundane and touch the realm of the divine.\n</p>' +
+                    '\n' +
+                    '<p>Invoking Raziel\'s presence is an invitation to embark on a journey of self-discovery and cosmic exploration. Seekers who are drawn to the profound truths that lie beyond the surface of reality often turn to Raziel for guidance, understanding that he is the key to unlocking the doors of perception and awakening dormant faculties of insight.\n</p>' +
+                    '\n' +
+                    '<p>Raziel\'s connection to the realm of revelation is profound. Through dreams, visions, and intuitive insights, he imparts revelations that unveil the veiled, casting light on the mysteries that remain concealed from ordinary perception. Those who seek deeper understanding find themselves graced with his ethereal touch, guided by his wisdom toward the cosmic revelations that await.\n</p>' +
+                    '\n' +
+                    '<p>In addition to his mystical role, Raziel\'s energy resonates with the natural world. His presence is often associated with the stars, constellations, and the grandeur of the cosmos. Just as the night sky holds the universe\'s myriad secrets, Raziel carries the celestial symphony within his being, allowing seekers to harmonize with the vibrations of cosmic knowledge.\n</p>' +
+                    '\n' +
+                    '<p>Raziel\'s essence is often likened to the element of ether, the subtle fifth element that transcends the physical and connects all things in the universe. He embodies the boundless expanse of the cosmos and the infinite potential that lies beyond the boundaries of human comprehension.\n</p>' +
+                    '\n' +
+                    '<p>Within the intricate fabric of spiritual exploration, Raziel\'s light beckons those who dare to delve into the mysteries that define existence. Through his grace, seekers become intrepid cosmic adventurers, exploring the uncharted realms of the mind, spirit, and universe. In Raziel\'s presence, the threads of ancient wisdom intertwine with the tapestry of modern understanding, revealing the profound unity that weaves all of creation into a magnificent symphony of cosmic secrets.</p>'
+                angel.storyline = '<p>**Verchiel**, often referred to as Varchiel, is a luminous archangel whose presence radiates with the brilliance of the Sun itself. As the celestial guardian of Leo, Verchiel\'s essence embodies a dynamic interplay of potent energies, instilling those born under this zodiac sign with a remarkable tapestry of attributes.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Leadership and Courage:** Verchiel\'s resplendent aura inspires the spirit of leadership and dauntless courage. Like the Sun that rules Leo, Verchiel\'s energy empowers individuals to step into their own light, guiding others with an innate sense of authority and unwavering confidence. Those who resonate with Verchiel find themselves natural leaders, capable of rallying others with their innate charisma and inspiring influence.\n</p>' +
+                    '\n' +
+                    '<p>**Igniter of Creative Flames:** In Verchiel\'s celestial presence, the flames of creativity burn with an intense brilliance. Leos touched by this angelic force are bestowed with an unparalleled ability to channel their artistic inclinations into masterful creations. Whether it\'s through the strokes of a brush, the cadence of a melody, or the magic of words, Verchiel infuses the creative spirit with vitality and originality.\n</p>' +
+                    '\n' +
+                    '<p>**Keeper of Passion and Enthusiasm:** The fervor that courses through Verchiel\'s being ignites an unquenchable passion and boundless enthusiasm in the hearts of those under Leo\'s constellation. Those influenced by Verchiel\'s energy approach life with a zeal that is both infectious and invigorating. Challenges are met with unwavering determination, and endeavors are infused with a zest that transcends the ordinary.\n</p>' +
+                    '\n' +
+                    '<p>**Guide and Protector:** As a guardian of the celestial realms, Verchiel offers steadfast guidance and unwavering protection. Like the radiant Sun that nurtures and sustains, Verchiel\'s watchful presence ensures that those touched by Leo\'s fire are guided along paths that align with their highest purpose. In times of uncertainty, Verchiel\'s gentle whispers provide direction, and in moments of vulnerability, this archangel\'s wings provide a shield of divine assurance.\n</p>' +
+                    '\n' +
+                    '<p>**Empowerment of Self-Expression:** Verchiel\'s angelic influence empowers self-expression in its truest form. Leos who walk in the glow of this celestial light feel liberated to express their authentic selves without reservation. Verchiel\'s energy emboldens them to share their unique voices, embracing their individuality and radiating their personal truths.\n</p>' +
+                    '\n' +
+                    '<p>**Radiance of Vitality:** Just as the Sun sustains life on Earth, Verchiel\'s energy infuses vitality and vibrancy into the lives of those attuned to Leo\'s cosmic dance. This archangel\'s luminosity invigorates spirits, lending a vitality that propels Leos to engage with the world with unbridled enthusiasm.\n</p>' +
+                    '\n' +
+                    '<p>In the symphony of celestial energies, Verchiel\'s harmonious resonance with Leo is a testament to the magnificence of the cosmos. With every breath, those touched by this angelic presence find themselves immersed in a symphony of leadership, creativity, passion, and guidance, guided by the radiant archangel who holds the key to unlocking the boundless potential of the Sun within.\n' +'**Verchiel**, known by the radiant name Varchiel in some traditions, emerges as a celestial luminary whose ethereal radiance illuminates the hearts and paths of those under the benevolent sway of Leo. Within this divine interplay of cosmic energies, Verchiel weaves an intricate tapestry of virtues and inspirations, offering a guiding light that resonates with the very essence of the Sun.\n</p>' +
+                    '\n' +
+                    '<p>**Embodiment of Charismatic Leadership:** Verchiel\'s presence evokes the majestic aura of leadership, infusing Leos with an innate regality and a magnetic pull that draws others toward their visionary pursuits. With a regal bearing, those touched by Verchiel\'s celestial touch naturally command attention, guiding those around them with an inherent sense of direction and an unwavering commitment to their causes.\n</p>' +
+                    '\n' +
+                    '<p>**Flamenco of Creative Expression:** As an angel of Leo, Verchiel conducts the symphony of creative expressions, bestowing upon individuals an artistic brilliance that knows no bounds. Leos who resonate with Verchiel\'s energies find themselves as conduits of creativity, capable of transmuting their inner visions into masterpieces that captivate hearts and minds alike.\n</p>' +
+                    '\n' +
+                    '<p>**Blaze of Courageous Passion:** The resplendence of Verchiel\'s presence ignites an unquenchable blaze of passionate fervor within Leos. This fervor fuels their endeavors, imbuing them with the audacity to pursue their dreams with unwavering determination. With Verchiel\'s guiding hand, Leos are fortified to confront challenges head-on, emerging victorious through sheer courage and an indomitable spirit.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Luminous Guidance:** Verchiel\'s watchful eyes cast a protective shield over those who bear the Leo emblem, guiding them through the labyrinth of life with celestial insight. Much like the Sun\'s unwavering journey across the sky, Verchiel\'s presence ensures that Leos navigate their paths with a clarity of purpose and an unwavering faith in their destinies.\n</p>' +
+                    '\n' +
+                    '<p>**Champion of Authentic Expression:** In the tapestry of Verchiel\'s influence, the threads of authenticity are woven with utmost care. Those who walk under the angel\'s watchful gaze feel liberated to express their genuine selves without fear or inhibition. Verchiel empowers Leos to share their narratives, inspiring others with their individuality and paving the way for transformative connections.\n</p>' +
+                    '\n' +
+                    '<p>**Radiant Elixir of Vitality:** Verchiel\'s luminous essence is akin to an elixir of vitality, infusing Leos with boundless energy and zest. Just as the Sun breathes life into the world, Verchiel\'s touch enlivens spirits, motivating Leos to seize the day with vibrant enthusiasm and to savor every moment with unparalleled vigor.\n</p>' +
+                    '\n' +
+                    '<p>**The Cosmic Dance of Verchiel and Leo:** Within the cosmic ballet of archangels and zodiac signs, Verchiel\'s partnership with Leo is nothing short of celestial poetry. It\'s a partnership that celebrates leadership, artistic brilliance, courage, and authenticity. Under Verchiel\'s benevolent guidance, Leos are invited to dance with the flames of their own brilliance, radiating their unique light upon the canvas of existence and leaving an indelible mark on the tapestry of creation.</p>'
+
+            }
+            if(zodiac === 'virgo'){
+                angel.angel = '<h4>HAMALIEL</h4>';
+                angel.archangel = '<h4>METATRON</h4>';
+                angel.angel_pic = '<h4>1692705666153.jpg</h4>'
+                angel.arch_storyline = '<p>**Metatron**, often referred to as the "Angel of Life" or the "Angel of Presence," holds a position of great significance within angelic lore and mystical traditions. As a celestial being of profound wisdom and divine service, Metatron\'s presence spans across various spiritual teachings, ancient scriptures, and esoteric beliefs, transcending cultural boundaries to inspire seekers and mystics alike.\n</p>' +
+                    '\n' +
+                    '<p>**Messenger between Heaven and Earth:** Metatron is renowned as one of the most powerful and exalted angels, serving as a bridge between the heavenly realms and the earthly plane. As the celestial scribe, Metatron is said to record the deeds and destinies of individuals, capturing the intricacies of existence in an ethereal ledger. This role grants Metatron intimate knowledge of the human experience and an unparalleled understanding of the cosmos.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Sacred Geometry:** Among Metatron\'s many roles, the angel is often associated with the study and exploration of sacred geometry. Metatron\'s Cube, a complex geometric figure consisting of interconnected spheres, serves as a symbol of divine order, balance, and the interconnectedness of all creation. This symbol is believed to hold immense spiritual and metaphysical significance, offering insights into the underlying harmony of the universe.\n</p>' +
+                    '\n' +
+                    '<p>**Guide to Spiritual Ascension:** Metatron\'s wisdom extends to matters of spiritual growth and transformation. Often depicted with a vast array of knowledge, Metatron assists seekers on their spiritual journeys, providing guidance and insights that facilitate inner awakening and enlightenment. Metatron\'s influence encourages individuals to rise above the limitations of the material world and align with their higher selves.\n</p>' +
+                    '\n' +
+                    '<p>**Harmonizer of Energies:** Metatron\'s energy is seen as a harmonizing force that aligns disparate energies into a cohesive whole. Through this role, the angel aids in healing, bringing balance to mind, body, and spirit. Seekers who invoke Metatron\'s assistance may find themselves drawn into a state of equilibrium and inner peace.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Children and Learning:** Metatron\'s compassionate nature extends to the realm of education and child welfare. The angel is often considered a guardian of children, guiding them with benevolence and protection. Additionally, Metatron is believed to inspire educators, offering insights into effective teaching methods and promoting a love of learning.\n</p>' +
+                    '\n' +
+                    '<p>**Unveiler of Cosmic Mysteries:** Metatron is associated with the unveiling of hidden truths and cosmic mysteries. Those who connect with the angel\'s energy may find themselves drawn into profound insights, revelations, and a deeper understanding of the universe\'s mysteries.\n</p>' +
+                    '\n' +
+                    '<p>**The Eternal Flame of Metatron:** Within the tapestry of angelic energies, Metatron\'s essence burns as a radiant flame of divine knowledge and compassion. This archangel\'s presence serves as an invitation to explore the realms of higher consciousness, sacred wisdom, and the interconnectedness of all existence. As seekers embrace the luminous guidance of Metatron, they embark on a transformative journey that unveils the luminosity of their souls and the boundless potential that resides within.\n'+'**Metatron: The Celestial Architect of Destiny**\n</p>' +
+                    '\n' +
+                    '<p>In the celestial symphony of angelic beings, Metatron stands as a luminary whose radiance spans the vast expanse between the heavens and the Earth. This angelic presence, often known as the "Angel of Life," transcends mortal boundaries, embodying the essence of cosmic wisdom and divine purpose.\n</p>' +
+                    '\n' +
+                    '<p>**Scribe of the Soul\'s Journey:** Metatron\'s role as the celestial scribe weaves an intricate tapestry that captures the soul\'s journey through time and space. With meticulous care, Metatron records the sacred stories of each individual, chronicling experiences, lessons, and the evolution of consciousness. This angelic act binds the threads of existence, revealing the interconnectedness of all souls.\n</p>' +
+                    '\n' +
+                    '<p>**Harbinger of Divine Order:** At the heart of Metatron\'s influence lies the enigmatic Metatron\'s Cube, a symbol of profound geometrical harmony. This emblem reflects the divine order underlying creation\'s fabric. Metatron\'s presence invokes a sense of alignment and balance, inviting individuals to attune to the cosmic rhythm that guides all existence.\n</p>' +
+                    '\n' +
+                    '<p>**Mentor of Ascension:** Metatron\'s teachings extend far beyond the confines of earthly knowledge. This archangel serves as a mentor to those who seek to ascend beyond the mundane, guiding them through the labyrinthine corridors of higher consciousness. In Metatron\'s luminous guidance, seekers find keys to unlock the doorways of spiritual expansion and self-realization.\n</p>' +
+                    '\n' +
+                    '<p>**Custodian of Divine Mysteries:** Metatron\'s realm is one of profound enigma and cosmic secrets. As the veil between realms thins under the gaze of this celestial architect, seekers catch glimpses of hidden truths, cosmic revelations, and the multifaceted nature of reality itself. Those who heed Metatron\'s call embark on a journey of self-discovery that mirrors the universe\'s grand tapestry.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Children\'s Innocence:** In the embrace of Metatron\'s compassionate wings, the innocence of children is safeguarded. This archangel\'s tender guidance ensures that young souls thrive with purity and protection. Metatron\'s nurturing presence envelops the young in an aura of love, inspiring them to grow with curiosity and grace.\n</p>' +
+                    '\n' +
+                    '<p>**Luminary of Divine Light:** Metatron\'s luminosity radiates as a beacon that guides seekers through the darkness of uncertainty. Like a lighthouse of the spirit, Metatron\'s light illuminates the path of those who navigate the seas of existence. Amid life\'s storms, this angelic presence offers reassurance and direction.\n</p>' +
+                    '\n' +
+                    '<p>Metatron\'s Symphony of Destiny:** Metatron\'s melody reverberates throughout the cosmos, harmonizing the chords of individual destinies into a grand symphony of unity. In the celestial dance between Metatron and the universe, seekers are invited to embrace their roles as both creators and witnesses, co-weaving the fabric of existence with threads of purpose, wisdom, and boundless love. As they heed Metatron\'s celestial guidance, they uncover the echoes of their soul\'s song, resonating eternally in the heart of the cosmos.</p>'
+                angel.storyline = '<p>**Hamaliel: The Celestial Guardian of Virgo\'s Grace**\n<p></p>' +
+                    '\n' +
+                    '<p>In the celestial realm, the angel Hamaliel emerges as a luminous guardian whose presence graces the intricate tapestry of the Virgo zodiac sign. Known as a harbinger of divine wisdom and nurturing energies, Hamaliel\'s essence weaves a harmonious symphony of qualities that resonate deeply with those born under the Virgo constellation.\n</p>' +
+                    '\n' +
+                    '<p>**Nurturer of Discerning Hearts:** Hamaliel\'s energy embodies the essence of nurturing care and discernment. Like a gentle gardener tending to the blossoms of the soul, Hamaliel bestows Virgos with the ability to discern the subtleties of life, separating the mundane from the meaningful and guiding them toward choices that align with their highest good.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Earthly Wisdom:** Grounded in the element of Earth, Hamaliel imparts practical wisdom and a deep connection to the physical realm. Virgos under this angel\'s influence possess an innate knack for organization, efficiency, and attention to detail. Hamaliel\'s guidance empowers them to navigate the material world with finesse and grace.\n</p>' +
+                    '\n' +
+                    '<p>**Sculptor of Inner Healing:** Hamaliel\'s touch fosters a sense of inner healing and holistic well-being. Virgos attuned to this angel\'s presence may find themselves drawn to practices that promote physical, emotional, and spiritual health. Hamaliel\'s energy encourages the pursuit of self-care, offering a sanctuary of balance and restoration.\n</p>' +
+                    '\n' +
+                    '<p>**Guide of Order and Purity:** In Hamaliel\'s radiant presence, the beauty of order and purity shines brightly. Virgos are guided to create spaces and experiences that reflect harmony and cleanliness, mirroring the angel\'s own dedication to perfection. With Hamaliel\'s influence, chaos transforms into calm, and clutter into clarity.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Service and Compassion:** Hamaliel\'s nurturing aura is complemented by a profound sense of service and compassion. Under this angel\'s watchful gaze, Virgos are inspired to extend a helping hand to others, embracing acts of kindness and selflessness. Hamaliel\'s energy imbues every gesture with heartfelt sincerity.\n</p>' +
+                    '\n' +
+                    '<p>**The Lighthouse of Virgo\'s Journey:** As a steadfast beacon of light, Hamaliel guides Virgos through the labyrinth of life, illuminating their paths with unwavering assurance. The angel\'s presence serves as a reminder that even in the midst of challenges, there is a guiding light that leads toward growth, self-discovery, and the fulfillment of one\'s purpose.\n</p>' +
+                    '\n' +
+                    '<p>**Harmony of Hamaliel and Virgo:** Hamaliel\'s harmonious resonance with Virgo is a testament to the divine design of the universe. This celestial partnership brings forth qualities of nurturing, discernment, healing, and service, intertwining with Virgo\'s innate traits to create a unique symphony of grace. As Virgos embrace Hamaliel\'s gentle guidance, they embrace their roles as caretakers of the soul, cultivating beauty, order, and well-being in the gardens of their lives.\n'+'**Hamaliel: The Guardian of Virgo\'s Essence**\n</p>' +
+                    '\n' +
+                    '<p>In the celestial tapestry of angels, Hamaliel stands as a luminous guardian, intricately woven into the fabric of the Virgo zodiac sign. This angelic presence, revered for its nurturing grace and profound insights, imparts a symphony of qualities that resonate deeply with the souls born under Virgo\'s celestial embrace.\n</p>' +
+                    '\n' +
+                    '<p>**Weaver of Discerning Perception:** At the heart of Hamaliel\'s essence lies the gift of discernment. Like a celestial weaver, Hamaliel guides Virgos to unravel the threads of life with keen perception, separating the intricate patterns of truth from the veil of illusion. This angel\'s energy fosters the ability to see beyond the surface, to understand the intricate dance of life\'s complexities.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Earthly Wisdom:** Rooted in the Earth element, Hamaliel imparts practical wisdom that grounds Virgos in the material realm. With an innate capacity for organization and attention to detail, Virgos touched by Hamaliel\'s presence become adept navigators of life\'s practicalities. This angelic guidance transforms everyday routines into purposeful acts of artistry.\n</p>' +
+                    '\n' +
+                    '<p>**Healer of Wholeness:** Hamaliel\'s nurturing energy extends beyond the physical realm, embracing emotional and spiritual well-being. Virgos under this angel\'s care find themselves drawn to practices that heal and restore the soul\'s balance. Hamaliel\'s touch encourages a holistic approach to self-care, cultivating a sanctuary of inner harmony.\n</p>' +
+                    '\n' +
+                    '<p>**Harbinger of Order and Purity:** In Hamaliel\'s luminous aura, Virgos discover the beauty of order and purity. With the angel\'s guidance, chaos dissolves into harmony, and clutter yields to clarity. Hamaliel\'s energy infuses spaces with a sense of tranquility and purpose, allowing Virgos to create environments that mirror the serenity of the angel\'s presence.\n</p>' +
+                    '\n' +
+                    '<p>**Champion of Compassionate Service:** Hamaliel\'s nurturing embrace is interwoven with a profound spirit of service and compassion. Under this angel\'s influence, Virgos are inspired to extend acts of kindness and generosity, embodying the essence of selfless care. Hamaliel\'s energy magnifies the impact of every gesture, fostering a legacy of heartfelt benevolence.\n</p>' +
+                    '\n' +
+                    '<p>**Navigator of the Soul\'s Journey:** Like a steadfast lighthouse, Hamaliel guides Virgos through the ebbs and flows of life\'s journey. The angel\'s radiant light pierces through the darkness of uncertainty, illuminating the path of growth, discovery, and purpose. Hamaliel\'s presence assures Virgos that even amidst challenges, there is a guiding star that leads toward fulfillment.\n</p>' +
+                    '\n' +
+                    '<p>**A Melody of Harmony between Hamaliel and Virgo:** The harmonious resonance between Hamaliel and Virgo creates a celestial duet that celebrates discernment, healing, service, and order. Under Hamaliel\'s gentle guidance, Virgos embark on a transformative journey, tending to the gardens of their lives with meticulous care. As they heed the angel\'s whispers, they discover the profound symphony that emerges when the angelic and earthly realms unite in perfect harmony.</p>'
+            }
+            if(zodiac === 'libra'){
+                angel.angel = '<h4>ZURIEL</h4>';
+                angel.archangel = '<h4></h4>JOPHIEL</h4>';
+                angel.angel_pic = '1692705673347.jpg'
+                angel.arch_storyline = '<p>**Jophiel: The Radiant Illuminator of Libra\'s Beauty**\n</p>' +
+                    '\n' +
+                    '<p>In the celestial tapestry of angels, Jophiel stands as a luminous beacon, guiding and illuminating the path of those graced by the Libra zodiac sign. Known as an angel of beauty, inspiration, and harmony, Jophiel\'s essence weaves a symphony of qualities that resonate deeply with the souls born under Libra\'s gentle embrace.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Aesthetic Grace:** Jophiel\'s energy is a celebration of beauty in all its forms. Like a celestial artist, Jophiel paints the world with a palette of colors that captivate the senses. Those under this angel\'s influence possess an innate appreciation for aesthetic harmony and an ability to infuse their surroundings with elegance.\n</p>' +
+                    '\n' +
+                    '<p>**Harmonizer of Relationships:** Jophiel\'s presence extends to the realm of relationships, fostering harmonious connections and meaningful bonds. Souls touched by this angel find themselves drawn to create bridges of understanding, smoothing the rough edges of communication and nurturing a spirit of cooperation.\n</p>' +
+                    '\n' +
+                    '<p>**Guide to Inner Balance:** At the heart of Jophiel\'s energy lies the quest for inner equilibrium. Like a serene oasis, Jophiel offers guidance to Libras seeking to balance the scales of their own souls. This angel\'s touch empowers individuals to navigate life\'s complexities with grace, maintaining harmony within their hearts.\n</p>' +
+                    '\n' +
+                    '<p>**Inspiration\'s Muse:** Jophiel ignites the spark of inspiration in the souls of Libras, infusing them with the creative fire that fuels their passions. Whether through artistic expression, intellectual pursuits, or innovative ideas, those under Jophiel\'s influence tap into a wellspring of imagination that enriches their lives and those around them.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Positive Perspective:** Jophiel\'s energy radiates with positivity and optimism. In moments of challenge, Libras find solace in Jophiel\'s gentle guidance, which encourages them to seek the silver lining and approach life with a glass-half-full mentality. This angel\'s presence empowers Libras to transcend adversity with grace.\n</p>' +
+                    '\n' +
+                    '<p>**Keeper of Inner Light:** Jophiel\'s luminosity serves as a guiding light for Libras, leading them through the realms of self-discovery and enlightenment. Like a lantern in the darkness, Jophiel\'s presence illuminates the corners of the soul, revealing hidden insights and guiding individuals toward their true essence.\n</p>' +
+                    '\n' +
+                    '<p>**The Dance of Jophiel and Libra:** Jophiel\'s harmonious resonance with Libra creates a celestial partnership that celebrates beauty, balance, inspiration, and harmony. As Libras embrace Jophiel\'s radiant guidance, they become custodians of grace, infusing their lives and the world around them with the exquisite artistry of their souls. In this cosmic dance, Jophiel and Libra intertwine to create a symphony of elegance that elevates the spirit and celebrates the profound beauty of existence.\n' + '**Jophiel: The Celestial Keeper of Libra\'s Elegance**\n</p>' +
+                    '\n' +
+                    '<p>In the celestial ballet of angels, Jophiel takes center stage as a luminous presence, illuminating the path for those born under the gentle aegis of Libra. Known as the angel of beauty and harmony, Jophiel\'s essence weaves a symphony of qualities that resonate deeply with the souls graced by Libra\'s celestial influence.\n</p>' +
+                    '\n' +
+                    '<p>**Harbinger of Aesthetic Grace:** Jophiel\'s energy is a celebration of beauty in its myriad forms. This angelic presence infuses every corner of life with a sense of elegance and refinement. Libras touched by Jophiel\'s grace possess an innate ability to recognize and create beauty, whether through art, design, or the harmonious arrangement of their surroundings.\n</p>' +
+                    '\n' +
+                    '</p>**Weaver of Harmonious Relationships:** Jophiel\'s nurturing embrace extends to the realm of relationships, where the threads of connection are woven with care. Libras under Jophiel\'s influence possess an intuitive understanding of the delicate balance required for relationships to flourish. This angelic energy encourages diplomacy, empathy, and the art of building bridges between hearts.\n</p>' +
+                    '\n' +
+                    '<p>**Guide to Inner Equilibrium:** At the heart of Jophiel\'s guidance lies the quest for inner equilibrium. Just as Libra\'s scales seek balance, so does Jophiel offer support in the pursuit of harmony within the self. This angel\'s presence empowers Libras to navigate life\'s complexities with grace, embracing both their light and shadows.\n</p>' +
+                    '\n' +
+                    '<p>**Muse of Inspired Creativity:** Jophiel ignites the flames of creativity within the hearts of Libras, acting as a muse that fuels artistic expression and intellectual exploration. Under Jophiel\'s influence, Libras find themselves inspired to engage in acts of creation, channeling their passions into works that uplift the soul and captivate the senses.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Positivity and Optimism:** Jophiel\'s radiant energy is a beacon of positivity that shines in the face of challenges. Libras find solace in this angel\'s presence, drawing strength from its encouraging whispers. With Jophiel\'s guidance, they cultivate a positive perspective that sees opportunities amidst difficulties.\n</p>' +
+                    '\n' +
+                    '<p>**Keeper of the Inner Illumination:** Jophiel\'s luminous light serves as a guiding star for Libras on their journey of self-discovery. Like a gentle lantern, this angel illuminates the hidden corners of the soul, helping Libras uncover their innate wisdom and insights. Through this exploration, Libras find a deeper connection to their true selves.\n</p>' +
+                    '\n' +
+                    '<p>**Harmony in Motion: Jophiel and Libra:** The harmonious resonance between Jophiel and Libra creates a cosmic dance that celebrates beauty, balance, inspiration, and harmony. As Libras embrace Jophiel\'s gentle guidance, they become stewards of elegance, infusing their lives with the artistry of the soul. In this celestial partnership, Jophiel and Libra unite to weave a tapestry of grace that elevates existence into a realm of exquisite splendor.</p>'
+                angel.storyline = '<p>**Zuriel: The Celestial Guide of Libra\'s Justice**\n</p>' +
+                    '\n' +
+                    '<p>In the grand tapestry of celestial beings, Zuriel emerges as a luminous guardian, illuminating the path for those born under the Libra zodiac sign. Known as an angel of justice, balance, and truth, Zuriel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Libra\'s gracious energy.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Righteous Justice:** Zuriel\'s energy is a beacon of justice that guides Libras to navigate the world with a sense of fairness and integrity. Like a celestial judge, Zuriel empowers individuals to uphold moral principles and seek truth in all matters. Libras touched by Zuriel\'s presence are equipped with the courage to stand up for what is right.\n</p>' +
+                    '\n' +
+                    '<p>**Harmonizer of Equilibrium:** At the heart of Zuriel\'s essence lies the quest for balance and harmony. Just as Libra\'s scales seek equilibrium, so does Zuriel inspire Libras to maintain equilibrium within themselves and in their interactions with the world. This angel\'s energy fosters a deep understanding of the delicate dance between opposing forces.\n</p>' +
+                    '\n' +
+                    '<p>**Guardian of Truth and Clarity:** Zuriel\'s luminous presence serves as a guiding light that dispels the shadows of confusion and deceit. Libras under this angel\'s influence possess an innate ability to discern truth from falsehood, seeing through the veils of illusion. Zuriel\'s energy encourages Libras to seek clarity in their thoughts and actions.\n</p>' +
+                    '\n' +
+                    '<p>**Advocate of Diplomacy:** Zuriel\'s wisdom extends to the realm of diplomacy and communication. Libras touched by this angel\'s grace possess a gift for effective communication and conflict resolution. Zuriel\'s presence empowers Libras to bridge gaps, mediate disputes, and foster understanding in relationships.\n</p>' +
+                    '\n' +
+                    '<p>**Champion of Moral Integrity:** Zuriel\'s energy resonates with a strong sense of ethical integrity. Libras under this angel\'s guidance are inspired to walk a path of moral rectitude, making decisions that align with their inner convictions. Zuriel empowers Libras to remain steadfast in their principles, even in the face of challenges.\n</p>' +
+                    '\n' +
+                    '<p>**Keeper of Inner Balance:** Zuriel\'s presence extends to the realm of inner harmony, guiding Libras to find balance within themselves. This angelic energy encourages Libras to explore their inner landscape, embracing both their light and shadows. Zuriel\'s guidance empowers Libras to integrate their diverse aspects into a harmonious whole.\n</p>' +
+                    '\n' +
+                    '<p>**The Divine Dance of Zuriel and Libra:** Zuriel\'s harmonious resonance with Libra creates a celestial dance that celebrates justice, balance, truth, and harmony. As Libras heed Zuriel\'s guiding light, they become stewards of integrity, championing fairness and authenticity in all their endeavors. In this cosmic partnership, Zuriel and Libra unite to create a symphony of righteousness that elevates the spirit and celebrates the profound journey toward truth and equilibrium.'+'**Zuriel: The Guardian of Libra\'s Righteous Path**\n</p>' +
+                    '\n' +
+                    '<p>In the celestial realm, Zuriel stands as a radiant sentinel, guiding and nurturing those born under the tender embrace of Libra. As an angel of justice, truth, and balance, Zuriel\'s essence weaves a symphony of qualities that resonate profoundly with the souls touched by Libra\'s harmonious energies.\n</p>' +
+                    '\n' +
+                    '<p>**Bearer of Sacred Justice:** Zuriel\'s energy radiates with the brilliance of divine justice, inspiring Libras to uphold righteousness and fairness. Like a celestial advocate, Zuriel empowers individuals to seek truth, stand for what is just, and champion the cause of equity. Libras under this angel\'s sway are poised to bring harmony to a world in need of balance.\n</p>' +
+                    '\n' +
+                    '<p>**Harmonizer of the Scales:** At the heart of Zuriel\'s presence lies a quest for balance and equilibrium. Just as Libra\'s symbol seeks equilibrium, so does Zuriel guide Libras to navigate the intricate dance of life with poise. This angel\'s energy imparts a deep understanding of the dualities that coexist within the human experience.\n</p>' +
+                    '\n' +
+                    '<p>**Illuminator of Truth:** Zuriel\'s luminous light cuts through the shadows of deception, unveiling truth with unwavering clarity. Libras under Zuriel\'s watchful gaze possess a gift for discerning honesty from deceit, nurturing an innate commitment to transparency. Zuriel\'s guidance empowers Libras to seek genuine authenticity in their thoughts and actions.\n</p>' +
+                    '\n' +
+                    '<p>**Champion of Harmonious Relationships:** Zuriel\'s wisdom extends to the realm of relationships, fostering connections steeped in honesty and respect. Libras touched by this angel\'s presence excel in fostering understanding and harmony among diverse viewpoints. Zuriel encourages Libras to mediate conflicts and bridge divides, anchoring relationships in mutual respect.\n</p>' +
+                    '\n' +
+                    '<p>**Custodian of Ethical Integrity:** Zuriel\'s energy resonates with a profound sense of ethical integrity. Libras under this angel\'s guidance find themselves aligned with moral principles, making decisions guided by their inner compass. Zuriel empowers Libras to stand firm in their convictions, even when faced with challenges.\n</p>' +
+                    '\n' +
+                    '<p>**Keeper of Inner Balance:** Zuriel\'s nurturing presence extends to the inner realms, guiding Libras to cultivate equilibrium within themselves. This angel\'s energy encourages self-reflection and acceptance of both light and shadow aspects. Zuriel\'s guidance empowers Libras to integrate their multifaceted nature into a harmonious whole.\n</p>' +
+                    '\n' +
+                    '<p>**Harmony in Motion: Zuriel and Libra:** The celestial dance between Zuriel and Libra weaves a tapestry of justice, balance, truth, and integrity. As Libras embrace Zuriel\'s guiding light, they become stewards of righteousness, infusing their lives with the pursuit of fairness and ethical conduct. In this sacred partnership, Zuriel and Libra unite to create a symphony of purpose that elevates existence to a realm where truth and equilibrium prevail.</p>'
+
+            }
+            if(zodiac === 'scorpio'){
+                angel.angel = '<h4>Adriel</h4>';
+                angel.archangel = 'JEREMIEL';
+                angel.angel_pic = '1692705676127.jpg'
+                angel.arch_storyline = '**Jeremiel: The Illuminator of Scorpio\'s Transformation**\n' +
+                    '\n' +
+                    'In the celestial symphony of angels, Jeremiel emerges as a luminous guide, casting his radiant light upon those born under the enigmatic Scorpio zodiac sign. Known as an angel of reflection, transformation, and spiritual insight, Jeremiel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Scorpio\'s profound energies.\n' +
+                    '\n' +
+                    '**Bearer of Divine Reflection:** Jeremiel\'s energy serves as a reflective mirror that guides Scorpios to delve deep into the caverns of their own souls. Like a celestial seer, Jeremiel empowers individuals to explore their past, present, and potential futures, gaining insight into the intricate tapestry of their experiences.\n' +
+                    '\n' +
+                    '**Harbinger of Transformation:** At the heart of Jeremiel\'s essence lies the theme of transformation. Just as Scorpio embodies rebirth and renewal, so does Jeremiel guide Scorpios through the cycles of change. This angel\'s energy fosters the courage to release old patterns, embrace the unknown, and emerge as a more authentic self.\n' +
+                    '\n' +
+                    '**Guardian of Spiritual Insights:** Jeremiel\'s luminous presence serves as a bridge between the earthly and spiritual realms. Scorpios under this angel\'s influence possess an innate ability to uncover hidden truths and receive profound insights. Jeremiel\'s guidance empowers Scorpios to trust their intuition and navigate the depths of their spiritual journey.\n' +
+                    '\n' +
+                    '**Catalyst for Emotional Healing:** Jeremiel\'s energy acts as a catalyst for emotional healing, guiding Scorpios to confront their shadows and wounds with compassion. This angel\'s presence encourages the release of emotional baggage, allowing Scorpios to transform pain into empowerment and emerge as phoenixes from the ashes.\n' +
+                    '\n' +
+                    '**Bearer of Unveiled Mysteries:** Jeremiel\'s wisdom extends to the unveiling of mysteries that lie beyond the visible world. Scorpios touched by this angel\'s grace possess a natural curiosity for the enigmatic and esoteric. Jeremiel\'s energy invites Scorpios to explore the realms of the unknown, seeking answers to life\'s profound questions.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Ascension:** Jeremiel\'s luminosity illuminates the path of spiritual ascension for Scorpios. Like a guiding star, this angel\'s presence leads Scorpios through the labyrinth of inner growth and self-discovery. Jeremiel empowers Scorpios to rise above limitations and embrace the full scope of their spiritual potential.\n' +
+                    '\n' +
+                    '**The Dance of Jeremiel and Scorpio:** Jeremiel\'s harmonious resonance with Scorpio creates a celestial dance that celebrates reflection, transformation, insight, and spiritual evolution. As Scorpios heed Jeremiel\'s illuminating guidance, they become torchbearers of self-awareness, navigating the depths of their souls with courage and grace. In this cosmic partnership, Jeremiel and Scorpio unite to create a symphony of rebirth that elevates the spirit and celebrates the profound journey of transformation and enlightenment.\n'+'**Jeremiel: The Guide of Scorpio\'s Metamorphosis**\n' +
+                    '\n' +
+                    'In the celestial gallery of angels, Jeremiel stands as a radiant guide, illuminating the path for those embraced by the transformative energies of Scorpio. As an angel of reflection, metamorphosis, and spiritual insight, Jeremiel\'s essence weaves a symphony of qualities that resonate deeply with the souls touched by Scorpio\'s enigmatic allure.\n' +
+                    '\n' +
+                    '**Bearer of Reflective Wisdom:** Jeremiel\'s energy serves as a reflective pool, inviting Scorpios to peer into the depths of their own souls. Like a celestial mirror, Jeremiel empowers individuals to examine their life\'s journey, offering insights that illuminate the tapestry of experiences and lessons that shape their paths.\n' +
+                    '\n' +
+                    '**Harbinger of Profound Transformation:** At the core of Jeremiel\'s presence lies the theme of transformation. Just as Scorpio symbolizes the cycle of death and rebirth, so does Jeremiel guide Scorpios through the process of shedding old layers and embracing new beginnings. This angel\'s energy encourages the courageous embrace of change.\n' +
+                    '\n' +
+                    '**Guardian of Spiritual Revelation:** Jeremiel\'s luminous light acts as a conduit for spiritual insights, bridging the gap between the tangible and the ethereal. Scorpios under this angel\'s influence possess an innate ability to perceive hidden truths and receive profound revelations. Jeremiel\'s guidance empowers Scorpios to trust their intuition and embrace their spiritual journey.\n' +
+                    '\n' +
+                    '**Catalyst for Emotional Healing:** Jeremiel\'s presence acts as a catalyst for emotional healing, guiding Scorpios to confront their inner depths with compassion and courage. This angel\'s energy empowers the release of emotional burdens, transforming pain into empowerment and scars into symbols of strength.\n' +
+                    '\n' +
+                    '**Bearer of Unveiled Mysteries:** Jeremiel\'s wisdom extends to the realm of mysteries that lie beyond the mundane. Scorpios touched by this angel\'s grace possess an insatiable curiosity for the esoteric and the unexplained. Jeremiel\'s energy invites Scorpios to explore the hidden realms, seeking answers to life\'s most profound questions.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Ascension:** Jeremiel\'s luminosity lights the path of spiritual ascension for Scorpios. Like a guiding star, this angel\'s presence leads Scorpios through the labyrinth of inner growth and self-discovery. Jeremiel empowers Scorpios to rise above limitations, embracing their spiritual potential with resilience and grace.\n' +
+                    '\n' +
+                    '**The Cosmic Dance of Jeremiel and Scorpio:** The harmonious resonance between Jeremiel and Scorpio creates a celestial dance that celebrates reflection, transformation, insight, and spiritual evolution. As Scorpios embrace Jeremiel\'s guiding light, they become champions of their own metamorphosis, navigating the depths of their souls with courage and determination. In this celestial partnership, Jeremiel and Scorpio unite to create a symphony of rebirth that elevates the spirit and celebrates the profound journey of transformation and enlightenment.'
+                angel.storyline ='**Adriel: The Guardian of Sagittarius\' Exploration**\n' +
+                    '\n' +
+                    'In the celestial expanse of angels, Adriel emerges as a radiant guide, illuminating the path for those born under the adventurous sign of Sagittarius. Known as an angel of exploration, inspiration, and expansive wisdom, Adriel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Sagittarius\' spirited energies.\n' +
+                    '\n' +
+                    '**Bearer of Adventurous Curiosity:** Adriel\'s energy is a beacon of curiosity that guides Sagittarians to explore the world with a boundless sense of wonder. Like a celestial adventurer, Adriel empowers individuals to seek new horizons, whether physical, intellectual, or spiritual. Those touched by Adriel\'s grace embrace life as an exhilarating journey of discovery.\n' +
+                    '\n' +
+                    '**Harbinger of Inspired Exploration:** At the core of Adriel\'s essence lies the spirit of exploration and discovery. Just as Sagittarius symbolizes the quest for truth and knowledge, so does Adriel inspire Sagittarians to embark on journeys of the mind and heart. This angel\'s energy fosters the courage to tread uncharted territories.\n' +
+                    '\n' +
+                    '**Guide to Expansive Wisdom:** Adriel\'s luminous presence serves as a wellspring of wisdom and insight. Sagittarians under this angel\'s influence possess an innate thirst for knowledge and a love for learning. Adriel\'s guidance empowers Sagittarians to seek truth, embrace diverse perspectives, and broaden their horizons through intellectual pursuits.\n' +
+                    '\n' +
+                    '**Catalyst for Creative Inspiration:** Adriel\'s energy acts as a catalyst for creative inspiration, igniting the flames of passion within the hearts of Sagittarians. Under Adriel\'s influence, Sagittarians find themselves drawn to artistic expression, innovative thinking, and the pursuit of endeavors that infuse life with vibrancy and ingenuity.\n' +
+                    '\n' +
+                    '**Bearer of Optimism and Freedom:** Adriel\'s radiant energy resonates with boundless optimism and a yearning for freedom. Sagittarians touched by this angel\'s grace possess an innate ability to see the silver lining and to embrace life\'s challenges with a positive outlook. Adriel\'s presence empowers Sagittarians to live authentically and unapologetically.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Exploration:** Adriel\'s luminosity illuminates the path of spiritual exploration for Sagittarians. Like a guiding star, this angel\'s presence leads Sagittarians through the labyrinth of inner growth and enlightenment. Adriel empowers Sagittarians to transcend limitations, embarking on a profound journey of self-discovery.\n' +
+                    '\n' +
+                    '**The Dance of Adriel and Sagittarius:** The harmonious resonance between Adriel and Sagittarius creates a celestial dance that celebrates exploration, inspiration, wisdom, and freedom. As Sagittarians heed Adriel\'s guiding light, they become intrepid seekers of truth, embarking on a transformative journey of self-discovery and expansion. In this cosmic partnership, Adriel and Sagittarius unite to create a symphony of exploration that elevates the spirit and celebrates the profound journey of discovering the vast landscapes of existence.\n' +'**Adriel: The Celestial Voyager of Sagittarius\' Quest**\n' +
+                    '\n' +
+                    'In the cosmic gallery of angels, Adriel stands as a radiant guide, illuminating the path for those born under the adventurous banner of Sagittarius. As an angel of exploration, inspiration, and expansive wisdom, Adriel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Sagittarius\' spirited energies.\n' +
+                    '\n' +
+                    '**Bearer of Curious Wonder:** Adriel\'s energy is a beacon of curiosity that beckons Sagittarians to venture forth with an insatiable sense of wonder. Like a celestial voyager, Adriel empowers individuals to embark on a journey of discovery, both within and beyond. Those touched by Adriel\'s grace embrace life as a boundless adventure.\n' +
+                    '\n' +
+                    '**Harbinger of Bold Exploration:** At the heart of Adriel\'s essence lies the spirit of exploration and daring. Just as Sagittarius embodies the thrill of seeking new horizons, so does Adriel inspire Sagittarians to embrace uncharted territories. This angel\'s energy instills the courage to step beyond comfort zones and embrace the unknown.\n' +
+                    '\n' +
+                    '**Guide to Expansive Wisdom:** Adriel\'s luminous presence embodies the repository of profound wisdom and insight. Sagittarians under this angel\'s influence possess an innate hunger for knowledge and a yearning for growth. Adriel\'s guidance empowers Sagittarians to seek truth across diverse disciplines, broadening their understanding of the world.\n' +
+                    '\n' +
+                    '**Catalyst for Creative Ingenuity:** Adriel\'s energy ignites the fires of creative inspiration within the hearts of Sagittarians. Under Adriel\'s influence, Sagittarians find themselves drawn to innovative pursuits, artistic expression, and endeavors that enrich life with vibrancy and originality. This angel\'s presence fuels the flames of passion.\n' +
+                    '\n' +
+                    '**Bearer of Unbridled Optimism:** Adriel\'s radiant energy resonates with unbridled optimism and an unwavering sense of freedom. Sagittarians touched by this angel\'s grace possess an inherent ability to see the silver lining and embrace life\'s challenges with a spirit of positivity. Adriel\'s presence empowers Sagittarians to live authentically and expansively.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Explorations:** Adriel\'s luminosity lights the path of spiritual exploration for Sagittarians. Like a guiding star, this angel\'s presence leads Sagittarians through the labyrinth of inner growth and enlightenment. Adriel empowers Sagittarians to transcend limitations, embarking on a profound journey of self-discovery and connection.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Adriel and Sagittarius:** The harmonious resonance between Adriel and Sagittarius creates a celestial dance that celebrates exploration, inspiration, wisdom, and liberation. As Sagittarians embrace Adriel\'s guiding light, they become fearless seekers of truth, embarking on a transformative journey of self-discovery and expansion. In this cosmic partnership, Adriel and Sagittarius unite to create a symphony of discovery that elevates the spirit and celebrates the profound quest to uncover the mysteries of existence.'
+            }
+            if(zodiac === 'sagittarius'){
+                angel.angel = 'ADVACHIEL';
+                angel.archangel = 'RAGUEL';
+                angel.angel_pic = '1692705681662.jpg'
+                angel.arch_storyline = '**Raguel: The Harmony Keeper of Sagittarius\' Justice**\n' +
+                    '\n' +
+                    'In the celestial tapestry of angels, Raguel emerges as a luminous guardian, casting his radiant light upon those born under the spirited Sagittarius zodiac sign. Known as an angel of harmony, justice, and balanced relationships, Raguel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Sagittarius\' dynamic energies.\n' +
+                    '\n' +
+                    '**Bearer of Divine Harmony:** Raguel\'s energy is a beacon of harmony that guides Sagittarians to seek balance and peaceful coexistence. Like a celestial conductor, Raguel empowers individuals to foster unity, resolve conflicts, and cultivate relationships steeped in mutual understanding. Those touched by Raguel\'s grace become harmonizers of their environments.\n' +
+                    '\n' +
+                    '**Champion of Equitable Justice:** At the heart of Raguel\'s presence lies the quest for justice and fairness. Just as Sagittarius embodies the pursuit of truth, so does Raguel guide Sagittarians to champion the cause of justice. This angel\'s energy empowers individuals to stand up for what is right, ensuring that righteousness prevails.\n' +
+                    '\n' +
+                    '**Guardian of Balanced Relationships:** Raguel\'s luminous presence extends to the realm of relationships, guiding Sagittarians to cultivate connections grounded in equality and respect. Under Raguel\'s influence, Sagittarians possess an innate ability to mend bridges, bridge divides, and nurture bonds that honor the uniqueness of each individual.\n' +
+                    '\n' +
+                    '**Catalyst for Healing Discord:** Raguel\'s energy acts as a catalyst for healing discord and restoring harmony. This angel\'s presence empowers Sagittarians to approach conflicts with empathy and diplomacy, finding peaceful resolutions that honor the needs and perspectives of all parties involved.\n' +
+                    '\n' +
+                    '**Bearer of Universal Compassion:** Raguel\'s radiant energy resonates with universal compassion and a commitment to social justice. Sagittarians touched by this angel\'s grace possess an innate ability to see beyond boundaries and work toward creating a world where all beings thrive. Raguel\'s presence empowers Sagittarians to embrace empathy on a global scale.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Balance:** Raguel\'s luminosity guides Sagittarians on a spiritual journey of inner harmony. Like a guiding light, this angel\'s presence leads Sagittarians through the labyrinth of self-discovery and growth. Raguel empowers Sagittarians to align their spiritual pursuits with a sense of equilibrium and justice.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Raguel and Sagittarius:** The harmonious resonance between Raguel and Sagittarius creates a celestial dance that celebrates harmony, justice, empathy, and unity. As Sagittarians heed Raguel\'s guiding light, they become ambassadors of peace, navigating their journeys with the spirit of equality and respect. In this cosmic partnership, Raguel and Sagittarius unite to create a symphony of harmony that elevates the spirit and celebrates the profound quest to bring balance and justice to all facets of existence.\n' + '**Raguel: The Celestial Balancer of Sagittarius\' Unity**\n' +
+                    '\n' +
+                    'In the celestial mosaic of angels, Raguel stands as a radiant sentinel, casting his luminous light upon those embraced by the spirited aura of Sagittarius. As an angel of harmony, justice, and balanced relationships, Raguel\'s essence weaves a symphony of qualities that resonate deeply with the souls touched by Sagittarius\' dynamic energies.\n' +
+                    '\n' +
+                    '**Bearer of Divine Harmony:** Raguel\'s energy is a radiant beacon that guides Sagittarians to seek harmony in all aspects of life. Like a celestial maestro, Raguel empowers individuals to orchestrate peaceful coexistence, resolve conflicts, and create a symphony of unity. Those embraced by Raguel\'s grace become harmonizers of the world around them.\n' +
+                    '\n' +
+                    '**Champion of Equitable Justice:** At the core of Raguel\'s presence lies the pursuit of justice and fairness. Just as Sagittarius embodies the quest for truth, so does Raguel inspire Sagittarians to uphold the principles of justice. This angel\'s energy fuels the courage to stand up for righteousness and ensure that balance prevails.\n' +
+                    '\n' +
+                    '**Guardian of Balanced Relationships:** Raguel\'s luminous presence extends to the realm of relationships, guiding Sagittarians to cultivate bonds built on equality and mutual understanding. Under Raguel\'s guidance, Sagittarians possess an innate gift for fostering connections that honor the diversity of individuals, nurturing harmonious interactions.\n' +
+                    '\n' +
+                    '**Catalyst for Healing Discord:** Raguel\'s energy serves as a catalyst for healing discord and restoring equilibrium. This angel\'s presence empowers Sagittarians to approach conflicts with compassion and diplomacy, seeking resolutions that honor the needs and perspectives of all parties involved.\n' +
+                    '\n' +
+                    '**Bearer of Universal Compassion:** Raguel\'s radiant energy resonates with universal compassion and a deep commitment to social justice. Sagittarians touched by Raguel\'s grace possess an innate ability to transcend boundaries, working toward a world where all beings thrive. Raguel\'s presence empowers Sagittarians to extend empathy on a global scale.\n' +
+                    '\n' +
+                    '**Keeper of Spiritual Equilibrium:** Raguel\'s luminosity guides Sagittarians on a spiritual journey of inner harmony. Like a guiding star, this angel\'s presence leads Sagittarians through the labyrinth of self-discovery and growth. Raguel empowers Sagittarians to align their spiritual pursuits with a sense of equilibrium and justice.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Raguel and Sagittarius:** The harmonious resonance between Raguel and Sagittarius creates a celestial dance that celebrates harmony, justice, empathy, and unity. As Sagittarians embrace Raguel\'s guiding light, they become ambassadors of peace, weaving a tapestry of balanced connections and fair interactions. In this cosmic partnership, Raguel and Sagittarius unite to create a symphony of unity that elevates the spirit and celebrates the profound journey to bring harmony and justice to all realms of existence.'
+                angel.storyline = '**Phanuel and Sagittarius: The Quest for Spiritual Expansion**\n' +
+                    '\n' +
+                    'In the celestial tapestry of angels, the partnership between Phanuel and Sagittarius creates a luminous synergy that casts its radiance upon those born under the adventurous sign of Sagittarius. Phanuel, the angel of spiritual awakening, introspection, and divine illumination, weaves his essence with Sagittarius\' spirited energies to form a symphony of qualities that resonate deeply with the souls touched by this cosmic collaboration.\n' +
+                    '\n' +
+                    '**Bearer of Inner Illumination:** Phanuel\'s energy acts as a guiding light that leads Sagittarians toward inner enlightenment and expansion. Like a celestial compass, Phanuel empowers individuals to navigate the landscapes of their own souls, uncovering hidden truths and awakening to higher realms of consciousness.\n' +
+                    '\n' +
+                    '**Guide of Spiritual Exploration:** At the heart of Phanuel\'s essence lies the journey of spiritual exploration and discovery. Just as Sagittarius embodies the quest for truth and knowledge, so does Phanuel inspire Sagittarians to embark on a profound journey of self-discovery. This angel\'s energy fosters the courage to delve into the depths of one\'s being.\n' +
+                    '\n' +
+                    '**Champion of Personal Growth:** Phanuel\'s luminous presence serves as a champion of personal growth and transformation. Sagittarians under this angel\'s influence possess an innate desire to evolve and expand. Phanuel\'s guidance empowers Sagittarians to embrace change with grace and to view challenges as stepping stones on their journey.\n' +
+                    '\n' +
+                    '**Catalyst for Higher Consciousness:** Phanuel\'s energy acts as a catalyst for raising consciousness and expanding awareness. This angel\'s presence empowers Sagittarians to transcend limitations, beliefs, and conditioning that no longer serve them. Phanuel guides Sagittarians to connect with their higher selves and access divine wisdom.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Alignment:** Phanuel\'s radiant energy resonates with cosmic alignment and the connection to universal truths. Sagittarians touched by Phanuel\'s grace find solace in the understanding that they are part of a greater cosmic tapestry. This angel\'s presence empowers Sagittarians to align with their soul\'s purpose and the universal flow.\n' +
+                    '\n' +
+                    '**Keeper of Inner Quests:** Phanuel\'s luminosity embodies the essence of inner quests and spiritual journeys. Sagittarians under this angel\'s guidance possess an innate ability to seek profound truths and insights. Phanuel\'s presence empowers Sagittarians to embark on a transformative odyssey of self-discovery and awakening.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Phanuel and Sagittarius:** The harmonious resonance between Phanuel and Sagittarius creates a celestial dance that celebrates spiritual expansion, self-discovery, illumination, and adventure. As Sagittarians heed Phanuel\'s guiding light, they become intrepid seekers of inner truths, embarking on a transformative journey of self-awareness and growth. In this cosmic partnership, Phanuel and Sagittarius unite to create a symphony of enlightenment that elevates the spirit and celebrates the profound quest to uncover the mysteries of the self and the universe.\n'+'**Phanuel and Sagittarius: Navigating the Celestial Odyssey**\n' +
+                    '\n' +
+                    'In the cosmic embrace of angels, the dynamic partnership between Phanuel and Sagittarius paints a radiant tableau upon those born under the adventurous sign. Phanuel, the angel of spiritual awakening, introspection, and divine illumination, joins forces with Sagittarius\' spirited energies, creating a symphony of qualities that resonates deeply with the souls graced by this celestial collaboration.\n' +
+                    '\n' +
+                    '**Bearer of Inner Radiance:** Phanuel\'s energy shines as an inner beacon, guiding Sagittarians toward a profound illumination of their true selves. Like a celestial lantern, Phanuel empowers individuals to explore the labyrinth of their souls, illuminating hidden corners and guiding them toward a heightened awareness of their spiritual essence.\n' +
+                    '\n' +
+                    '**Guide of Questing Spirits:** At the heart of Phanuel\'s essence lies the essence of spiritual exploration and discovery. Just as Sagittarius embodies the pursuit of knowledge and experience, Phanuel inspires Sagittarians to embark on a soul-stirring journey of self-uncovery. This angel\'s energy fosters the courage to venture into the depths of one\'s inner landscape.\n' +
+                    '\n' +
+                    '**Champion of Personal Evolution:** Phanuel\'s luminous presence champions personal evolution and transformation. Sagittarians under this angel\'s influence possess an innate yearning to transcend limitations and embrace their higher potential. Phanuel\'s guidance empowers Sagittarians to stride forward with resilience, transforming life\'s challenges into stepping stones toward growth.\n' +
+                    '\n' +
+                    '**Catalyst for Conscious Awakening:** Phanuel\'s energy acts as a catalyst for awakening higher consciousness and expanded awareness. This angel\'s presence empowers Sagittarians to shed the constraints of the mundane, guiding them toward greater insights and understanding. Phanuel assists Sagittarians in connecting with the vast realms of the spiritual.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Alignment:** Phanuel\'s radiant energy resonates with cosmic alignment and attunement to universal truths. Sagittarians touched by Phanuel\'s grace find solace in their connection to the grand tapestry of existence. This angel\'s presence empowers Sagittarians to align their earthly endeavors with their soul\'s journey and the cosmic dance.\n' +
+                    '\n' +
+                    '**Keeper of Inner Exploration:** Phanuel\'s luminosity embodies the spirit of inner exploration and personal quests. Sagittarians guided by this angel possess a natural inclination to seek deeper insights and profound revelations. Phanuel\'s presence empowers Sagittarians to embark on a transformative journey of self-discovery, wisdom, and growth.\n' +
+                    '\n' +
+                    '**The Celestial Harmony of Phanuel and Sagittarius:** The harmonious resonance between Phanuel and Sagittarius orchestrates a celestial dance that celebrates spiritual awakening, self-discovery, illumination, and adventurous quests. As Sagittarians heed Phanuel\'s guiding light, they become celestial voyagers of the inner landscape, exploring the realms of their souls with courage and curiosity. In this cosmic partnership, Phanuel and Sagittarius unite to create a symphony of enlightenment that elevates the spirit and celebrates the profound journey to unveil the mysteries of the self and the cosmos.'
+
+            }
+            if(zodiac === 'capricorn'){
+                angel.angel = 'HANAEL';
+                angel.archangel = 'AZRAEL';
+                angel.angel_pic = '1692705684993.jpg';
+                angel.arch_storyline = '**Azrael: The Comforter of Pisces\' Soulful Journey**\n' +
+                    '\n' +
+                    'In the ethereal tapestry of angels, Azrael stands as a compassionate guardian, casting his luminous light upon those born under the sensitive Pisces zodiac sign. Known as an angel of comfort, transition, and spiritual guidance, Azrael\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Pisces\' intuitive energies.\n' +
+                    '\n' +
+                    '**Bearer of Gentle Comfort:** Azrael\'s energy is a soothing embrace that nurtures Pisceans on their soulful journey. Like a celestial comforter, Azrael empowers individuals to find solace during times of emotional turbulence and loss. Those touched by Azrael\'s grace discover a profound sense of inner peace and healing.\n' +
+                    '\n' +
+                    '**Guide of Spiritual Transition:** At the core of Azrael\'s presence lies the theme of spiritual transition and transformation. Just as Pisces embodies the cycle of endings and new beginnings, so does Azrael guide Pisceans through the process of letting go and embracing the unknown. This angel\'s energy fosters the courage to navigate life\'s transitions with grace.\n' +
+                    '\n' +
+                    '**Guardian of Ethereal Wisdom:** Azrael\'s luminous presence serves as a guardian of ethereal wisdom, offering Pisceans insights into the mysteries of existence. Pisceans under this angel\'s influence possess an innate connection to the spiritual realm and a deep understanding of the interconnectedness of all things. Azrael\'s guidance empowers Pisceans to navigate life with a sense of divine purpose.\n' +
+                    '\n' +
+                    '**Catalyst for Healing Grief:** Azrael\'s energy acts as a catalyst for healing grief and finding closure. This angel\'s presence empowers Pisceans to honor their emotions and process their feelings in a healthy and healing way. Azrael guides Pisceans to transform pain into spiritual growth and to find meaning in life\'s challenges.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Compassion:** Azrael\'s radiant energy resonates with cosmic compassion and a profound understanding of human suffering. Pisceans touched by Azrael\'s grace possess a heightened sense of empathy and a natural ability to offer comfort to others. This angel\'s presence empowers Pisceans to be beacons of compassion and support.\n' +
+                    '\n' +
+                    '**Keeper of Dreamy Intuition:** Azrael\'s luminosity embodies the realm of dreamy intuition and divine insights. Pisceans under this angel\'s guidance possess an innate connection to their inner knowing and the subtle realms of existence. Azrael\'s presence empowers Pisceans to trust their intuitive guidance and navigate life\'s currents with faith.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Azrael and Pisces:** The harmonious resonance between Azrael and Pisces creates a celestial dance that celebrates comfort, transition, intuition, and compassion. As Pisceans heed Azrael\'s guiding light, they become adept navigators of the emotional and spiritual realms, finding strength in times of change and offering solace to others. In this cosmic partnership, Azrael and Pisces unite to create a symphony of healing that elevates the spirit and celebrates the profound journey of the soul\'s evolution.\n' +'**Azrael and Pisces: Embracing the Cosmic Currents**\n' +
+                    '\n' +
+                    'In the cosmic ballet of angels, the intertwining of Azrael and Pisces gives rise to a luminous synergy that envelops those born under the intuitive sign. Azrael, the angel of comfort, transition, and spiritual guidance, joins forces with Pisces\' ethereal energies, creating a symphony of qualities that resonate deeply with the souls graced by this celestial collaboration.\n' +
+                    '\n' +
+                    '**Bearer of Serene Comfort:** Azrael\'s energy radiates as a gentle embrace, offering Pisceans solace amidst the ebb and flow of their emotional journey. Like a celestial balm, Azrael empowers individuals to find tranquility in moments of heartache and uncertainty. Those touched by Azrael\'s grace discover a profound sense of inner peace and emotional healing.\n' +
+                    '\n' +
+                    '**Guide of Transcendent Transition:** At the heart of Azrael\'s essence lies the art of spiritual transition and metamorphosis. Just as Pisces embodies the cycle of endings and renewal, Azrael guides Pisceans through the process of releasing and embracing new beginnings. This angel\'s energy instills the courage to navigate life\'s changes with grace and faith.\n' +
+                    '\n' +
+                    '**Guardian of Mystical Wisdom:** Azrael\'s luminous presence serves as a guardian of mystical wisdom, illuminating Pisceans\' path with insights from the spiritual realm. Pisceans under this angel\'s influence possess an innate connection to the cosmos and a deep appreciation for the interconnectedness of all life. Azrael\'s guidance empowers Pisceans to infuse their earthly journey with divine purpose.\n' +
+                    '\n' +
+                    '**Catalyst for Grief Transformation:** Azrael\'s energy acts as a catalyst for transforming grief into growth and healing. This angel\'s presence empowers Pisceans to honor their emotions as they navigate the waves of loss. Azrael guides Pisceans to channel their pain into spiritual evolution and to find meaning within life\'s challenges.\n' +
+                    '\n' +
+                    '**Bearer of Universal Compassion:** Azrael\'s radiant energy resonates with universal compassion and an innate understanding of human suffering. Pisceans touched by Azrael\'s grace possess a profound empathy, naturally offering solace and empathy to others in need. This angel\'s presence empowers Pisceans to be pillars of compassion and support.\n' +
+                    '\n' +
+                    '**Keeper of Dreamy Intuition:** Azrael\'s luminosity encompasses the realm of dreamy intuition and divine insights. Pisceans under this angel\'s guidance possess an inherent connection to their inner wisdom and the subtle realms of existence. Azrael\'s presence empowers Pisceans to trust their intuitive compass and navigate life\'s currents with unwavering faith.\n' +
+                    '\n' +
+                    '**The Celestial Symphony of Azrael and Pisces:** The harmonious resonance between Azrael and Pisces orchestrates a celestial symphony that celebrates comfort, transition, intuition, and universal empathy. As Pisceans embrace Azrael\'s guiding light, they become navigators of the spiritual waters, finding strength in their sensitivity and offering solace to others. In this cosmic partnership, Azrael and Pisces unite to create a symphony of healing that elevates the spirit and celebrates the profound journey of the soul\'s evolution through the tides of emotion and transformation.'
+                angel.storyline = '**Hanael: The Illuminator of Capricorn\'s Inner Light**\n' +
+                    '\n' +
+                    'In the celestial embrace of angels, Hanael stands as a radiant guide, casting a luminous glow upon those born under the determined Capricorn zodiac sign. Known as an angel of illumination, guidance, and divine wisdom, Hanael\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Capricorn\'s steadfast energies.\n' +
+                    '\n' +
+                    '**Bearer of Divine Light:** Hanael\'s energy acts as a beacon of divine light, guiding Capricorns toward inner enlightenment and clarity. Like a celestial torchbearer, Hanael empowers individuals to illuminate their paths, uncover hidden truths, and embrace their inner radiance.\n' +
+                    '\n' +
+                    '**Guide of Soulful Direction:** At the heart of Hanael\'s essence lies the art of guiding souls toward purposeful direction and alignment. Just as Capricorn embodies the journey from ambition to achievement, so does Hanael inspire Capricorns to embark on a profound journey of self-discovery. This angel\'s energy fosters the courage to navigate life\'s challenges with a sense of divine guidance.\n' +
+                    '\n' +
+                    '**Guardian of Higher Knowledge:** Hanael\'s luminous presence serves as a guardian of higher knowledge and spiritual insights. Capricorns under this angel\'s influence possess an innate connection to the realms of wisdom and understanding. Hanael\'s guidance empowers Capricorns to seek inner illumination and to approach life\'s complexities with a depth of understanding.\n' +
+                    '\n' +
+                    '**Catalyst for Inner Growth:** Hanael\'s energy acts as a catalyst for inner growth and self-discovery. This angel\'s presence empowers Capricorns to embark on a transformative journey of shedding old patterns and embracing their true potential. Hanael guides Capricorns to evolve with grace and to align with their soul\'s purpose.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Connection:** Hanael\'s radiant energy resonates with cosmic connection and a profound awareness of one\'s place in the universe. Capricorns touched by Hanael\'s grace find solace in their cosmic journey, knowing that they are part of a grand design. This angel\'s presence empowers Capricorns to align their actions with universal harmony.\n' +
+                    '\n' +
+                    '**Keeper of Introspective Wisdom:** Hanael\'s luminosity embodies the essence of introspective wisdom and self-exploration. Capricorns guided by this angel possess an innate ability to navigate the inner realms of their being. Hanael\'s presence empowers Capricorns to embark on a transformative journey of self-discovery, seeking insights that guide their path.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Hanael and Capricorn:** The harmonious resonance between Hanael and Capricorn creates a celestial dance that celebrates illumination, guidance, wisdom, and inner growth. As Capricorns heed Hanael\'s guiding light, they become illuminated travelers on the path of purpose, embracing their journey with clarity and a deep sense of purpose. In this cosmic partnership, Hanael and Capricorn unite to create a symphony of enlightenment that elevates the spirit and celebrates the profound quest to illuminate their lives with divine wisdom and soulful direction.\n' +'**Hanael and Capricorn: Navigating the Cosmic Odyssey**\n' +
+                    '\n' +
+                    'In the cosmic tapestry of angels, the intertwining of Hanael and Capricorn gives rise to a luminous synergy that envelops those born under the determined sign. Hanael, the angel of illumination, guidance, and divine wisdom, joins forces with Capricorn\'s steadfast energies, creating a symphony of qualities that resonate deeply with the souls graced by this celestial collaboration.\n' +
+                    '\n' +
+                    '**Bearer of Inner Radiance:** Hanael\'s energy radiates as an inner glow, empowering Capricorns to illuminate their paths with clarity and purpose. Like a celestial lantern, Hanael guides individuals to uncover hidden truths within themselves, igniting the flames of their inner brilliance.\n' +
+                    '\n' +
+                    '**Guide of Purposeful Direction:** At the heart of Hanael\'s essence lies the art of guiding souls toward their true purpose and life\'s journey. Just as Capricorn embodies the ascent from ambition to achievement, Hanael inspires Capricorns to seek a profound understanding of their life\'s path. This angel\'s energy fosters the courage to overcome challenges with the wisdom of divine guidance.\n' +
+                    '\n' +
+                    '**Guardian of Cosmic Insight:** Hanael\'s luminous presence serves as a guardian of cosmic insights and higher knowledge. Capricorns under this angel\'s influence possess a unique connection to the realms of wisdom and the mysteries of existence. Hanael\'s guidance empowers Capricorns to unravel the complexities of life and make informed decisions.\n' +
+                    '\n' +
+                    '**Catalyst for Inner Evolution:** Hanael\'s energy acts as a catalyst for inner evolution and self-discovery. This angel\'s presence empowers Capricorns to embrace transformative changes and growth with grace. Hanael guides Capricorns to shed old patterns and align with their authentic selves.\n' +
+                    '\n' +
+                    '**Bearer of Universal Harmony:** Hanael\'s radiant energy resonates with the harmony of the universe and the interconnectedness of all life. Capricorns touched by Hanael\'s grace find solace in the understanding that their actions ripple through the cosmos. This angel\'s presence empowers Capricorns to create a positive impact and contribute to the greater good.\n' +
+                    '\n' +
+                    '**Keeper of Introspective Wisdom:** Hanael\'s luminosity encompasses the realm of introspective wisdom and self-exploration. Capricorns guided by this angel possess a natural inclination to delve deep into their inner world. Hanael\'s presence empowers Capricorns to embark on a transformative journey of self-discovery, seeking profound insights.\n' +
+                    '\n' +
+                    '**The Celestial Symphony of Hanael and Capricorn:** The harmonious resonance between Hanael and Capricorn orchestrates a celestial symphony that celebrates illumination, guidance, wisdom, and inner evolution. As Capricorns embrace Hanael\'s guiding light, they become illuminated wayfarers on a purposeful journey, navigating life\'s terrain with unwavering clarity. In this cosmic partnership, Hanael and Capricorn unite to create a symphony of enlightenment that elevates the spirit and celebrates the profound quest to shine their inner light upon the path of divine wisdom and purposeful direction.'
+            }
+            if(zodiac === 'aquarius'){
+                angel.angel = 'CASSIEL';
+                angel.archangel = 'URIEL';
+                angel.angel_pic = '1692705633368.jpg'
+                angel.arch_storyline = '**Uriel: The Enlightener of Aquarius\' Visionary Path**\n' +
+                    '\n' +
+                    'In the celestial realm of angels, Uriel stands as an illuminating presence, casting a radiant light upon those born under the innovative Aquarius zodiac sign. Known as an angel of enlightenment, creativity, and divine guidance, Uriel\'s essence weaves a symphony of qualities that resonate deeply with the souls embraced by Aquarius\' visionary energies.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Light:** Uriel\'s energy serves as a beacon of cosmic light, guiding Aquarians toward profound enlightenment and expanded consciousness. Like a celestial torchbearer, Uriel empowers individuals to illuminate their path, discover hidden truths, and transcend the boundaries of the known.\n' +
+                    '\n' +
+                    '**Guide of Innovative Wisdom:** At the heart of Uriel\'s essence lies the art of guiding souls toward innovative wisdom and creative solutions. Just as Aquarius embodies the quest for new perspectives, Uriel inspires Aquarians to embark on a journey of intellectual exploration. This angel\'s energy fosters the courage to seek unconventional approaches to life\'s challenges.\n' +
+                    '\n' +
+                    '**Guardian of Spiritual Insights:** Uriel\'s luminous presence serves as a guardian of spiritual insights and higher knowledge. Aquarians under this angel\'s influence possess a unique connection to the realms of divine wisdom and intuitive understanding. Uriel\'s guidance empowers Aquarians to tap into their intuitive faculties and explore the depths of universal truths.\n' +
+                    '\n' +
+                    '**Catalyst for Creative Expression:** Uriel\'s energy acts as a catalyst for creative expression and innovation. This angel\'s presence empowers Aquarians to channel their unique ideas and inspirations into tangible forms. Uriel guides Aquarians to break free from conventional thinking and to embrace their role as catalysts of change.\n' +
+                    '\n' +
+                    '**Bearer of Universal Harmony:** Uriel\'s radiant energy resonates with the harmony of the cosmos and the interconnectedness of all existence. Aquarians touched by Uriel\'s grace find solace in their cosmic connection and the role they play in the universe. This angel\'s presence empowers Aquarians to align their actions with the greater good.\n' +
+                    '\n' +
+                    '**Keeper of Intellectual Insight:** Uriel\'s luminosity embodies the essence of intellectual insight and visionary thinking. Aquarians guided by this angel possess a natural inclination to explore abstract concepts and futuristic ideas. Uriel\'s presence empowers Aquarians to seek out innovative solutions and inspire others with their forward-thinking mindset.\n' +
+                    '\n' +
+                    '**The Celestial Dance of Uriel and Aquarius:** The harmonious resonance between Uriel and Aquarius creates a celestial dance that celebrates enlightenment, innovation, wisdom, and creative expression. As Aquarians heed Uriel\'s guiding light, they become enlightened explorers of the mind, daring to tread uncharted intellectual territories. In this cosmic partnership, Uriel and Aquarius unite to create a symphony of illumination that elevates the spirit and celebrates the profound quest to ignite the world with visionary insights and creative brilliance.\n'+'**Uriel: The Divine Illuminator and Messenger of Light**\n' +
+                    '\n' +
+                    'In the realm of celestial beings, Uriel shines as a beacon of enlightenment and a messenger of divine wisdom. This archangel\'s presence carries a profound resonance, touching the hearts and minds of those who seek illumination and guidance on their spiritual journey.\n' +
+                    '\n' +
+                    '**Bearer of Cosmic Light:** Uriel\'s energy emanates as a radiant cosmic light, illuminating the paths of seekers and illuminating the shadows of uncertainty. Like a celestial torchbearer, Uriel empowers individuals to navigate the complexities of existence, revealing hidden truths and insights that guide them toward a higher understanding.\n' +
+                    '\n' +
+                    '**Guide of Insightful Wisdom:** At the core of Uriel\'s essence lies the art of guiding souls toward profound wisdom and deep insight. This archangel\'s presence inspires seekers to embrace their inner wisdom and explore the depths of their intuition. Uriel\'s energy fosters the courage to question, seek, and expand one\'s understanding of the world and the self.\n' +
+                    '\n' +
+                    '**Messenger of Divine Knowledge:** Uriel is known as a messenger of divine knowledge, bridging the gap between the realms of the sacred and the mundane. This archangel\'s presence empowers individuals to receive insights and guidance from higher realms, offering clarity and direction during times of uncertainty.\n' +
+                    '\n' +
+                    '**Catalyst for Creative Inspiration:** Uriel\'s energy acts as a catalyst for creative inspiration and innovative thinking. This archangel\'s presence empowers individuals to tap into their creative potential, encouraging them to think outside the box and explore new ways of approaching challenges. Uriel guides seekers to bring their unique visions into the world.\n' +
+                    '\n' +
+                    '**Bearer of Universal Harmony:** Uriel\'s radiant energy resonates with the harmony and interconnectedness of the universe. Those touched by Uriel\'s grace find solace in the understanding that they are part of a greater cosmic tapestry. This archangel\'s presence empowers individuals to align their actions with the universal flow and contribute positively to the world.\n' +
+                    '\n' +
+                    '**Keeper of Inner Transformation:** Uriel\'s luminosity embodies the essence of inner transformation and growth. This archangel guides individuals through periods of change and upheaval, assisting them in navigating challenges and emerging stronger and wiser on the other side. Uriel\'s presence empowers seekers to embrace change as a catalyst for personal evolution.\n' +
+                    '\n' +
+                    '**The Celestial Light of Uriel:** Uriel\'s presence radiates like a brilliant star in the night sky, offering guidance, clarity, and inspiration to those who seek the light of truth. As seekers open their hearts and minds to Uriel\'s guidance, they become vessels of divine wisdom, carrying the light of knowledge and insight to illuminate their own lives and the lives of others. In the celestial symphony, Uriel\'s message of enlightenment continues to resonate, guiding souls on their journey toward higher understanding and spiritual awakening.'
+                angel.storyline = '**Cassiel: The Keeper of Time and Spiritual Resilience**\n' +
+                    '\n' +
+                    'In the celestial realms, Cassiel stands as a steadfast presence, embodying the essence of time, patience, and spiritual endurance. This archangel\'s energy holds a profound resonance, offering solace and guidance to those who navigate the ebb and flow of life\'s challenges.\n' +
+                    '\n' +
+                    '**Guardian of Temporal Flow:** Cassiel\'s energy flows as the guardian of time\'s currents, reminding us of the cyclical nature of existence. Like a cosmic timekeeper, Cassiel empowers individuals to embrace the rhythms of life, understanding that each phase contributes to their growth and evolution.\n' +
+                    '\n' +
+                    '**Guide of Endurance and Patience:** At the heart of Cassiel\'s essence lies the art of guiding souls through trials with endurance and patience. This archangel\'s presence inspires individuals to weather life\'s storms with grace, understanding that challenges are opportunities for growth. Cassiel\'s energy fosters the courage to remain steadfast in the face of adversity.\n' +
+                    '\n' +
+                    '**Bearer of Spiritual Reflection:** Cassiel is known for encouraging introspection and self-discovery. This archangel\'s presence empowers individuals to look within and reflect on their experiences, gaining insights that lead to personal growth and transformation. Cassiel guides seekers to find meaning even in the most trying times.\n' +
+                    '\n' +
+                    '**Guardian of Resilience:** Cassiel serves as a guardian of spiritual resilience and inner strength. This archangel\'s presence empowers individuals to rise above difficulties and emerge from challenges with newfound wisdom and courage. Cassiel guides seekers to transform hardships into stepping stones on their spiritual journey.\n' +
+                    '\n' +
+                    '**Bearer of Divine Order:** Cassiel\'s energy resonates with the concept of divine order and the intricate tapestry of the universe. Those touched by Cassiel\'s grace find solace in the understanding that there is a greater plan at play. This archangel\'s presence empowers individuals to trust in the unfolding of their lives.\n' +
+                    '\n' +
+                    '**Keeper of Quiet Transformation:** Cassiel\'s essence embodies the quiet transformation that occurs over time. This archangel guides individuals through periods of change and growth, nurturing the inner shifts that lead to profound personal evolution. Cassiel\'s presence empowers seekers to embrace the process of transformation with patience and grace.\n' +
+                    '\n' +
+                    '**The Celestial Resilience of Cassiel:** Cassiel\'s presence is like a calming breeze that soothes the weary soul and offers strength to face life\'s challenges. As individuals open their hearts to Cassiel\'s guidance, they become resilient navigators of time\'s currents, embracing the ebb and flow of life with patience and understanding. In the cosmic symphony, Cassiel\'s message of endurance and transformation continues to resonate, guiding souls toward spiritual resilience and the deeper insights that come from weathering life\'s seasons.\n'+'**Cassiel: The Silent Observer of Spiritual Evolution**\n' +
+                    '\n' +
+                    'Amidst the celestial tapestry, Cassiel stands as a serene observer, embodying the essence of time\'s flow and spiritual growth. This archangel\'s energy carries a depth that resonates with those who seek to understand the profound dance of life\'s rhythms and the evolution of the soul.\n' +
+                    '\n' +
+                    '**Guardian of Time\'s Passage:** Cassiel\'s energy flows as a guardian of time\'s passage, reminding us that every moment is a unique thread woven into the fabric of our existence. Like a cosmic timekeeper, Cassiel invites individuals to cherish the present while understanding the lessons and growth that come with the passage of time.\n' +
+                    '\n' +
+                    '**Guide of Patient Transformation:** At the heart of Cassiel\'s essence lies the art of guiding souls through patient and gradual transformation. This archangel\'s presence encourages individuals to embrace the slow, steady journey of growth, understanding that meaningful change takes time. Cassiel\'s energy fosters the courage to navigate life\'s transitions with grace.\n' +
+                    '\n' +
+                    '**Bearer of Spiritual Reflection:** Cassiel is known for inspiring introspection and inner exploration. This archangel\'s presence empowers individuals to delve into the depths of their being, uncovering hidden truths and insights. Cassiel guides seekers to find meaning in their experiences, leading to profound self-discovery.\n' +
+                    '\n' +
+                    '**Guardian of Inner Strength:** Cassiel serves as a guardian of inner strength and resilience. This archangel\'s presence empowers individuals to endure challenges and setbacks, emerging stronger and wiser. Cassiel guides seekers to tap into their inner well of strength and draw upon it to navigate life\'s journey.\n' +
+                    '\n' +
+                    '**Bearer of Divine Order:** Cassiel\'s energy resonates with the concept of divine order and the intricate balance of the universe. Those touched by Cassiel\'s grace find solace in the understanding that there is a purpose to every experience. This archangel\'s presence encourages individuals to trust in the grand design of their lives.\n' +
+                    '\n' +
+                    '**Keeper of Subtle Transformation:** Cassiel\'s essence embodies the subtlety of transformation that occurs over time. This archangel guides individuals through periods of change and personal evolution, encouraging them to embrace the process and honor their growth. Cassiel\'s presence empowers seekers to find beauty in the gradual unfolding of their true selves.\n' +
+                    '\n' +
+                    '**The Celestial Symphony of Cassiel:** Cassiel\'s presence is like a timeless melody that resonates through the ages, reminding us of the wisdom that comes with the passage of time and the gentle evolution of the soul. As individuals open their hearts to Cassiel\'s guidance, they become attuned to the harmonious rhythms of life, finding strength in patient transformation and embracing the subtle beauty of their journey. In the cosmic symphony, Cassiel\'s message of growth and endurance continues to echo, guiding souls toward a deeper understanding of themselves and the world around them.'
+
+            }
+            if(zodiac === 'pisces'){
+                angel.angel = 'BARACHIEL';
+                angel.archangel = 'SANDALPHON';
+                angel.angel_pic = '1692705655462.jpg'
+                angel.arch_storyline = '**Sandalphon: The Celestial Harmonizer and Divine Messenger\n' +
+                    '\n' +
+                    'Sandalphon, known as the archangel of music, prayer, and communication, holds a revered place within the celestial hierarchy. His name derives from ancient Hebrew roots, with "Sandalphon" often interpreted as "co-brother" or "co-prince," signifying his close connection to his counterpart, the archangel Metatron. While Metatron is often associated with heavenly matters, Sandalphon\'s focus is on bridging the earthly and spiritual realms through the ethereal power of sound, music, and heartfelt prayer.\n' +
+                    '\n' +
+                    '**Harmonizer of Heaven and Earth:** Sandalphon\'s unique role centers on harmonizing the vibrations of the earthly and heavenly planes. As the twin brother of Metatron, Sandalphon acts as a conduit for the divine energies that flow between these two realms. He captures the essence of the universe\'s grand symphony and translates it into melodies that resonate deep within the human soul.\n' +
+                    '\n' +
+                    '**Messenger of Earthly Prayers:** Among his sacred duties, Sandalphon stands as the guardian of human prayers. He collects the sincere intentions and wishes offered by individuals on Earth and presents them before the divine presence. His angelic essence ensures that no heartfelt prayer goes unheard, uplifting spirits and reinforcing the belief that our aspirations are acknowledged by the cosmos.\n' +
+                    '\n' +
+                    '**Protector of Creativity and Expression:** Sandalphon\'s influence extends beyond the realm of prayers. He is a nurturer of creativity, guiding artists, musicians, and creators to infuse their works with spiritual energy. His presence inspires artists to channel their innermost emotions into their creations, using their talents as vessels for connecting with the divine and expressing the unspoken truths of the heart.\n' +
+                    '\n' +
+                    '**Bridge Between Worlds:** As a celestial intermediary, Sandalphon serves as a bridge between the physical and spiritual planes. He aids in the transmission of spiritual insights and guidance to those receptive to his presence. His energy empowers individuals to heighten their intuition, fostering a deeper connection with the unseen and the sacred mysteries that lie beyond ordinary perception.\n' +
+                    '\n' +
+                    '**The Resonance of Music and Healing:** Sandalphon\'s energy resonates with the power of sound, recognizing music as a universal language that transcends boundaries. He offers solace through the healing vibrations of melody, enabling individuals to find comfort in times of distress and reconnect with their inner harmony. His presence teaches us that music has the capacity to mend and uplift the soul.\n' +
+                    '\n' +
+                    '**Sandalphon and Metatron: Twin Guardians of Balance:** Sandalphon\'s close connection with Metatron highlights the balance that exists within the cosmos. While Metatron\'s realm encompasses the profound wisdom of the heavens, Sandalphon\'s domain lies in the human experience, ensuring that the spiritual journey remains connected to the tangible world.\n' +
+                    '\n' +
+                    '**Embrace of Sandalphon\'s Presence:** By inviting Sandalphon\'s energy into our lives, we invite a sense of divine unity and creativity. His name, resonating with harmonious vibrations, reminds us that our intentions and prayers are heard and that we are part of a larger cosmic composition. Through the melodies of Sandalphon\'s influence, we find the strength to express ourselves authentically, connecting our earthly experiences with the boundless wisdom of the heavens.\n'+'**Sandalphon: The Divine Bridge Between Earth and Heaven**\n' +
+                    '\n' +
+                    'In the celestial realm, Sandalphon occupies a unique and cherished position as the archangel who bridges the earthly and heavenly realms. His name, often interpreted as "co-brother" or "co-prince," signifies his close partnership with Metatron, his twin counterpart. This partnership reflects the cosmic duality present in the universe – the interplay between the divine and the material, the ethereal and the tangible.\n' +
+                    '\n' +
+                    '**Messenger of Earthly Prayers:** Sandalphon is recognized as the celestial guardian of human prayers. He gathers the heartfelt wishes and aspirations of individuals on Earth, transforming them into ethereal messages that resonate in the heavens. In this role, he ensures that no sincere prayer goes unnoticed or unanswered. His divine mission is to deliver our hopes to the divine presence, fostering a sense of connection between mortals and the divine.\n' +
+                    '\n' +
+                    '**Harmonizer of Divine Energies:** As the twin brother of Metatron, Sandalphon plays a pivotal role in maintaining the harmony between heaven and earth. While Metatron represents the profound cosmic wisdom of the higher realms, Sandalphon is a beacon of grounding and connection. He brings the spiritual energies from above into forms that resonate with human hearts, offering a tangible connection to the divine.\n' +
+                    '\n' +
+                    '**Guardian of Creativity and Expression:** Beyond his role as a messenger, Sandalphon nurtures creativity and artistic expression. He guides individuals who seek to channel their innermost emotions into creative works, infusing their art, music, and writing with a touch of the divine. His energy inspires artists to create from the heart, allowing their creations to serve as channels for spiritual connection and emotional healing.\n' +
+                    '\n' +
+                    '**Keeper of Healing Melodies:** Sandalphon\'s energy is closely tied to the power of sound and music. He is believed to craft healing melodies that soothe and uplift the soul. These harmonious vibrations can mend emotional wounds and restore balance to the spirit. By attuning to Sandalphon\'s harmonious presence, individuals can tap into the healing properties of music and sound.\n' +
+                    '\n' +
+                    '**Messenger of Divine Guidance:** Sandalphon\'s role as a messenger extends beyond prayers. He is a conduit for spiritual insights and guidance, facilitating a deeper connection between individuals and the divine realm. His presence encourages us to listen to our intuition, to open our hearts to higher wisdom, and to trust in the messages that flow from the unseen.\n' +
+                    '\n' +
+                    '**Embrace of Sandalphon\'s Essence:** Welcoming Sandalphon\'s energy into our lives invites a profound sense of unity between the earthly and the celestial. His name symbolizes the idea that even in our human experiences, we are intertwined with the cosmos. Through Sandalphon, we remember that our voices are heard, our creative expressions have spiritual significance, and our connection to the divine is unbreakable. As we tune into the melodies of Sandalphon\'s presence, we find a bridge that leads us to deeper insights, divine communication, and a harmonious alignment with the rhythms of the universe.'
+                angel.storyline = '**Barachiel: The Benediction of Blessings and Divine Support**\n' +
+                    '\n' +
+                    'Within the celestial expanse, Barachiel stands as a revered archangel, embodying the essence of blessings, benevolence, and divine assistance. Often referred to as the "Blessings of God," Barachiel\'s energy brings comfort and aid to those who seek solace in times of need and guidance on their spiritual journey.\n' +
+                    '\n' +
+                    '**Bestower of Divine Blessings:** Barachiel\'s presence radiates with the sacred vibrations of blessings from the divine realm. This archangel is known for showering individuals with spiritual and material blessings, guiding them toward a path of abundance and grace. Barachiel empowers seekers to recognize the blessings that surround them in both subtle and profound ways.\n' +
+                    '\n' +
+                    '**Bearer of Comfort and Support:** At the heart of Barachiel\'s essence lies the role of a comforter and supporter. This archangel offers solace and encouragement to those facing challenges and adversity. Barachiel\'s energy wraps individuals in a nurturing embrace, providing the assurance that they are never alone on their journey.\n' +
+                    '\n' +
+                    '**Guardian of Joyful Transformation:** Barachiel serves as a guardian of joyful transformation and inner renewal. This archangel\'s presence empowers individuals to embrace life\'s changes with optimism and a sense of adventure. Barachiel\'s energy encourages seekers to find the silver lining in every experience, turning challenges into opportunities for growth.\n' +
+                    '\n' +
+                    '**Guide of Prayerful Communication:** Barachiel is recognized as a guide in matters of prayerful communication. This archangel\'s presence encourages individuals to open their hearts in prayer, connecting with the divine through heartfelt intentions. Barachiel\'s energy empowers seekers to express their desires, hopes, and concerns with sincerity and trust.\n' +
+                    '\n' +
+                    '**Bearer of Positive Energy:** Barachiel\'s radiant energy resonates with positivity and uplifting vibrations. Those touched by Barachiel\'s grace find themselves infused with a renewed sense of hope and enthusiasm. This archangel\'s presence empowers individuals to see the beauty and potential in each moment, fostering an outlook of positivity.\n' +
+                    '\n' +
+                    '**Keeper of Divine Assistance:** Barachiel serves as a keeper of divine assistance, offering guidance and aid when called upon. This archangel\'s energy guides individuals to recognize the signs and synchronicities that point them toward their highest good. Barachiel empowers seekers to trust in the support that the universe provides.\n' +
+                    '\n' +
+                    '**The Benediction of Barachiel\'s Presence:** Barachiel\'s presence is like a gentle breeze that carries the fragrance of divine blessings, uplifting spirits and inspiring gratitude. As individuals open their hearts to Barachiel\'s guidance, they find themselves enveloped in a realm of benevolence and support. In the cosmic symphony, Barachiel\'s message of blessings and assistance continues to resonate, guiding souls toward a deeper connection with the divine and a life infused with abundance and grace.\n' +'**Barachiel: The Angel of Divine Blessings and Comfort**\n' +
+                    '\n' +
+                    'Amid the celestial tapestry, Barachiel shines as an archangel of profound significance, embodying the essence of blessings, comfort, and divine intervention. Often referred to as the "Blessings of God," Barachiel\'s energy envelops individuals in a cocoon of divine support, offering solace, encouragement, and the assurance that they are guided by benevolent forces.\n' +
+                    '\n' +
+                    '**Bestower of Heavenly Blessings:** Barachiel\'s presence resonates with the gentle touch of divine blessings. This archangel is renowned for showering individuals with spiritual gifts, both material and immaterial, guiding them toward paths of abundance and fulfillment. Barachiel empowers seekers to recognize and embrace the blessings that are woven into every facet of their lives.\n' +
+                    '\n' +
+                    '**Bearer of Comfort and Consolation:** At the core of Barachiel\'s essence lies the role of a comforter and consoler. This archangel extends a soothing embrace to those who face challenges, hardships, and moments of despair. Barachiel\'s energy offers solace and encouragement, whispering to individuals that they are enveloped in a love that transcends the earthly realm.\n' +
+                    '\n' +
+                    '**Guide of Joyful Renewal:** Barachiel serves as a guide of joyful renewal and transformation. This archangel empowers individuals to navigate life\'s changes with a sense of optimism and hope. Barachiel\'s energy encourages seekers to find the beauty in each phase of their journey, fostering a renewed perspective that transforms difficulties into stepping stones of growth.\n' +
+                    '\n' +
+                    '**Facilitator of Heartfelt Prayer:** Barachiel is recognized as a facilitator of heartfelt prayer and communication with the divine. This archangel\'s presence encourages individuals to open their hearts in sincere dialogue, forging a deeper connection with the cosmic forces that guide them. Barachiel\'s energy empowers seekers to express their desires, hopes, and concerns with honesty and trust.\n' +
+                    '\n' +
+                    '**Bearer of Uplifting Energy:** Barachiel\'s radiant energy carries the uplifting vibrations of positivity and hope. Those touched by Barachiel\'s grace experience a renewed sense of enthusiasm and faith. This archangel\'s presence empowers individuals to see the potential for beauty and growth even in the midst of challenges, fostering an outlook of optimism.\n' +
+                    '\n' +
+                    '**Keeper of Divine Assistance:** Barachiel serves as a keeper of divine assistance, offering guidance and support when called upon. This archangel\'s energy orchestrates synchronicities and signs that lead individuals toward their highest good. Barachiel empowers seekers to trust in the universe\'s unwavering support and guidance.\n' +
+                    '\n' +
+                    '**The Embrace of Barachiel\'s Grace:** Barachiel\'s presence is like a warm embrace that envelops individuals in a cocoon of divine care and support. As individuals welcome Barachiel\'s guidance, they embark on a journey illuminated by blessings and fortified by comfort. In the cosmic symphony, Barachiel\'s message of benevolence and aid continues to resonate, guiding souls toward a deeper connection with the divine and a life enriched by abundance and grace.'
+
+            }
+            if(zodiac === 'aries'){
+                console.log(true)
+                angel.angel = 'Camael';
+                angel.archangel = 'ARIEL';
+                angel.arch_storyline = 'Archangel Ariel, the Divine Protector of Aries, was a radiant and powerful presence in the celestial realms. Her essence was a fusion of unwavering courage, boundless energy, and a deep, nurturing love for the souls under her care. Among the archangels, she was known for her vibrant aura that shimmered with shades of red and gold, mirroring the fiery passion of the zodiac she watched over.\n' +
+                    '\n' +
+                    'Aries, the first sign of the zodiac, was characterized by its boldness, determination, and adventurous spirit. Archangel Ariel embraced these traits wholeheartedly, for she recognized the potential for growth and transformation that they held. She saw Aries souls as the brave pioneers of the human experience, fearlessly leaping into the unknown to learn, to create, and to lead.\n' +
+                    '\n' +
+                    'Archangel Ariel\'s role in the lives of Aries individuals was multifaceted. She guided them through the challenges of their fiery nature, helping them channel their energy into positive outlets. When impulsive decisions threatened to lead them astray, she whispered wisdom and patience, encouraging them to consider the consequences of their actions.\n' +
+                    '\n' +
+                    'In times of self-doubt, when Aries souls questioned their abilities, Ariel\'s gentle presence provided reassurance. She reminded them that their unique gifts were essential to the tapestry of creation, urging them to embrace their talents without hesitation.\n' +
+                    '\n' +
+                    'Aries individuals often carried an innate desire to lead, and Archangel Ariel served as both a mentor and a guardian in their leadership journeys. She infused them with the strength to inspire and the empathy to understand the needs of those they guided.\n' +
+                    '\n' +
+                    'Furthermore, Ariel\'s nurturing energy extended to helping Aries souls harness their assertiveness and transform it into the gift of assertive compassion. She encouraged them to stand up for justice, to defend the vulnerable, and to use their passion to ignite positive change in the world.\n' +
+                    '\n' +
+                    'In the heavenly realms, Archangel Ariel was revered as the guiding force of Aries\' constellation. She worked alongside other archangels and celestial beings to maintain the harmonious balance of the universe. Her light illuminated the pathways of courage and resilience, inviting Aries souls to rise above challenges and embrace their potential.\n' +
+                    '\n' +
+                    'As Aries individuals embarked on their earthly journeys, Archangel Ariel stood by their side, a steadfast protector and a source of celestial inspiration. With her guidance, Aries souls learned to dance with the flames of their fiery spirits, forging their destinies with unwavering determination and the radiant energy of their archangelic guardian.\n' +"" +
+                    "Archangel Ariel, the Divine Protector of Aries, stood as a luminescent beacon of strength and guidance in the celestial realms. Her presence resonated with an aura of courage, vitality, and a deep-seated affection for the souls entrusted to her care. Among the celestial beings, her essence radiated hues of fiery red and shimmering gold, mirroring the boundless passion and determination of the zodiac sign she watched over.\n" +
+                    "\n" +
+                    "Aries, the first astrological sign, embodied qualities of audacity, determination, and an unyielding spirit of adventure. Archangel Ariel embraced these traits wholeheartedly, recognizing the immense potential for growth and self-discovery they carried. To her, Aries souls were like intrepid explorers, fearlessly embarking on the journey of human existence, driven by an insatiable thirst for knowledge and a relentless desire to lead.\n" +
+                    "\n" +
+                    "The role of Archangel Ariel in the lives of Aries individuals was profound and multifaceted. She served as a guiding light, steering them through the intricate labyrinth of their fiery nature. When impulsive decisions threatened to veer them off course, Ariel's celestial whispers of wisdom echoed in their hearts, reminding them to pause and consider the far-reaching consequences of their actions.\n" +
+                    "\n" +
+                    "In moments of uncertainty and self-doubt, Ariel's gentle presence provided unwavering reassurance. She reminded Aries souls that their unique abilities and innate talents were vital threads in the intricate fabric of creation. With her guidance, doubt transformed into unwavering self-confidence, allowing them to unleash their potential upon the world without reservation.\n" +
+                    "\n" +
+                    "Aries individuals often possessed a natural inclination for leadership, and Archangel Ariel embraced this aspect of their essence. She assumed the role of both mentor and protector, imparting the wisdom required for responsible leadership. Through her ethereal whispers, she empowered them to lead with compassion, encouraging them to forge connections built on empathy, understanding, and respect.\n" +
+                    "\n" +
+                    "In the celestial tapestry of the heavens, Archangel Ariel occupied a position of profound significance as the guiding force of Aries' constellation. Collaborating harmoniously with other archangels and celestial entities, she played a vital role in maintaining the delicate equilibrium of the cosmos. Her luminous presence illuminated the path of valor and resilience, beckoning Aries souls to rise above adversities and embrace the magnitude of their latent potential.\n" +
+                    "\n" +
+                    "In the divine hierarchy, Ariel's influence extended beyond Aries individuals alone. Her celestial radiance inspired and nurtured the fiery sparks within all souls, regardless of their zodiac affiliation. Her benevolent energy was a source of strength for those who sought courage, a wellspring of inspiration for the dreamers, and a beacon of hope for those seeking purpose and direction.\n" +
+                    "\n" +
+                    "As Aries souls embarked on their terrestrial odyssey, Archangel Ariel stood as an unwavering guardian, a celestial mentor, and an eternal friend. Her luminous wings cradled them through life's triumphs and tribulations, while her celestial light illuminated their paths. With her steadfast guidance, Aries individuals learned to dance with the flames of their fervent spirits, forging their destinies with indomitable determination and the radiant energy of their archangelic custodian. In her ethereal embrace, Aries souls found not only the courage to face the challenges ahead but also the audacity to reach for the stars and paint their own constellations upon the canvas of existence."
+                angel.storyline = '**Camael: The Divine Warrior and Courageous Protector**\n' +
+                    '\n' +
+                    'Within the celestial hierarchy, Camael stands as a powerful archangel, embodying the essence of courage, strength, and unwavering protection. Also known as "Camuel," "Kamael," or "Samael," this archangel\'s energy carries the fiery determination of a warrior and serves as a guardian against both physical and spiritual adversaries.\n' +
+                    '\n' +
+                    '**Warrior of Spiritual Valor:** Camael\'s presence resonates with the energy of a valiant warrior, ready to defend and protect against spiritual threats. This archangel embodies the strength required to navigate the challenges of the human experience and overcome darkness. Camael empowers individuals to confront their inner battles with resilience and determination.\n' +
+                    '\n' +
+                    '**Bearer of Courage and Inner Strength:** At the heart of Camael\'s essence lies the embodiment of courage and inner fortitude. This archangel\'s energy encourages individuals to face their fears, overcome obstacles, and tap into their inner reservoirs of strength. Camael\'s presence empowers seekers to rise above adversity with unwavering determination.\n' +
+                    '\n' +
+                    '**Guardian of Divine Justice:** Camael is recognized as a guardian of divine justice and the cosmic order. This archangel\'s energy ensures that justice prevails and that the balance between right and wrong is maintained. Camael guides individuals to uphold principles of fairness and righteousness in their actions and decisions.\n' +
+                    '\n' +
+                    '**Protector of Boundaries and Intuition:** Camael serves as a protector of personal boundaries and intuitive insights. This archangel\'s presence empowers individuals to trust their instincts and maintain healthy boundaries in relationships and situations. Camael guides seekers to discern the paths that align with their highest good.\n' +
+                    '\n' +
+                    '**Bearer of Empowering Passion:** Camael\'s energy resonates with passionate determination and focused action. This archangel encourages individuals to channel their energy and enthusiasm into pursuits that align with their purpose. Camael\'s presence empowers seekers to pursue their goals with fervor and dedication.\n' +
+                    '\n' +
+                    '**Keeper of Cosmic Harmony:** Camael\'s essence embodies the concept of cosmic harmony, where strength and justice coexist. This archangel\'s energy guides individuals to find harmony within themselves and within the world around them. Camael empowers seekers to navigate the complexities of life with grace and equilibrium.\n' +
+                    '\n' +
+                    '**The Resilience of Camael\'s Spirit:** Camael\'s presence is like a blazing fire that ignites the spirit with courage and determination. As individuals open themselves to Camael\'s guidance, they become warriors of their own destinies, fearlessly facing challenges and embracing their innate strength. In the cosmic symphony, Camael\'s message of courage and protection continues to resonate, guiding souls toward empowerment, resilience, and the unwavering spirit of a divine warrior.\n' +'**Camael: The Mighty Warrior and Divine Guardian**\n' +
+                    '\n' +
+                    'Within the celestial realm, Camael stands as an archangel of great power and courage, embodying the essence of a fierce warrior and a vigilant protector. Known by various names, including "Camuel," "Kamael," and "Samael," this archangel\'s energy resonates with the determination and strength required to face both physical and spiritual challenges.\n' +
+                    '\n' +
+                    '**Warrior of Spiritual Fortitude:** Camael\'s presence is that of a warrior who fearlessly confronts the trials and tribulations of the spiritual journey. This archangel embodies the essence of bravery and tenacity, inspiring individuals to overcome their inner battles and emerge victorious against the forces of darkness that may try to hinder their growth.\n' +
+                    '\n' +
+                    '**Bearer of Resilience and Courage:** At the core of Camael\'s essence lies the embodiment of resilience and unwavering courage. This archangel\'s energy empowers individuals to rise above their fears, confront obstacles, and draw upon their inner strength to face adversity head-on. Camael\'s presence instills a sense of unyielding determination.\n' +
+                    '\n' +
+                    '**Guardian of Divine Justice:** Camael is revered as a guardian of divine justice and cosmic equilibrium. This archangel\'s energy ensures that justice is upheld, and the balance between right and wrong is maintained. Camael guides individuals to align their actions with principles of fairness, righteousness, and moral integrity.\n' +
+                    '\n' +
+                    '**Protector of Intuition and Wisdom:** Camael serves as a protector of intuitive insights and inner wisdom. This archangel\'s energy empowers individuals to trust their gut feelings and discern the truths hidden within their hearts. Camael\'s presence guides seekers to navigate life\'s complexities with clarity and authenticity.\n' +
+                    '\n' +
+                    '**Bearer of Determined Passion:** Camael\'s energy resonates with passionate determination and purposeful action. This archangel encourages individuals to channel their energy and enthusiasm into endeavors that align with their soul\'s mission. Camael\'s presence ignites the fires of motivation, driving seekers to pursue their goals with fervor.\n' +
+                    '\n' +
+                    '**Keeper of Universal Harmony:** Camael\'s essence embodies the concept of harmony within diversity. This archangel\'s energy guides individuals to find equilibrium within themselves and the world around them. Camael empowers seekers to seek unity amidst diversity, fostering a sense of balance and respect for all of creation.\n' +
+                    '\n' +
+                    '**The Unwavering Spirit of Camael:** Camael\'s presence is like a beacon of strength that lights the way through challenges and adversity. As individuals open themselves to Camael\'s guidance, they harness the warrior-like qualities within, facing life\'s battles with courage and determination. In the cosmic symphony, Camael\'s message of empowerment, justice, and protection continues to resonate, guiding souls toward the path of inner strength, divine purpose, and the steadfast spirit of a celestial guardian.'
+            }
+            if(zodiac === 'taurus'){
+                angel.angel = 'SACHIEL';
+                angel.archangel = 'CHAMUEL';
+                angel.arch_storyline = '**Chamuel: The Angel of Divine Love and Compassionate Illumination**\n' +
+                    '\n' +
+                    'Within the celestial realm, Chamuel shines as an archangel of profound significance, embodying the essence of love, compassion, and the gentle illumination of the heart. Often known as the "Angel of Love," Chamuel\'s energy is a beacon of light that guides individuals toward a deeper understanding of love in its purest and most unconditional form.\n' +
+                    '\n' +
+                    '**Bearer of Unconditional Love:** Chamuel\'s presence resonates with the unconditional and boundless love that emanates from the divine source. This archangel embodies the essence of love in its highest form, inviting individuals to cultivate self-love, compassion for others, and a harmonious connection with all of creation.\n' +
+                    '\n' +
+                    '**Guide of Heart-Centered Awareness:** At the heart of Chamuel\'s essence lies the role of a guide who directs individuals toward heart-centered awareness. This archangel\'s energy empowers seekers to embrace the wisdom that comes from the heart, allowing love and compassion to guide their choices, actions, and interactions with others.\n' +
+                    '\n' +
+                    '**Keeper of Divine Relationships:** Chamuel is recognized as a keeper of divine relationships and soul connections. This archangel\'s energy fosters the nurturing and healing of relationships, encouraging individuals to mend bonds, seek forgiveness, and create harmonious connections based on love and mutual understanding.\n' +
+                    '\n' +
+                    '**Healer of Emotional Wounds:** Chamuel\'s presence serves as a soothing balm for emotional wounds and traumas. This archangel\'s energy gently heals and nurtures the heart, guiding individuals toward a place of inner peace, forgiveness, and emotional balance. Chamuel empowers seekers to release pain and open themselves to '+'**Chamuel: The Angelic Emissary of Love and Harmony**\n' +
+                    '\n' +
+                    'Amidst the celestial choir, Chamuel stands as an archangel of utmost significance, embodying the essence of love, harmony, and the tender illumination of the soul. Often recognized as the "Angel of Love," Chamuel\'s energy serves as a beacon of light that guides individuals on a journey toward profound understanding and connection through love.\n' +
+                    '\n' +
+                    '**Bearer of Unwavering Love:** Chamuel\'s presence emanates with an unwavering and boundless love that flows from the divine source. This archangel encapsulates the highest form of love, inviting individuals to cultivate self-love, compassion, and unity with all living beings. Chamuel\'s energy empowers seekers to embrace love as both a force of healing and a catalyst for transformation.\n' +
+                    '\n' +
+                    '**Guide to Heart-Centered Wisdom:** At the core of Chamuel\'s essence lies the role of a guide who illuminates the path to heart-centered wisdom. This archangel\'s energy encourages individuals to tap into the profound insights that stem from the heart, allowing love and empathy to shape their choices, actions, and interactions with others.\n' +
+                    '\n' +
+                    '**Guardian of Soul Connections:** Chamuel is revered as a guardian of soul connections and divine relationships. This archangel\'s energy fosters the nurturing and restoration of relationships, urging individuals to seek reconciliation, extend forgiveness, and establish connections rooted in love and understanding.\n' +
+                    '\n' +
+                    '**Healer of Emotional Scars:** Chamuel\'s presence serves as a gentle healer of emotional wounds and traumas. This archangel\'s energy envelops individuals in a soothing embrace, guiding them towards emotional healing, inner peace, and a renewed sense of wholeness. Chamuel empowers seekers to release past pain and embrace the transformative power of love.\n' +
+                    '\n' +
+                    '**Bearer of Compassionate Illumination:** Chamuel\'s energy acts as a guiding light that illuminates the path of compassion, enabling individuals to view the world through a lens of empathy and understanding. This archangel\'s presence encourages seekers to extend kindness and compassion to themselves and others, fostering unity and interconnectedness.\n' +
+                    '\n' +
+                    '**Guide to Self-Exploration:** Chamuel accompanies individuals on the journey of self-exploration and self-acceptance. This archangel\'s energy empowers seekers to connect with their authentic selves, embracing their unique qualities with love and grace. Chamuel\'s presence encourages individuals to bathe every facet of their being in the radiant light of self-love.\n' +
+                    '\n' +
+                    '**The Radiant Embrace of Chamuel:** Chamuel\'s presence envelops individuals in a radiant embrace of divine love and harmony. As seekers open their hearts to Chamuel\'s guidance, they embark on a transformative journey towards self-discovery, healing, and a deeper connection with the source of all creation. In the symphony of the cosmos, Chamuel\'s message of love, compassion, and heart-centered wisdom continues to resonate, guiding souls toward a profound union with the divine and a life illuminated by the transformative power of love.'
+
+                angel.storyline = '**Sachiel: The Angel of Abundance and Divine Blessings**\n' +
+                    '\n' +
+                    'In the celestial realm, Sachiel shines as an archangel of profound significance, embodying the essence of abundance, prosperity, and the generous bestowal of divine blessings. Also known as "Zadkiel," Sachiel\'s energy is a radiant beacon that guides individuals toward a life filled with abundance on both spiritual and material levels.\n' +
+                    '\n' +
+                    '**Bearer of Divine Abundance:** Sachiel\'s presence resonates with the boundless abundance that flows from the divine source. This archangel embodies the essence of prosperity, inviting individuals to embrace the concept of abundance as a natural state of existence. Sachiel\'s energy empowers seekers to cultivate a mindset that attracts blessings in various forms.\n' +
+                    '\n' +
+                    '**Guide of Generosity and Blessings:** At the heart of Sachiel\'s essence lies the role of a guide who bestows generous blessings upon those who seek divine support. This archangel\'s energy encourages individuals to open their hearts to receive blessings and to recognize the opportunities for abundance that surround them.\n' +
+                    '\n' +
+                    '**Keeper of Positive Transformation:** Sachiel is recognized as a keeper of positive transformation and spiritual growth. This archangel\'s energy empowers individuals to transform their lives by aligning with the vibrations of prosperity, gratitude, and a higher state of consciousness. Sachiel guides seekers toward the path of self-improvement and spiritual elevation.\n' +
+                    '\n' +
+                    '**Guardian of Joy and Optimism:** Sachiel\'s presence radiates with the energy of joy and optimism. This archangel encourages individuals to approach life with a positive outlook, recognizing that their thoughts and intentions can shape their reality. Sachiel\'s energy empowers seekers to infuse their actions with positivity and a sense of enthusiasm.\n' +
+                    '\n' +
+                    '**Bearer of Manifestation Power:** Sachiel\'s energy resonates with the power of manifestation. This archangel guides individuals to manifest their desires and intentions by aligning with their true purpose and divine will. Sachiel empowers seekers to take proactive steps toward creating the life they envision.\n' +
+                    '\n' +
+                    '**Guide of Spiritual Growth:** Sachiel serves as a guide of spiritual growth and expansion. This archangel\'s energy encourages seekers to explore their inner potential, embrace their unique gifts, and align with their soul\'s purpose. Sachiel\'s presence empowers individuals to experience growth on both the material and spiritual planes.\n' +
+                    '\n' +
+                    '**The Abundant Radiance of Sachiel:** Sachiel\'s presence is like a golden stream of divine blessings that flows into the lives of those who open themselves to its guidance. As individuals embrace Sachiel\'s energy, they embark on a journey of abundance, prosperity, and positive transformation. In the cosmic symphony, Sachiel\'s message of blessings and empowerment continues to resonate, guiding souls toward a deeper connection with the divine and a life enriched by the overflowing blessings of the universe.\n' + '**Sachiel: The Celestial Bestower of Blessings and Prosperity**\n' +
+                    '\n' +
+                    'Within the celestial tapestry, Sachiel stands as an archangel of great significance, embodying the essence of blessings, prosperity, and the benevolent flow of divine abundance. Often known as "Zadkiel," Sachiel\'s energy is like a golden river that guides individuals toward a life brimming with blessings and spiritual richness.\n' +
+                    '\n' +
+                    '**Bearer of Overflowing Abundance:** Sachiel\'s presence resonates with the concept of overflowing abundance that emanates from the divine source. This archangel embodies the essence of prosperity, inviting individuals to recognize that the universe is abundant and ready to provide for their needs. Sachiel\'s energy empowers seekers to align with the flow of divine blessings.\n' +
+                    '\n' +
+                    '**Guide of Generosity and Blessings:** At the core of Sachiel\'s essence lies the role of a guide who generously bestows blessings upon those who open themselves to divine grace. This archangel\'s energy encourages individuals to embrace the blessings that come their way and to share their abundance with others, fostering a cycle of generosity.\n' +
+                    '\n' +
+                    '**Steward of Positive Transformation:** Sachiel is revered as a steward of positive transformation and spiritual growth. This archangel\'s energy empowers individuals to shift their consciousness toward higher vibrations of prosperity and gratitude. Sachiel guides seekers to awaken their inner potential and create a life filled with purpose and abundance.\n' +
+                    '\n' +
+                    '**Guardian of Joyful Optimism:** Sachiel\'s presence radiates with the energy of joy and optimistic anticipation. This archangel encourages individuals to approach life with a positive attitude, understanding that their thoughts and intentions shape their reality. Sachiel\'s energy empowers seekers to infuse their actions with enthusiasm and a sense of positivity.\n' +
+                    '\n' +
+                    '**Bearer of Manifestation Magic:** Sachiel\'s energy resonates with the power of manifestation. This archangel guides individuals to harness their intentions and desires, aligning them with divine will. Sachiel empowers seekers to take intentional steps toward manifesting their dreams and creating a reality that aligns with their soul\'s purpose.\n' +
+                    '\n' +
+                    '**Guide of Spiritual Expansion:** Sachiel serves as a guide of spiritual expansion and evolution. This archangel\'s energy encourages seekers to embark on a journey of self-discovery, embracing their unique gifts and talents. Sachiel\'s presence empowers individuals to grow both spiritually and materially, aligning with their soul\'s purpose.\n' +
+                    '\n' +
+                    '**The Golden Flow of Sachiel\'s Blessings:** Sachiel\'s presence is like a golden stream that carries the blessings of the universe to those who are open to receive. As individuals invite Sachiel\'s guidance, they embark on a journey of abundance, prosperity, and inner transformation. In the grand symphony of the cosmos, Sachiel\'s message of blessings and abundance continues to resonate, guiding souls toward a deeper connection with the divine and a life enriched by the infinite blessings of the universe.'
+            }
+
+            localStorage.setItem('angel', JSON.stringify(angel))
+            localStorage.setItem('zodiac-sign', JSON.stringify(zodiac))
+            localStorage.setItem('zodiac-name', JSON.stringify(namea))
+            if(namea !== '' && dob !== '' && zodiac1 !== ''){
+                window.location.href = 'Calculate-Your-Angels.html'
+
+            }
+            //window.location.href = 'Calculate-Your-Angels.html'
+
+        })
+    </script>
+</body>
+</html>

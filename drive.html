@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Numerology Calculator</h1>
+    <form id="numerology-form">
+        <label for="birthdate">Birth Date (YYYY-MM-DD):</label>
+        <input type="date" id="birthdate" required>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+        <label for="image">Upload Image (PNG, JPEG):</label>
+        <input type="file" id="image" accept="image/png, image/jpeg" required>
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="results"></div>
+    <button id="generate-pdf" style="display:none;">Download PDF</button>
+
+    <script>
+        let imgData = '';
+
+        document.getElementById('image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                imgData = reader.result; // Get the Base64 string
+            };
+            reader.readAsDataURL(file); // Convert to Base64
+        });
+
+        document.getElementById('numerology-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const birthDate = document.getElementById('birthdate').value;
+            const name = document.getElementById('name').value;
+
+            const lifePathNumber = calculateLifePath(birthDate);
+            displayResults(lifePathNumber, name);
+        });
+
+        function calculateLifePath(birthDate) {
+            const dateParts = birthDate.split('-');
+            const total = dateParts.reduce((sum, part) => sum + part.split('').reduce((a, b) => a + parseInt(b), 0), 0);
+            return reduceToSingleDigit(total);
+        }
+
+        function reduceToSingleDigit(num) {
+            while (num > 9) {
+                num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
+            return num;
+        }
+
+        function displayResults(lifePathNumber, name) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<h2>Your Numerology Report</h2>
+                                    <p>Name: ${name}</p>
+                                    <p>Life Path Number: ${lifePathNumber}</p>`;
+            document.getElementById('generate-pdf').style.display = 'block';
+        }
+
+        document.getElementById('generate-pdf').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const lifePathNumber = calculateLifePath(document.getElementById('birthdate').value);
+            generatePDF(name, lifePathNumber);
+        });
+
+        function generatePDF(name, lifePathNumber) {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+
+            // Add the uploaded image
+            if (imgData) {
+                pdf.addImage(imgData, 'PNG', 10, 10, 50, 50); // Adjust position and size as needed
+            }
+
+            pdf.setFontSize(24);
+            pdf.text('Your Numerology Report', 10, 70); // Adjust Y coordinate
+            pdf.setFontSize(18);
+            pdf.text(`Name: ${name}`, 10, 90); // Adjust Y coordinate
+            pdf.text(`Life Path Number: ${lifePathNumber}`, 10, 100); // Adjust Y coordinate
+
+            // Customize more with different styles
+            pdf.setFontSize(14);
+            pdf.text('Thank you for using our numerology calculator!', 10, 110); // Adjust Y coordinate
+            
+            pdf.save('numerology-report.pdf');
+        }
+    </script>
+</body>
+</html>

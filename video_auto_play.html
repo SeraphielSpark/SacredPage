@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebRTC Video Chat</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebRTC Video Chat</h1>
+    <div>
+        <video id="localVideo" autoplay playsinline muted></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+    <button id="startButton">Start Video Chat</button>
+    <button id="stopButton">Stop Video Chat</button>
+
+    <script>
+        let localStream;
+        let pc1, pc2;
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+
+        document.getElementById('startButton').onclick = startVideoChat;
+        document.getElementById('stopButton').onclick = stopVideoChat;
+
+        async function startVideoChat() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                localVideo.srcObject = localStream;
+
+                // Create PeerConnection for both peers
+                pc1 = new RTCPeerConnection();
+                pc2 = new RTCPeerConnection();
+
+                localStream.getTracks().forEach(track => pc1.addTrack(track, localStream));
+
+                pc1.onicecandidate = event => {
+                    if (event.candidate) {
+                        pc2.addIceCandidate(event.candidate);
+                    }
+                };
+
+                pc2.onicecandidate = event => {
+                    if (event.candidate) {
+                        pc1.addIceCandidate(event.candidate);
+                    }
+                };
+
+                pc2.ontrack = event => {
+                    if (event.streams && event.streams[0]) {
+                        remoteVideo.srcObject = event.streams[0];
+                    }
+                };
+
+                const offer = await pc1.createOffer();
+                await pc1.setLocalDescription(offer);
+                pc2.setRemoteDescription(offer);
+
+                const answer = await pc2.createAnswer();
+                await pc2.setLocalDescription(answer);
+                pc1.setRemoteDescription(answer);
+
+            } catch (error) {
+                console.error('Error starting video chat:', error);
+            }
+        }
+
+        function stopVideoChat() {
+            pc1.close();
+            pc2.close();
+            localStream.getTracks().forEach(track => track.stop());
+            localVideo.srcObject = null;
+            remoteVideo.srcObject = null;
+        }
+    </script>
+</body>
+</html>

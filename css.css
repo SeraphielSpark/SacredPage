@@ -1,0 +1,349 @@
+body {
+    background-color: #040d12;
+    margin: 0;
+}
+
+.p_first {
+    display: inline-block;
+    font-size: 29px;
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 700;
+    color: #217f9b;
+    margin-top: 25px;
+}
+
+.first-div {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-right: 0;
+    position: relative;
+}
+
+.first-button1 {
+    width: 250px;
+    cursor: pointer;
+    height: 60px;
+    color: darkblue;
+    font-style: inherit;
+    font-size: 20px;
+    font-family: "Gill Sans Ultra Bold Condensed";
+    background-color: inherit;
+    border-radius: 25px;
+    border: solid 1.5px #064d67;
+}
+
+section {
+    top: 0;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    background-color: #06242d;
+}
+
+ul {
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr ;
+}
+
+.first-li {
+    display: inline-block;
+    color: white;
+    margin-right: 40px;
+    font-size: 23px;
+}
+
+.third-div {
+    margin-top: 80px;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;   
+    
+    
+    width: 100%;
+    
+}
+
+.fa {
+    padding: 20px;
+    font-size: 26px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+* Add a hover effect if you want *
+.fa:hover {
+    opacity: 0.7;
+}
+
+* Set a specific color for each brand *
+
+* Facebook *
+.fa-facebook {
+    background: inherit;
+    color: white;
+}
+
+* Twitter *
+.fa-twitter {
+    background: inherit;
+    color: white;
+}
+
+.l12 {
+    display: inline-block;
+    margin-right: 3px;
+    font-size: 23px;
+    margin-left: 20px;
+}
+
+.button-container {
+    display: flex;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+.first-h3 {
+    font-size: 28px;
+    width: fit-content;
+    margin:  0px 0px 0px 0px;
+    display: flex;
+    flex-shrink: 1;
+}
+
+.under-div-3 {
+    color: white;
+    width: 100%;            
+    display: inline-block;
+    
+}
+
+.third-p {
+    display: flex;
+    flex-shrink: 1;
+    font-size: 24px;
+}
+
+.underline-div {
+    border: solid white 2.3px;
+    width: 200px;
+    display: flex;
+    flex-shrink: 1;
+}
+.im0{
+    width: 100%;
+}
+.swipe-container {
+    position: relative;
+    width: 800px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 400px 400px ;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 830px) {
+    .third-div {
+        display: grid;    
+        grid-template-columns:1fr 1fr;
+        grid-column-gap: 100px;
+    }
+    .swipe-container{
+        width: 400px;
+        
+        display: grid;
+        grid-template-columns: 400px ;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+}
+
+
+.second_h2{
+    display: flex;
+    flex-shrink: 1;
+}
+
+
+.div_for_container{
+    width: 100%; 
+    display: grid;
+     place-content: center;
+      place-items: center;
+       margin-top: 30px;
+}
+.next_container{
+    display: grid;
+    grid-template-columns: 80px 1fr 70px; 
+    width: 100%;
+}
+.swipe-content {
+    display: flex;
+    width: 300%;
+    height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.swipe-item {
+    flex: 0 0 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: opacity 0.15s;
+}
+
+.swipe-item:hover {
+    opacity: 0.6;
+}
+
+.th-div {
+   place-content: start;
+   place-items: start;
+   width: 800px;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    width: 100%;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+}
+
+.fth-div p {
+    width: 50%;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+    display: flex;
+    flex-shrink: 1;
+}
+
+.fth-div {
+    display: grid;
+    place-content: center;
+    place-items: center;
+    width: 100%;
+}
+
+.fth-div h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 23px;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+    color: white;            
+}
+
+
+
+.th-image {
+    width: 100%;
+}
+
+.th-div h2 {
+    width: fit-content;
+    color: white;
+    font-size: 25px;
+    
+}
+.th-div p{
+    width: fit-content;
+}
+.contain-all {
+    
+    
+    height: 230px;
+    
+}
+
+#swipeLeft {
+    
+    background-color: inherit;
+}
+
+#swipeRight {
+    background-color: inherit;
+}
+
+#swipeRight:hover,
+#swipeLeft:hover {
+    background-color: white;
+}
+
+.button-container {
+    display: flex;
+}
+
+.second-button {
+    width: 300px;
+    cursor: pointer;
+    height: 60px;
+    color: white;
+    font-style: inherit;
+    font-size: 20px;
+    font-family: "Gill Sans Ultra Bold Condensed";
+    background-color: inherit;
+    border-radius: 30px;
+    border: solid 2px #064d67;
+}
+
+.button-three {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 40px;
+    backdrop-filter: blur(-20px);
+    background-image: url('Ae6H.gif');
+    height: 80px;
+    vertical-align: top;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+    background-blend-mode:difference;
+    width: 300px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.second-button:hover {
+    opacity: 0.6;
+}
+@media (max-width: 480px) {
+    section{
+        display: none;
+    }
+    .third-div {
+        display: grid;    
+        grid-template-columns:1fr ;
+        
+    }
+    .next_container{
+        display: grid;
+        grid-template-columns: 1fr; 
+        width: 100%;
+    }
+    .next_container button{
+        display: none;
+    }
+    .swipe-content {
+        display: flex;
+        width: 300%;
+        height: 200px;
+        transition: transform 0.3s ease;
+    } 
+}        

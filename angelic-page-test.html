@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Showroom</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .progress-container {
+            background-color: aliceblue;
+            width: 400px;
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-text" class="progress-text"></div>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        let progress = 0;
+
+        function moveProgressBar() {
+            if (progress < 100) {
+                progress++;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `Progress: ${progress}%`;
+            } else {
+                clearInterval(interval); // Stop when it reaches 100%
+                progressText.textContent = "Loading Complete!";
+            }
+        }
+
+        const interval = setInterval(moveProgressBar, 450); // Adjust speed here
+    </script>
+</body>
+</html>

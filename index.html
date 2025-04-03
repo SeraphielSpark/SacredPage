@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #004080;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            height: 100px;
+            overflow-y:scroll ;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #2a7194;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #004080;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #004080;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00264d;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="logout">
+        Logout
+    </button>
+   
+    
+    <ul>
+       Created Products Links:
+            <li id="li">
+                
+            </li>
+        
+    </ul>
+
+    <h2>Add Product</h2>
+    <form id="myForm" enctype="multipart/form-data">
+        <label for="product_name">Product Name:</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <label for="product_type">Product Description:</label>
+        <input type="text" id="product_details" name="product_details" required>
+        <label for="product_price">Product Price:</label>
+        <select >
+            <option value="NGN">
+                NGN
+            </option>
+        </select>
+        
+        <input type="number" id="product_price" name="product_price" required>
+        <input type="file" name="file" id="file" style="margin-bottom: 5px;">
+        <p id="warning_signal" style="color: red; margin-top: 0; font-size: 12px;">
+
+        </p>
+        <progress id="uploadProgress" max="100" value="0" style="display: none;"></progress>
+        <span id="uploadStatus"></span>
+        <button id="submit_button" >Add Product</button>    
+    </form>
+
+<script>
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days  24  60  60  1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function recieve(){
+        fetch('http://localhost:3000/confirm')//'https://polarized-trail-diascia.glitch.me/confirm')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(file => {
+                console.log(file)
+            })
+        })
+    }
+    recieve()
+    document.getElementById('file').addEventListener('change', function(event){
+        const fileInput = event.target;
+        const file = fileInput.files[0]; // Get the first selected file    
+        // Check if a file is selected
+        if (file) {
+
+            const fileName = file.name; // Extract the filename
+            console.log("Selected filename:", fileName);
+            setCookie('file',fileName, 7)
+            if(fileName.includes('.png') || fileName.includes('.jpeg')){
+                alert('File Includes PNG or JPEG file')
+                document.getElementById('warning_signal').innerText =''
+                document.getElementById('submit_button').disabled = false;
+            }
+            else{
+                document.getElementById('warning_signal').innerText = `File Type Error: \n This file does not contain A PNG Or JPEG file`;
+                document.getElementById('submit_button').disabled = true;
+            }
+            alert(fileName)
+            
+        } else {
+            console.log("No file selected.");
+        }
+        
+    })
+
+    document.getElementById('logout').addEventListener('click', async function(){
+        await fetch('http://127.0.0.1:5000/logout')
+        window.location.reload()
+    })
+
+    fetch('http://localhost:3000/over')
+    .then(response => response.json())
+    .then(data =>{
+        data[0].names.forEach((listItem) => {
+        let list2 = listItem;
+        const index = list2.indexOf('/');
+        list2 = list2.split('/');
+        const name2 = list2[0];
+        const div = document.createElement('div');
+        const strong = document.createElement('a');
+        strong.innerText = name2.replace(/%20/g," ")
+        strong.href = listItem;
+        setCookie('name',name2.replace(/%20/g," "), 21 )
+        strong.target = '_blank'
+        div.appendChild(strong)
+        document.getElementById('li').appendChild(div);
+        const matchingItem = data[0].type.find(item => item.includes(`${listItem}:[details:`));
+        if (matchingItem) {
+            const regex = /\[details:(.?)\]/;
+            const match = matchingItem.match(regex);
+            if (match && match[1]) {
+                const extractedProductDetails = match[1];
+                console.log('Product Details:', extractedProductDetails);
+            } 
+            else {
+                console.error('Unable to extract product details')
+            }
+        } 
+        else {
+            console.error('Item not found');
+        }
+    })
+})    
+
+document.getElementById('myForm').addEventListener('submit',function(){
+    event.preventDefault();
+    const form = document.getElementById('myForm');
+    const product_name = document.getElementById('product_name').value;
+    const product_details = document.getElementById('product_details').value;
+    const formData = new FormData(this);
+    const name = 'j';
+    const artist = 's';
+    const year = 'j';
+    const genre = 'j';
+    const uploadObject = { name, artist, year, genre };
+    formData.append('uploadObject', JSON.stringify(uploadObject));
+    const uploadProgress = document.getElementById('uploadProgress');
+    const uploadStatus = document.getElementById('uploadStatus');
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:3000/upload', true);
+
+        xhr.upload.onprogress = function(event) {
+            if (event.lengthComputable) {
+            const percentCompleted = Math.round((event.loaded / event.total)  100);
+            uploadProgress.value = percentCompleted;
+            uploadStatus.textContent = `Uploading... ${percentCompleted}%`;
+            }
+        };
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+            uploadStatus.textContent = 'File uploaded successfully.';
+            setTimeout(() => {
+                uploadStatus.textContent = '';
+                uploadProgress.value = 0;
+                recieve()
+                document.getElementById('myForm').reset(); // Reset the form
+            }, 3000);
+            }
+        };
+
+        xhr.onerror = function() {
+            uploadStatus.textContent = 'File upload failed.';
+        };
+
+        xhr.send(formData);
+
+    const formData2 = new URLSearchParams();
+    formData2.append('product_name', product_name);
+    formData2.append('product_details', product_details);
+
+    
+    fetch(`http://localhost:3000/submit`,{
+        method: 'POST',
+        body:formData2,
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+    .then(response => response.json())
+    .then(message => {
+            let nip = message.link.replace('http://localhost:3000/', '')
+            nip = nip.replace(/%20/g, " ")
+            window.location.reload()
+        })
+        .catch(error => console.error('Error:', error));        
+})
+    </script>
+</body>
+</html>

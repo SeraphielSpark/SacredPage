@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            background-color: black;
+            color: navajowhite;
+        }
+        p{
+            font-size: 21.98px;
+            font-weight: 500;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        h1{
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <h1 ></h1>
+    <img>
+    <h2>
+
+    </h2>
+
+    <p>
+
+    </p>
+</div>
+<script>
+    window.onload = function() {
+    // Retrieve the 'astrology' value from localStorage
+    var astrologyData = localStorage.getItem('astrology');
+
+    if (astrologyData !== null) {
+        document.title = JSON.parse(astrologyData);
+    } else {
+        // Handle the case where 'astrology' key is not found in localStorage
+        // You can provide a default value or take other actions here
+        console.log("'astrology' data not found in localStorage");
+    }
+
+    // Retrieve the 'src' value from localStorage and set it as the 'src' attribute of an 'img' element
+    var imgSrc = localStorage.getItem('srcnow1');
+    var story = localStorage.getItem('story1');
+
+    if (imgSrc !== null) {
+        document.querySelector('img').src = JSON.parse(imgSrc);
+        console.log(JSON.parse(imgSrc))
+    } else {
+        // Handle the case where 'src' key is not found in localStorage
+        // You can provide a default image source or take other actions here
+        console.log("'src' data not found in localStorage");
+    }
+    if (story !== null) {
+        document.querySelector('p').innerHTML =`<h2> ${JSON.parse(story)}</h2>`;
+        console.log(JSON.parse(story))
+    } else {
+        // Handle the case where 'src' key is not found in localStorage
+        // You can provide a default image source or take other actions here
+        console.log("'src' data not found in localStorage");
+    }
+}
+
+</script>
+</body>
+</html>

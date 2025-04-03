@@ -1,0 +1,217 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Physics Pratical On Friction</title>
+    <style>
+        {
+            font-size: 17px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 500;
+        }
+        #hide_bar{
+            border: none;
+            background-color: transparent;
+            transition: all 0.15s;    
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            letter-spacing: 1px;
+        }
+
+        #hide_bar:hover{
+            scale: 1.1;   
+            opacity: 0.7;
+            letter-spacing: 2px;
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+        .force_prompt{
+            text-align: center;
+            background-color: #fafadc;
+            font-size: 16px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 550;
+
+        }
+        .force_prompt button{
+            font-size: 16px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 550;
+            color: red;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+        }
+        .first_block{
+            width: 100px;
+            height: 30px;
+            border: 2px black solid;
+            border-radius: 2px;
+        }
+        .second_block{
+            width: 300px;     
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 2px;
+            margin-top: 1px;
+        }
+    </style>
+</head>
+<body >
+    <button id="hide_bar">
+        Show The Control Bars
+        </button>
+        <h3 style="display: flex; flex-direction: column; margin-right: 20px; margin-bottom: 20px;" id="prompt">
+            Enter The Following Prompt
+        </h3>
+        <div  id="bar" >
+            <div style="display: flex; flex-direction: column; margin-right: 20px; vertical-align: top;" >
+                <label for="mass" style="display: block;"> Weight (N)
+                    <input placeholder="Mass (kg)" id="mass" style="margin-bottom: 10px; display: block;">
+                </label>
+                <button id="enter" style="width: 100px; height: 40px; text-align: center;  background-color: #636202;cursor: pointer; color: white; border: none; font-size: 17px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600;">Enter</button>
+            </div>
+            <div style="display: flex; flex-direction: column; margin-right: 20px; vertical-align: top;">
+                <h2 style="margin-bottom: 0; margin-top: 0;">
+                    Coefficent Of The Friction
+                </h2>
+                <input type="number" placeholder="Enter The Coefficent Of The Friction" id="coefficient" style="margin-bottom: 10px;">
+                <button class="button1" id="enter_co" style="height: 40px; text-align: center;  background-color: #182946;cursor: pointer; color: white; border: none; font-size: 17px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 600;">
+                    Calculate
+                </button>
+
+            </div>
+            
+        </div>
+    
+    <section class="body" style="position: relative; " id="body">
+        <div id="normal_force">
+            N
+        </div>
+        <div style="margin-bottom: 5px;">
+            |
+        </div>
+        <div style="display: grid; grid-template-columns: 90px 1fr 90px;">
+            <div >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                </svg>
+                <p style="display: inline-block; margin: 0 0 0 0;" id="friction">
+                Ff</p>
+            </div>
+            <div class="first_block">
+
+            </div>
+            <div style="text-align: end;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                </svg>
+                <div style="display: inline-block; margin:  0 0 0 0; position: relative;" id="force_applied">
+                Fa</div>
+        </div>
+        </div>
+        <div class="second_block">
+
+        </div>
+        <div id="k">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+            </svg>
+        
+        </div>
+        <div id="weight_e">
+            W
+        </div>
+        <button id="game" style="border: none; font-size: 17px; font-family: Verdana, Geneva, Tahoma, sans-serif; background-color: transparent; cursor: pointer;">
+            Play The Friction Game
+        </button>
+    </section>
+    <script>
+        let b  ;
+        let credit = 0;
+        const force_style  = document.getElementById('force_applied').getBoundingClientRect()
+        document.getElementById('enter').addEventListener('click', function(){
+            const mass_val = document.getElementById('mass').value;
+            document.getElementById('normal_force').innerHTML =`N = ${Math.floor((mass_val)  9.81)}N`
+            document.getElementById('weight_e').innerHTML = `W = ${Math.floor((mass_val)  9.81)}N`
+        })
+        document.getElementById('enter_co').addEventListener('click', function(){
+            const coefficent_val = document.getElementById('coefficient').value;
+            const normalV = document.getElementById('normal_force').innerText.replace('N =', '');
+            document.getElementById('friction').innerText = `Ff = ${coefficent_val parseInt(normalV)}`;
+            document.getElementById('force_applied').innerText = `Fa = ${2  (coefficent_val parseInt(normalV))}`;
+
+
+        })
+        document.getElementById('game').addEventListener('click', function(){
+            
+            if(document.getElementById('game').innerText ==='Play The Friction Game'){
+                document.getElementById('force_applied').innerText = `F =${credit}N`
+                const div = document.createElement('div');
+                div.style.width = '150px';
+                div.style.position = 'absolute';
+                
+                console.log(force_style.top, force_style.left)
+                div.style.top = '-30px';
+                div.style.right = '-180px';
+                div.classList.add('force_prompt')
+                const p = document.createElement("p");
+                p.innerText = 'Tap The Right Arrow To Increase The Force Appiled Against The Force Friction';
+                const button = document.createElement('button');
+                const span = document.createElement('span');
+                span.innerText = 'ok, get it';
+                document.getElementById('force_applied').appendChild(div)
+                div.appendChild(p)
+                div.appendChild(button)
+                button.appendChild(span)
+
+                button.addEventListener('click', function(){
+                    div.style.display = 'none';
+                })
+
+                
+                if(document.getElementById('game').innerText === 'Play The Friction Game'){
+                        document.addEventListener('keydown', (e)=>{
+                            
+                            if(e.key === 'ArrowRight'){
+                                credit +=10;
+                                document.getElementById('force_applied').innerText = `F =${credit}N`;
+                                const uto = document.getElementById('friction').innerText.replace('Ff =','');
+                                if(credit>parseInt(uto)){
+                                    const remain = credit - parseInt(uto);
+                                    document.getElementById('body').style.left = remain
+                                }
+                            }
+                        })
+                }    
+                
+                
+            }
+            
+        })
+        document.getElementById('bar').style.display = 'none';
+        document.getElementById('prompt').style.display = 'none';
+        document.getElementById('hide_bar').addEventListener('click', function(){
+            if (document.getElementById('bar').style.display === 'none'){
+                document.getElementById('bar').style.display = 'flex';
+                document.getElementById('bar').style.flexDirection ='row';
+                document.getElementById('prompt').style.display = 'block';
+
+            }
+            else if (document.getElementById('bar').style.display === 'flex'){
+                document.getElementById('bar').style.display = 'none'
+                document.getElementById('prompt').style.display = 'none';
+            }
+
+        })
+    </script>
+</body>
+</html>

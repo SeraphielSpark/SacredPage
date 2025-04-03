@@ -1,0 +1,388 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image, Video, Audio Viewer/Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.0/lame.min.js"></script>
+    
+</head>
+<style>
+    .playlist, .deck {
+      border: 2px dashed #ccc;
+      padding: 10px;
+      margin: 10px;
+      min-height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .playlist button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .deck {
+      background: #f9f9f9;
+    }
+    .highlight {
+      border-color: #007bff;
+    }
+    body{
+        background-color: hwb(232 14% 64%);
+    }
+    #music-list button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #music-list button:hover {
+      background-color: #0056b3;
+    }
+    #player-container {
+      margin-top: 20px;
+    }
+    .second-div{
+        overflow: visible;
+        overflow-y: scroll;
+
+    }
+.first-div{
+    display: grid;
+    width: 100%;
+    height: 40px;
+    place-content: center;
+    place-items: center;
+}
+
+@keyframes main {
+    0%{
+        /*transform: rotateX(10deg);*/
+        transform: rotateZ(0deg);
+    }
+    25%{
+        transform: translateZ(90deg);
+    }
+    50%{
+        /*transform: rotateX(45deg);*/
+        transform: rotateZ(180deg);
+    }   
+    75%{
+        /*transform:rotateX(-80deg);*/
+        transform: rotateZ(270deg);
+    }
+    100%{
+        /*transform: rotateX(-115deg);*/
+        transform: rotateZ(360deg);
+    }
+}
+.middle-gear button :hover{
+    background-color: black;
+    color: black;
+}
+.middle-gear button{
+    border: none;
+    outline: none;
+    
+    color: white;
+    border-right: 2px solid white;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.sliderk {
+    margin-top: 10px;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 100px 1fr 100px;
+}
+i p{
+    display: inline-block;
+}
+i{
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+.slider{
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+.slider input{ 
+    margin-top: 30px;
+    width: 200px;  
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none; 
+    writing-mode: bt-lr; /* Vertical slider */
+    transform: rotate(0); /* Rotate for vertical alignment */
+    background: white;
+    border-radius:0;
+    outline: none;
+    cursor: pointer;
+    
+}
+
+    
+    .slider input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 5px;
+      height: 40px;
+      background-color:black;
+      border-radius: 1px;
+      border: 2px solid black;
+      cursor: pointer;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    }
+
+.div1{
+    animation-name: main;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+    .volume-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    
+    .volume-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 150px;
+      height: 4px;
+      writing-mode: bt-lr; /* Vertical slider */
+      transform: rotate(-90deg); /* Rotate for vertical alignment */
+      background: white;
+      border-radius:0;
+      outline: none;
+      cursor: pointer;
+    }
+    .mixer-disc{
+    -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 2px;
+      
+       /* Rotate for vertical alignment */
+      background: white;
+      border-radius:0;
+      outline: none;
+      cursor: pointer;
+
+    }
+    button{
+        cursor: pointer;
+    }
+    
+   .button-div button:hover{
+    background-color: hwb(210 14% 64%);
+   }
+   .button-div button{
+        background-color: transparent;
+    }
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 4px;
+      height: 40px;
+      background:rgb(48, 48, 48);
+      border-radius:0;
+      cursor: pointer;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #007bff;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    }
+    .second-div i {
+        cursor: pointer;
+    }
+    .second-div i:hover{
+        opacity: 0.6;
+        box-shadow: 0px 10px 10px 0px black;
+        zoom: 140%;
+    }
+    .mixer-disc::-moz-range-thumb{
+        width: 20px;
+      height: 20px;
+      background: #007bff;
+      border-radius: 0;
+      cursor: pointer;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    
+    }
+
+
+
+</style>
+<body>
+    <button id="dark">
+        Dark Mode
+    </button>
+    <div class="first-div">
+        <h2>
+            Image, Video, Audio Viewer/Player
+        </h2>
+        
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 200px 1fr; width: 100%;column-gap: 20px;">
+        <div style="width: 100%; border: 2px black solid; display: grid; place-content:start;place-items: start; grid-template-columns: 180px 1fr;">
+            <div style="width: 120px; ">
+               <div class='div1' style="margin-top: 20px; width: 100%; border: 2px solid white ; height: 120px; border-radius: 60px; background-image: url(png-clipart-disc-jockey-djcity-japan-remix-dj-mix-music-record-player-miscellaneous-black.png);background-position:1% 60%; background-blend-mode: hard-light; color: black; display: grid; place-content: center; place-items: center;">
+                    <div style="background-color:white;  width: 50px;height: 50px;border-radius: 25px;">
+
+                    </div>
+                    <h3 style="width: 100%; display: grid;  place-content: center; color: lightgray;">
+                        Disc 1
+                    </h3>
+                </div>
+                
+            </div>
+            <div id="deck1" style="height: 100%; width: 100%;margin-top: 10px; display: grid; place-content: center;">
+                <p></p>
+                <h3 id="disc-name1" style="width:100%"></h3>
+                <input id="disc1-mixer" type="range" value="0" class="mixer-disc" style="width:100%;">
+                <div class="button-div" style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; width: 100%; column-gap: 20px;">
+                    <button style="width:100px;  border: none;" id="playDisc1">
+                        <i class="fa fa-play"></i>
+                    </button>
+                    <button style="width:100px;  border: none;" id="pauseDisc1">
+                        <i class="fa fa-pause"></i>
+                    </button>
+                    <button style="width:100px;  border: none;" id="stopDisc1">
+                        <i class="fa fa-square"></i>
+                    </button>
+                </div> 
+            </div>
+        </div>
+        <div class="middle-gear" style=" border:1px solid black; display: grid; width: 100%;  ">
+            <div style="display: grid; place-content: center; place-items: center; width: 100%; color: white; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: 500;">
+                Dj Set Pyro
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;row-gap: 10px; width: 100%; place-content: center; place-items: center;">
+                <button>
+                    1
+                </button>
+                <button>
+                    2
+                </button>
+                <button>
+                    3
+                </button>
+                <button>
+                    4
+                </button>
+                <button>
+                    5
+                </button>
+                <button>
+                    6
+                </button>
+                <button>
+                    7
+                </button>
+                <button>
+                    8
+                </button>
+                <button>
+                    9
+                </button>
+            </div>
+        </div>
+       <div style="width:100%; display: grid; place-content: end;place-items: end; grid-template-columns: 1fr 180px; border: 2px black solid;  padding-top: 20px; padding-bottom: 20px;">
+        <div id="deck2" style="height: 100%; width: 100%;margin-top: 10px;  display: grid; place-content: center;">
+            <p></p>
+            <h3 id="disc-name2"></h3> 
+            <input id="disc2-mixer" type="range" value="0" class="mixer-disc" style="width: 100%">
+            <div class="button-div" style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 20px;">
+                <button style="width:100px;  border: none;" id="playDisc2">
+                    <i class="fa fa-play"></i>
+                </button>
+                <button style="width:100px;  border: none;" id="pauseDisc2">
+                    <i class="fa fa-pause"></i>
+                </button>
+                <button style="width:100px;  border: none;" id="stopDisc2">
+                    <i class="fa fa-square"></i>
+                </button>
+            </div> 
+        </div>
+            
+        <div class='div1' style="width: 120px; margin-right: 30px; padding-bottom: -40px; border: 2px solid white ; height: 120px; border-radius: 60px; background-image: url(png-clipart-disc-jockey-djcity-japan-remix-dj-mix-music-record-player-miscellaneous-black.png);background-position:1% 60%; background-blend-mode: hard-light; color: black; display: grid; place-content: center; place-items: center;">
+            <div style="background-color: rgba(245, 245, 245, 0.598);width: 50px;height: 50px;border-radius: 25px;">
+
+            </div>
+            <h3 style="width: 100%; display: grid; place-content: center; color: lightgray;">
+                Disc 2
+           </h3>
+            </div>            
+        </div>
+    </div>
+    
+<div style="display: grid;grid-template-columns: 1fr 200px; ">
+    <div class="slider">
+        <label for="mixer">Mix Between DJ 1 and DJ 2:</label>
+        <input type="range" id="mixer" min="0" max="100" value="50">        
+    </div>
+
+   
+</div>
+    <div style="display: grid; grid-template-columns: 200px 1fr 200px;">
+        <div  style="display: grid; background-color: black; margin-top: 20px; color: white;">
+            <h4 style="display: flex; width: 100%;  justify-content: center;">Disc 1 Volume</h4>
+            <div class="slider-container">  
+                <div class="volume-container">
+                    <input type="range" min="0" max="100" value="50" class="volume-slider" id="Disk-1" orient="vertical">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="second-div" >
+            <div style="background-color: white; width:100%; height: 245px; margin-top: 20px">
+                <input type="file" id="file-input" webkitdirectory multiple>
+                <div id="music-list"></div>
+                <div id="player-container">
+                    <audio id="audio-player" controls style="width: 100%;"></audio>
+                </div>
+            </div>
+            <div  style="width: 100%; margin-top: px; display: grid; place-content: center; place-items: center;">
+                <i class="fa fa-circle" id="recording" style="color: red; text-decoration: none; "><p id="record" style="color: transparent;">Start Recording</p></i>
+            </div>
+        </div>
+        <div  style="display: grid; background-color: black; margin-top: 20px; color: white; height: 270px;">
+            <h4 style="display: flex; width: 100%;  justify-content: center;">Disc 2 Volume</h4>
+            <div class="slider-container">
+                <div class="volume-container">
+                    <input type="range" min="0" max="100" value="50" class="volume-slider" id="Disk-2" orient="vertical">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.1.2/lame.min.js"></script> <!-- MP3 Encoder -->
+    <script src="audio-control.js"></script>
+    <script src="fileControl.js"> </script>
+    <script>
+        </script>
+</body>
+</html>

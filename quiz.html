@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indices Quiz</title>
+<style>
+  li{
+    width: 40px;
+
+  }
+  p{
+    margin-top: 0;
+    
+    
+  }
+/ CSS styles /
+body {
+  font-family: Arial, sans-serif;
+  height: 600px;
+}
+
+.container{  
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#div{
+  
+  border-radius: 20px;
+  border: solid black 1px;
+  padding: 20px 60px 20px 60px;
+  background-color: rgb(0, 0, 0);
+  background-blend-mode: lighten;
+  backdrop-filter: blur(-20px);
+  box-shadow: 10px 10px 10px 15px rgb(0,0, 1);
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1 {
+  color: white;
+}
+
+#quiz {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 80px;
+  margin-bottom: 10px;
+}
+.p1{
+  font-size: 13px;
+}
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 20px;
+}
+label{
+  margin-right: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="div">
+    <h1>Indices Quiz</h1>
+    <p>Test your knowledge on indices!</p>
+    <div id="quiz">
+      <!-- Questions will be dynamically inserted here -->
+    </div>
+    <button onclick="previousButton()">Previous</button>
+    <button onclick="nextButton()">Next</button>
+    <button  onclick="resultSolve()">Submit Answers</button>
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+// JavaScript code
+var answer = 0;
+const questionBank = [
+    { 
+        question: "What is the index notation for 3^4?", 
+        correctAnswer: "81", 
+        options: ["81", "27", "64", "16"]
+    },
+    { 
+        question: "Simplify 2^5  2^3.", 
+        correctAnswer: "256", 
+        options: ["32", "64", "128", "256"]
+    },
+    { 
+        question: "Evaluate 5^3 ÷ 5^2.", 
+        correctAnswer: "5", 
+        options: ["25", "10", "5", "15"]
+    },
+    { 
+        question: "Expand (2^3)^4.", 
+        correctAnswer: "4096", 
+        options: ["1600", "3321", "1024", "4096"]
+    },
+    { 
+        question: "Simplify (a^2b^3)^2.", 
+        correctAnswer: "a^4b^6", 
+        options: ["a^2b^3", "a^4b^6", "a^6b^9", "a^8b^12"]
+    },
+    { 
+        question: "Find the value of x if 2^x = 16.", 
+        correctAnswer: "4", 
+        options: ["2", "4", "8", "16"]
+    },
+    { 
+        question: "What is the index notation for 8^(1/3)?", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Evaluate 5^4 ÷ 5^2.", 
+        correctAnswer: "25", 
+        options: ["5", "10", "25", "50"]
+    },
+    { 
+        question: "Solve for x if 2^(3x) = 64.", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Simplify (3^2)^(-2).", 
+        correctAnswer: "1/9", 
+        options: ["1/3", "1/6", "1/9", "1/12"]
+    },
+    { 
+        question: "Write 27 in index notation.", 
+        correctAnswer: "3^3", 
+        options: ["2^3", "3^2", "3^3", "3^4"]
+    },
+    { 
+        question: "Evaluate 2^4  3^2.", 
+        correctAnswer: "144", 
+        options: ["64", "81", "100", "144"]
+    },
+    { 
+        question: "What is the index notation for 16?", 
+        correctAnswer: "2^4", 
+        options: ["2^2", "2^3", "2^4", "2^5"]
+    },
+    { 
+        question: "Simplify (4^3)^(1/2).", 
+        correctAnswer: "8", 
+        options: ["2", "4", "6", "8"]
+    },
+    { 
+        question: "If a^3  a^5 = a^11, what is the value of a?", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Solve for x if 4^x = 256.", 
+        correctAnswer: "4", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Expand (ab)^2.", 
+        correctAnswer: "ab", 
+        options: ["a^2b^2", "ab", "a^2b", "ab^2"]
+    },
+    { 
+        question: "Evaluate 2^10 ÷ 2^7.", 
+        correctAnswer: "8", 
+        options: ["4", "6", "8", "10"]
+    },
+    { 
+        question: "Simplify (3^2)^3.", 
+        correctAnswer: "729", 
+        options: ["243", "512", "729", "1000"]
+    },
+    { 
+        question: "Write 125 in index notation.", 
+        correctAnswer: "5^3", 
+        options: ["5^2", "5^3", "5^4", "5^5"]
+    },
+    { 
+        question: "If b^6  b^(-2) = b^x, what is the value of x?", 
+        correctAnswer: "4", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Find the value of x if 10^x = 1000.", 
+        correctAnswer: "3", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Evaluate (2^3)^(-1).", 
+        correctAnswer: "1/8", 
+        options: ["1/6", "1/7", "1/8", "1/9"]
+    },
+    { 
+        question: "Simplify 4^5 ÷ 4^2.", 
+        correctAnswer: "1024", 
+        options: ["128", "256", "512", "1024"]
+    },
+    { 
+        question: "Write 81 in index notation.", 
+        correctAnswer: "3^4", 
+        options: ["3^2", "3^3", "3^4", "3^5"]
+    },
+    { 
+        question: "If c^2  c^(-3) = c^x, what is the value of x?", 
+        correctAnswer: "c^(-1)", 
+        options: ["c", "c^(-1)", "c^(-2)", "c^(-3)"]
+    },
+    { 
+        question: "Solve for x if 5^(2x) = 125.", 
+        correctAnswer: "3", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Expand (xy)^3.", 
+        correctAnswer: "x^3y^3", 
+        options: ["x^2y^2", "x^3", "xy^2", "x^3y^3"]
+    },
+    { 
+        question: "Evaluate (2^4)  (3^2).", 
+        correctAnswer: "144", 
+        options: ["64", "81", "100", "144"]
+    },
+    { 
+        question: "Write 32 in index notation.", 
+        correctAnswer: "2^5", 
+        options: ["2^3", "2^4", "2^5", "2^6"]
+    },
+    { 
+        question: "If d^4 ÷ d^(-2) = d^x, what is the value of x?", 
+        correctAnswer: "d^6", 
+        options: ["d", "d^2", "d^4", "d^6"]
+    },
+    { 
+        question: "Find the value of x if 3^x = 9.", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Simplify (5^3)^(-2).", 
+        correctAnswer: "1/125", 
+        options: ["1/25", "1/75", "1/100", "1/125"]
+    },
+    { 
+        question: "Evaluate 3^8 ÷ 3^4.", 
+        correctAnswer: "81", 
+        options: ["27", "36", "64", "81"]
+    },
+    { 
+        question: "Write 64 in index notation.", 
+        correctAnswer: "2^6", 
+        options: ["2^4", "2^5", "2^6", "2^7"]
+    },
+    { 
+        question: "If e^5 ÷ e^(-3) = e^x, what is the value of x?", 
+        correctAnswer: "e^8", 
+        options: ["e^2", "e^5", "e^8", "e^10"]
+    },
+    { 
+        question: "Solve for x if 7^x = 343.", 
+        correctAnswer: "3", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Expand (2ab)^2.", 
+        correctAnswer: "4a^2b^2", 
+        options: ["2a^2b^2", "4ab", "4a^2b^2", "8a^2b^2"]
+    },
+    { 
+        question: "Evaluate (3^3) ÷ (3^2).", 
+        correctAnswer: "3", 
+        options: ["2", "3", "4", "5"]
+    },
+    { 
+        question: "Write 216 in index notation.", 
+        correctAnswer: "6^3", 
+        options: ["4^3", "5^3", "6^3", "7^3"]
+    },
+    { 
+        question: "If f^6  f^(-2) = f^x, what is the value of x?", 
+        correctAnswer: "f^4", 
+        options: ["f^2", "f^3", "f^4", "f^5"]
+    },
+    { 
+        question: "Find the value of x if 6^x = 36.", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Simplify (4^2)^(-3).", 
+        correctAnswer: "1/256", 
+        options: ["1/64", "1/128", "1/192", "1/256"]
+    },
+    { 
+        question: "Evaluate 2^10 ÷ 2^5.", 
+        correctAnswer: "32", 
+        options: ["16", "24", "32", "40"]
+    },
+    { 
+        question: "Write 49 in index notation.", 
+        correctAnswer: "7^2", 
+        options: ["7^1", "7^2", "7^3", "7^4"]
+    },
+    { 
+        question: "If g^3 ÷ g^(-4) = g^x, what is the value of x?", 
+        correctAnswer: "g^7", 
+        options: ["g^1", "g^5", "g^7", "g^9"]
+    },
+    { 
+        question: "Solve for x if 8^x = 64.", 
+        correctAnswer: "2", 
+        options: ["1", "2", "3", "4"]
+    },
+    { 
+        question: "Expand (3xy)^2.", 
+        correctAnswer: "9x^2y^2", 
+        options: ["6x^2y^2", "9x^2", "6xy^2", "9x^2y^2"]
+    },
+    { 
+        question: "Evaluate (2^5) ÷ (4^2).", 
+        correctAnswer: "1/4", 
+        options: ["1/2", "1/3", "1/4", "1/5"]
+    },
+    { 
+        question: "Write 1000 in index notation.", 
+        correctAnswer: "10^3", 
+        options: ["10^2", "10^3", "10^4", "10^5"]
+    }
+];
+const quizContainer = document.getElementById("quiz");
+const submitButton = document.getElementById("submitBtn");
+const resultContainer = document.getElementById("result");
+let i = 0 ;
+const questionLists = document.createElement('div');
+const li = document.createElement('p');
+li.innerText = `${i})`
+const p = document.createElement('p');
+
+// Create checkboxes and labels for options A, B, C, and D
+const inputcheckA = document.createElement('input');
+inputcheckA.type = 'checkbox';
+inputcheckA.value = questionBank[i].options[0];
+const labelA = document.createElement('label');
+labelA.textContent = `A. ${questionBank[i].options[0]}`;
+const inputcheckB = document.createElement('input');
+inputcheckB.type = 'checkbox';
+inputcheckB.value = questionBank[i].options[1];
+const labelB = document.createElement('label');
+labelB.textContent = `B. ${questionBank[i].options[1]}`;
+const inputcheckC = document.createElement('input');
+inputcheckC.type = 'checkbox';
+inputcheckC.value = questionBank[i].options[2];
+const labelC = document.createElement('label');
+labelC.textContent = `C. ${questionBank[i].options[2]}`;
+const inputcheckD = document.createElement('input');
+inputcheckD.type = 'checkbox';
+inputcheckD.value = questionBank[i].options[3];
+const labelD = document.createElement('label');
+labelD.textContent = `D. ${questionBank[i].options[3]}`;
+
+p.textContent = questionBank[i].question;
+const p1 = document.createElement('p');
+p1.classList.add('p1')
+
+// Append elements to questionLists
+questionLists.appendChild(li);
+questionLists.appendChild(p);
+questionLists.appendChild(inputcheckA);
+questionLists.appendChild(labelA);
+questionLists.appendChild(inputcheckB);
+questionLists.appendChild(labelB);
+questionLists.appendChild(inputcheckC);
+questionLists.appendChild(labelC);
+questionLists.appendChild(inputcheckD);
+questionLists.appendChild(labelD);
+questionLists.appendChild(p1);
+
+// Add event listeners to checkboxes
+inputChange()
+// Append questionLists to the quizContainer
+console.log(questionLists.outerHTML)
+quizContainer.appendChild(questionLists)//.innerHTML = questionLists.outerHTML;
+
+function inputChange(){
+  inputcheckA.addEventListener('change', function(event){
+    
+      if (event.target.checked) {
+        console.log(`Option ${event.target.value} selected.`);
+        
+          if(event.target.value === questionBank[i].correctAnswer){
+            p1.innerText = 'This Is The Correct Answer';
+            answer +=1
+            p1.style.color = 'blue';
+          }
+          else{
+            p1.innerText = 'This Is The Wrong Answer';
+            p1.style.color = 'red';
+          }
+          
+        }
+     else {
+        console.log(`Option ${event.target.value} deselected.`);
+    
+    }
+  });
+    inputcheckB.addEventListener('change', function(event){
+      if (event.target.checked) {
+        console.log(`Option ${event.target.value} selected.`);
+        
+          if(event.target.value === questionBank[i].correctAnswer){
+            p1.innerText = 'This Is The Correct Answer'
+            p1.style.color = 'blue';
+            answer +=1
+          }
+          else{
+            p1.innerText = 'This Is The Wrong Answer';
+            p1.style.color = 'red';
+          }
+          
+        }
+     else {
+        console.log(`Option ${event.target.value} deselected.`);
+    
+    }
+  });
+    inputcheckC.addEventListener('change', function(event){
+      if (event.target.checked) {
+        console.log(`Option ${event.target.value} selected.`);
+        
+          if(event.target.value === questionBank[i].correctAnswer){
+            p1.innerText = 'This Is The Correct Answer'
+            p1.style.color = 'blue';
+            answer +=1
+          }
+          else{
+            p1.innerText = 'This Is The Wrong Answer';
+            p1.style.color = 'red';
+          }
+          
+        }
+     else {
+        console.log(`Option ${event.target.value} deselected.`);
+    }
+    });
+    inputcheckD.addEventListener('change', function(event){
+      if (event.target.checked) {
+        console.log(`Option ${event.target.value} selected.`);
+        
+          if(event.target.value === questionBank[i].correctAnswer){
+            p1.innerText = 'This Is The Correct Answer'
+            p1.style.color = 'blue';
+            answer +=1
+          }
+          else{
+            p1.innerText = 'This Is The Wrong Answer';
+            p1.style.color = 'red';
+          }
+          
+        
+         } else {
+        console.log(`Option ${event.target.value} deselected.`);
+    }
+    });
+
+} 
+function resultSolve(){
+  for(var i = 0; i<questionBank.length; i++){
+    resultContainer.innerText = `You Scored ${answer}/${i+1}`;
+  }
+}
+function previousButton(){
+  i--
+  li.innerText = `${i})`
+  inputcheckA.type = 'checkbox';
+  inputcheckA.value = questionBank[i].options[0];
+  labelA.textContent = `A. ${questionBank[i].options[0]}`;
+  inputcheckB.type = 'checkbox';
+  inputcheckB.value = questionBank[i].options[1];
+  labelB.textContent = `B. ${questionBank[i].options[1]}`;
+  inputcheckC.type = 'checkbox';
+  inputcheckC.value = questionBank[i].options[2];
+  labelC.textContent = `C. ${questionBank[i].options[2]}`;
+  inputcheckD.type = 'checkbox';
+  inputcheckD.value = questionBank[i].options[3];
+  labelD.textContent = `D. ${questionBank[i].options[3]}`;
+  p.textContent = questionBank[i].question;
+  p1.classList.add('p1')
+  
+  // Append elements to questionLists
+  questionLists.appendChild(li);
+  questionLists.appendChild(p);
+  questionLists.appendChild(inputcheckA);
+  questionLists.appendChild(labelA);
+  questionLists.appendChild(inputcheckB);
+  questionLists.appendChild(labelB);
+  questionLists.appendChild(inputcheckC);
+  questionLists.appendChild(labelC);
+  questionLists.appendChild(inputcheckD);
+  questionLists.appendChild(labelD);
+  questionLists.appendChild(p1);
+  inputChange()
+
+  // Add event listeners to checkboxes
+  // Append questionLists to the quizContainer
+  quizContainer.appendChild(questionLists)
+}
+function nextButton(){  
+  inputcheckA.checked = false;
+  inputcheckB.checked = false;
+  inputcheckC.checked = false;
+  inputcheckD.checked = false;
+  p1.innerText =''
+  i++
+  li.innerText = `${i})`
+  inputcheckA.type = 'checkbox';
+  inputcheckA.value = questionBank[i].options[0];
+  labelA.textContent = `A. ${questionBank[i].options[0]}`;
+  inputcheckB.type = 'checkbox';
+  inputcheckB.value = questionBank[i].options[1];
+  labelB.textContent = `B. ${questionBank[i].options[1]}`;
+  inputcheckC.type = 'checkbox';
+  inputcheckC.value = questionBank[i].options[2];
+  labelC.textContent = `C. ${questionBank[i].options[2]}`;
+  inputcheckD.type = 'checkbox';
+  inputcheckD.value = questionBank[i].options[3];
+  labelD.textContent = `D. ${questionBank[i].options[3]}`;
+  p.textContent = questionBank[i].question;
+  p1.classList.add('p1')
+  
+  // Append elements to questionLists
+  questionLists.appendChild(li);
+  questionLists.appendChild(p);
+  questionLists.appendChild(inputcheckA);
+  questionLists.appendChild(labelA);
+  questionLists.appendChild(inputcheckB);
+  questionLists.appendChild(labelB);
+  questionLists.appendChild(inputcheckC);
+  questionLists.appendChild(labelC);
+  questionLists.appendChild(inputcheckD);
+  questionLists.appendChild(labelD);
+  questionLists.appendChild(p1);
+  inputChange()
+
+  // Add event listeners to checkboxes
+  // Append questionLists to the quizContainer
+  quizContainer.appendChild(questionLists)
+}
+// Event listener function for checkbox change/function buildQuiz() {
+
+</script>
+</body>
+</html>

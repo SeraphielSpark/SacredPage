@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Example</title>
+</head>
+<body>
+    <form action="/process" method="post">
+        <label for="input_data">Enter Data:</label>
+        <input type="text" id="input_data" name="input_data" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const inputElement = document.getElementById('input_data');
+            const inputValue = inputElement.value.trim();
+
+            if (inputValue === '') {
+                event.preventDefault();
+                alert('Please enter a value before submitting.');
+            } else {
+                showAlert(inputValue);
+            }
+        });
+
+        const showAlert = function(result) {
+            if (result === 'correct') {
+                alert('Input is correct! Redirecting to astrology page.');
+                window.location.href = 'astrology.html'
+
+            } else {
+                alert('Input is wrong. Redirecting to text-to-speech page.');
+            }
+        };
+    </script>
+</body>
+</html>

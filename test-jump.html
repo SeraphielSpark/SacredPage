@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bouncing Animation</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .jump-box {
+            height: 60px;
+            width: 60px;
+            border: solid 2px white;
+            background-color: white;
+            border-radius: 30px;
+            position: absolute;
+            bottom: 0;
+        }
+        .shoot-box{
+            height: 20px;
+            width: 20px;
+            border: solid 2px white;
+            background-color: white;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="my-div" class="jump-box"></div>
+<script>
+    const my_div_jump = document.getElementById('my-div');
+    const jumpBoxes = [];
+
+    function createJumpBox(id, rightValue, bottomValue) {
+        const jumpBox = document.createElement('div');
+        jumpBox.id = id;
+        jumpBox.className = 'jump-box';
+        jumpBox.style.right = rightValue + 'px';
+        jumpBox.style.bottom = bottomValue + 'px';
+        document.body.appendChild(jumpBox);
+        jumpBoxes.push(jumpBox);
+    }
+
+    createJumpBox('my-div1', 20, 0);
+    createJumpBox('my-div2', 80, 0); //// Add more jump boxes as needed
+    createJumpBox('my-div3', 140, 0);
+
+    let num1 = 20;
+    let num2 = 80;
+    let num3 = 140;
+    let my_div1 = document.getElementById('my-div1');
+    let my_div2 = document.getElementById('my-div2');
+    let my_div3 = document.getElementById('my-div3');
+    function new1(){
+        num1+=10;
+        num2+=10;
+        num3+=10;
+    }
+        setInterval(new1 , 100)
+    function timeing(){
+        const computedStyle = getComputedStyle(my_div1);
+        const rightValue = computedStyle.right;
+        const leftValue = computedStyle.left.replace('px', '')
+        console.log(rightValue, leftValue);
+
+
+        moveOther()
+    }
+        setInterval(timeing, 100)
+      function moveOther(){
+          my_div1.style.right = num1 +'px'
+          my_div2.style.right = num2 +'px'
+          my_div3.style.right = num3 +'px'
+
+    }
+
+
+
+    let isJumping = false;
+    let y1 = 400;
+    let x1 = 0;
+
+    function jump() {
+        if (!isJumping) {
+            isJumping = true;
+            const jumpInterval = setInterval(() => {
+                y1 -= 20; // Increased speed
+                my_div_jump.style.top = y1 + 'px';
+                if (y1 <= 200) {
+                    clearInterval(jumpInterval);
+                    fall();
+                }
+            }, 50); // Faster interval
+        }
+    }
+
+    function fall() {
+        const fallInterval = setInterval(() => {
+            y1 += 20; // Increased speed
+            my_div_jump.style.top = y1 + 'px';
+            if (y1 >= 700) {
+                clearInterval(fallInterval);
+                isJumping = false;
+            }
+        }, 50); // Faster interval
+    }
+
+    document.addEventListener('keydown', (event) => {
+        console.log('Key pressed:', event.key);
+
+        switch (event.key) {
+            case 'ArrowRight':
+                moveRight();
+                break;
+            case 'e':
+                shoot()
+
+                break
+            case 'ArrowLeft':
+                x1 -= 10;
+                my_div_jump.style.left = x1 + 'px';
+                break;
+            case 'ArrowUp':
+            case 'Control':
+                jump();
+                break;
+        }
+    });
+   function shoot() {
+        const shootBox = document.createElement('div');
+        shootBox.className = 'shoot-box';
+        shootBox.id = 'shoot_div'
+        shootBox.style.left = x1 + 'px';
+        my_div_jump.appendChild(shootBox);
+
+        let num4 = x1; // Set initial position for the shooting box
+        const moveInterval = setInterval(() => {
+            num4 += 10;
+            shootBox.style.left = num4 + 'px';
+            if (num4 >= window.innerWidth) {
+                clearInterval(moveInterval);
+                document.body.removeChild(shootBox);
+            }
+        }, 100);
+    }
+
+
+     function checkCollision(element1, element2) {
+        const rect1 = element1.getBoundingClientRect();
+        const rect2 = element2.getBoundingClientRect();
+
+        return (
+            rect1.left < rect2.right &&
+            rect1.right > rect2.left &&
+            rect1.top < rect2.bottom &&
+            rect1.bottom > rect2.top
+        );
+    }
+
+    function checkCollisions() {
+        jumpBoxes.forEach(jumpBox => {
+            const isColliding = checkCollision(jumpBox, my_div_jump.children);
+            if (isColliding) {
+                console.log('Collision detected!');
+            }
+        });
+    }
+    setInterval(checkCollisions, 100)
+    let animationFrameId;
+
+    function moveRight() {
+        cancelAnimationFrame(animationFrameId);
+        let currentX = x1;
+        const targetX = currentX + 100; // Move by 40 pixels
+        const duration = 200; // Animation duration in milliseconds
+
+        function step(timestamp) {
+            if (!currentX) currentX = x1;
+            const progress = (timestamp - startTime) / duration;
+            x1 = currentX + (targetX - currentX)  Math.min(progress, 1);
+            my_div_jump.style.left = x1 + 'px';
+
+            if (progress < 1) {
+                animationFrameId = requestAnimationFrame(step);
+            }
+        }
+
+        const startTime = performance.now();
+        animationFrameId = requestAnimationFrame(step);
+    }
+</script>
+</body>
+</html>

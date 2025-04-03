@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Text File</title>
+</head>
+<body>
+    <button id="readFileButton">Read File</button>
+    <div id="fileContent"></div>
+
+    <script>
+        document.getElementById('readFileButton').addEventListener('click', function () {
+            fetch('data.txt') // Replace 'data.txt' with the path to your text file.
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Display the file content in a div.
+                    document.getElementById('fileContent').textContent = data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Swipe Carousel with Buttons</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .swipe-container {
+      position: relative;
+      width: 600px;
+      height: 200px;
+      display: grid;
+      grid-template-columns: 200px 200px 200px;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .swipe-content {
+      display: flex;
+      width: 300%; / 3 times the width to accommodate three items /
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .swipe-item {
+      flex: 0 0 33.33%; / Each item takes one-third of the width /
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: lightblue;
+      font-size: 20px;
+    }
+
+    .button-container {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="swipe-container">
+    <div class="swipe-content">
+      <div class="swipe-item" style="background-color: black">Item 1</div>
+      <div class="swipe-item">Item 2</div>
+      <div class="swipe-item">Item 3</div>
+        <div class="swipe-item">Item 1</div>
+      <div class="swipe-item">Item 2</div>
+      <div class="swipe-item">Item 3</div>
+    </div>
+  </div>
+  <div class="button-container">
+    <button style="border: none "  id="swipeLeft">	<i class="fa fa-arrow-left" style="font-size:24px"></i></button>
+    <button style="border: none " id="swipeRight"><i class="fa fa-arrow-right" style="font-size:24px"></i></button>
+  </div>
+<script>
+    const swipeContainer = document.querySelector('.swipe-container');
+    const swipeContent = document.querySelector('.swipe-content');
+    const swipeItems = document.querySelectorAll('.swipe-item');
+
+    let currentSwipe = 0;
+    const swipeWidth = swipeContainer.clientWidth;
+    const threshold = 0.2;
+    let isSwiping = false;
+
+    swipeContainer.addEventListener('mousedown', handleStart);
+    swipeContainer.addEventListener('touchstart', handleStart);
+
+    function handleStart(e) {
+      e.preventDefault();
+
+      if (e.touches) {
+        startX = e.touches[0].clientX;
+      } else {
+        startX = e.clientX;
+      }
+
+      isSwiping = true;
+
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('touchmove', handleMove);
+      document.addEventListener('mouseup', handleEnd);
+      document.addEventListener('touchend', handleEnd);
+    }
+
+    function handleMove(e) {
+      if (!isSwiping) return;
+
+      if (e.touches) {
+        currentX = e.touches[0].clientX - startX;
+      } else {
+        currentX = e.clientX - startX;
+      }
+
+      swipeContent.style.transform = `translateX(calc(${currentX}px - ${currentSwipe  swipeWidth}px))`;
+    }
+
+    function handleEnd() {
+      if (!isSwiping) return;
+
+      isSwiping = false;
+
+      if (Math.abs(currentX) > swipeWidth  threshold) {
+        if (currentX > 0 && currentSwipe > 0) {
+          currentSwipe--;
+        } else if (currentX < 0 && currentSwipe < swipeItems.length - 1) {
+          currentSwipe++;
+        }
+      }
+
+      swipeContent.style.transform = `translateX(calc(-${currentSwipe  swipeWidth}px))`;
+
+      document.removeEventListener('mousemove', handleMove);
+      document.removeEventListener('touchmove', handleMove);
+      document.removeEventListener('mouseup', handleEnd);
+      document.removeEventListener('touchend', handleEnd);
+    }
+
+    const swipeLeftButton = document.getElementById('swipeLeft');
+    const swipeRightButton = document.getElementById('swipeRight');
+
+    swipeLeftButton.addEventListener('click', swipeLeft);
+    swipeRightButton.addEventListener('click', swipeRight);
+
+    function swipeLeft() {
+      if (currentSwipe > 0) {
+        currentSwipe--;
+        swipeContent.style.transform = `translateX(calc(-${currentSwipe  swipeWidth}px))`;
+      }
+    }
+
+    function swipeRight() {
+      if (currentSwipe < swipeItems.length - 1) {
+        currentSwipe++;
+        swipeContent.style.transform = `translateX(calc(-${currentSwipe  swipeWidth}px))`;
+      }
+      if(currentSwipe>1){
+        currentSwipe--;
+        swipeContent.style.transform = `translateX(calc(-${currentSwipe  swipeWidth}px))`;
+      }
+    }
+  </script></body>
+</html>
