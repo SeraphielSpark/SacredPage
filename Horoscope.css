@@ -1,0 +1,161 @@
+body{
+    background-image:url("7kmF.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 1000px;
+
+}
+@keyframes slideInLeft2 {
+    from{
+
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(80px);
+
+    }
+ }
+.Front_Page {
+    animation-name: slideInLeft2;
+    font-size: xxx-large;
+    color: blue;
+
+
+    margin-left: 450px;
+    animation-fill-mode: inherit;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    transform: translateY(120px);
+
+
+}
+.Front_Page1{
+
+    animation-name: slideInLeft2;
+    font-size: xx-large;
+    color: navajowhite;
+
+
+    margin-left: 400px;
+    animation-fill-mode: inherit;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    transform: translateY(80px);
+
+
+}
+.ulo1{
+    margin: 1px;
+
+}
+.ulo2{
+    margin-left: 200px;
+}
+.ulo3{
+    margin-left: 200px;
+}
+.ulo4{
+    margin-left: 200px;
+}
+.ulo5{
+    margin-left: 280px;
+}
+body{
+    background-image: url("747m.gif");
+}
+input{
+    width: 30%;
+}
+.label12{
+    margin-left: 450px;
+    margin-top: 160px;
+}
+.label13{
+    margin-left: 450px;
+
+    }
+.po1{
+    margin-left: 450px;
+}
+.label14{
+    margin-left: 450px;
+}
+.po2{
+    margin-left: 450px;
+}
+.label15{
+    margin-left: 450px;
+}
+.po3{
+    margin-left: 450px;
+}
+button{
+    margin-left: 600px;
+    height: 50px;
+    width: 100px;
+
+}
+.img1{
+    font-size: 1%;
+    width: 70px;
+    margin-right: 40px;
+
+}
+.hhh{
+    margin-left: 450px;
+    color: black;
+}
+.body1{
+    background-image: url("WGkW.gif");
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    color: black;
+
+
+}
+li{
+    display: inline-block;
+    color: black;
+    background-color: white;
+}
+li a{
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+
+
+}
+
+li{
+    color: white;
+
+}
+.missions_body{
+
+    background: white;
+}
+.h21{
+    margin-top: 200px;
+    margin-left: 200px;
+}
+.h22{
+    margin-left: 200px;
+}
+.a2{
+    background-color: black;
+
+    padding-left: 1400px;
+    text-align: left;
+    text-anchor: start;
+    text-underline-color: blue;
+}
