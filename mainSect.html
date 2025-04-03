@@ -527,17 +527,17 @@
             <div id="library1" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
                 <h3 id="m">Downloadable Books</h3>
                 <p id="p1">Access your purchased books anytime, anywhere with our digital library. Available in multiple formats for all devices.</p>
-                <a href="#" class="btn">View Library</a>
+                <a id="q"  class="btn">View Library</a>
             </div>
             <div id="library2" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
                 <h3 id="n">Audio Books</h3>
                 <p id="p2">Listen to spiritual teachings on the go with our collection of high-quality audio books.</p>
-                <a href="#" class="btn">Listen Now</a>
+                <a id="r"  class="btn">Listen Now</a>
             </div>
             <div id="library3" class="library-card" style="background-position: center top; color: rgb(255, 255, 255);">
                 <h3 id="o">Exclusive Content</h3>
                 <p id="p3">Members get access to exclusive spiritual content, guided meditations, and more.</p>
-                <a href="#" class="btn">Join Now</a>
+                <a id="s"  class="btn">Join Now</a>
             </div>
             
         </div>
@@ -596,6 +596,7 @@
         var libraryList= ['ninth-img.png', 'audioBook.jpg', 'angel2.jpeg', 'tarot.jpeg','angel.png','astroImage.png','moon.png', 'screen.png' ]
         var h = ['Downloadable Books', 'Audio Books', 'Exclusive Content', 'Tarot Card Readings','Angelic Readings', 'Zodiac Sign Reading', 'Cardinal Reading','Cookie Game']
         var p = ['Access your purchased books anytime, anywhere with our digital library. Available in multiple formats for all devices.','Listen to spiritual teachings on the go with our collection of high-quality audio books.', 'Members get access to exclusive spiritual content, guided meditations, and more.', 'Members get access to Tarot Card Readings, and more.', 'Members get access to Angelic Readings, and more.', 'Members get access to Zodiac Sign Readings, and more.', 'Members get access to Cardinal Readings, and more.', 'Members get access to Cookies Game, and more.']
+        var aa = ['#books','#','#','testing-tarot.html','angelic-path-details.html','Horoscope New Line.html','Calculate-Your-Cardinal.html','cookies.html'] 
         let x= 0;
         let y = 1;
         let z = 2;
@@ -608,11 +609,23 @@
         let p1 = document.getElementById('p1');
         let p2 = document.getElementById('p2');
         let p3 = document.getElementById('p3');
+        let a1 = document.getElementById('q');
+        let a2 = document.getElementById('r');
+        let a3 = document.getElementById('s');
         
+
         library1.style.backgroundImage = `url(${libraryList[x]})`;
         library2.style.backgroundImage = `url(${libraryList[y]})`;
         library3.style.backgroundImage = `url(${libraryList[z]})`;
-        
+        h1.innerText = h[x];
+        h2.innerText = h[y];
+        h3.innerText = h[z];
+        p1.innerText = p[x];
+        p2.innerText = p[y];
+        p3.innerText = p[z];
+        library1.onclick = () => { window.location.href = aa[x] };
+        library2.onclick = () => { window.location.href = aa[y] };
+        library3.onclick = () => { window.location.href = aa[z] };
         if(x ===0){
             z= 2;
             y = 1;
@@ -626,8 +639,11 @@
             p1.innerText = p[x];
             p2.innerText = p[y];
             p3.innerText = p[z];
+            library1.onclick = () => { window.location.href = aa[x] };
+            library2.onclick = () => { window.location.href = aa[y] };
+            library3.onclick = () => { window.location.href = aa[z] };
         }
-        function backLibrary(){
+            function backLibrary(){
             x--;
             y--;
             z--;
@@ -641,7 +657,9 @@
             p1.innerText = p[x];
             p2.innerText = p[y];
             p3.innerText = p[z];
-
+            library1.onclick = () => { window.location.href = aa[x] };
+            library2.onclick = () => { window.location.href = aa[y] };
+            library3.onclick = () => { window.location.href = aa[z] };
             if(x <= 0){
                 z= 2;
                 y = 1;
@@ -656,6 +674,9 @@
                 p1.innerText = p[x];
                 p2.innerText = p[y];
                 p3.innerText = p[z];
+                library1.onclick = () => { window.location.href = aa[x] };
+                library2.onclick = () => { window.location.href = aa[y] };
+                library3.onclick = () => { window.location.href = aa[z] }; 
             }
         }
        function forwardLibrary(){
@@ -672,7 +693,9 @@
         p1.innerText = p[x];
         p2.innerText = p[y];
         p3.innerText = p[z];
-
+        library1.onclick = () => { window.location.href = aa[x] };
+        library2.onclick = () => { window.location.href = aa[y] };
+        library3.onclick = () => { window.location.href = aa[z] };
         if(z === libraryList.length){
             z= 7;
             y = 6;
@@ -686,6 +709,9 @@
             p1.innerText = p[x];
             p2.innerText = p[y];
             p3.innerText = p[z];
+            library1.onclick = () => { window.location.href = aa[x] };
+        library2.onclick = () => { window.location.href = aa[y] };
+        library3.onclick = () => { window.location.href = aa[z] };
         }
        } 
 
